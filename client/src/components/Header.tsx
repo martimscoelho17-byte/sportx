@@ -1,0 +1,162 @@
+import { useState, useRef, useEffect } from "react";
+import { Link, useLocation } from "wouter";
+import { ShoppingBag, User, Sun, Moon, ChevronDown, X } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
+import { useCart } from "@/contexts/CartContext";
+import { useAuth } from "@/_core/hooks/useAuth";
+import { trpc } from "@/lib/trpc";
+import LoginModal from "./LoginModal";
+
+interface BrandMenu {
+  name: string;
+  slug: string;
+  categories: { name: string; slug: string }[];
+}
+
+export default function Header() {
+  const { theme, toggleTheme } = useTheme();
+  const { itemCount, isOpen: cartOpen, openCart } = useCart();
+  const { user, logout } = useAuth();
+  const [, navigate] = useLocation();
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const { data: brands = [] } = trpc.brands.list.useQuery();
+  const { data: allCategories = [] } = trpc.categories.all.useQuery();
+
+  const brandMenus: BrandMenu[] = brands.map((brand) => ({
+    name: brand.name,
+    slug: brand.slug,
+    categories: allCategories
+      .filter((c) => c.brandId === brand.id)
+      .map((c) => ({ name: c.name, slug: c.slug })),
+  }));
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setActiveDropdown(null);
+        setUserMenuOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <>
+      <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
+        <div className="max-w-[1400px] mx-auto px-4">
+          {/* Top row: logo | brand nav | actions */}
+          <div className="flex items-center h-16 gap-4">
+            {/* Logo */}
+            <Link href="/" className="flex-shrink-0 mr-4">
+              <span className="font-black text-2xl tracking-widest select-none" style={{ letterSpacing: "0.15em" }}>
+                <span style={{ color: "#660000" }}>Sport</span>
+                <span style={{ color: "#001a4d" }}>X</span>
+              </span>
+            </Link>
+
+            {/* Brand navigation */}
+            <nav className="hidden md:flex items-center gap-1 flex-1 justify-center" ref={dropdownRef}>
+              {brandMenus.map((brand) => (
+                <div key={brand.slug} className="relative">
+                  <button
+                    className="flex items-center gap-1 px-4 py-2 text-sm font-semibold uppercase tracking-wider text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors rounded-md hover:bg-accent"
+                    onMouseEnter={() => setActiveDropdown(brand.slug)}
+                    onMouseLeave={() => setActiveDropdown(null)}
+                    onClick={() => navigate(`/products/${brand.slug}`)}
+                  >
+                    {brand.name}
+                    <ChevronDown
+                      size={14}
+                      className={`transition-transform duration-200 ${activeDropdown === brand.slug ? "rotate-180" : ""}`}
+                    />
+                  </button>
+
+                  {activeDropdown === brand.slug && (
+                    <div
+                      className="absolute top-full left-0 mt-1 w-52 bg-popover border border-border rounded-lg shadow-lg py-1 z-50"
+                      onMouseEnter={() => setActiveDropdown(brand.slug)}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
+                      {brand.categories.map((cat) => (
+                        <button
+                          key={cat.slug}
+                          className="w-full text-left px-4 py-2.5 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                          onClick={() => {
+                            navigate(`/products/${brand.slug}/${cat.slug}`);
+                            setActiveDropdown(null);
+                          }}
+                        >
+                          {cat.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </nav>
+
+            {/* Actions */}
+            <div className="flex items-center gap-1 ml-auto">
+              {/* Theme toggle */}
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-full hover:bg-accent transition-colors text-foreground"
+                aria-label="Alternar tema"
+              >
+                {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+
+              {/* User */}
+              <div className="relative">
+                <button
+                  className="p-2 rounded-full hover:bg-accent transition-colors text-foreground"
+                  onClick={() => {
+                    if (user) setUserMenuOpen(!userMenuOpen);
+                    else setLoginOpen(true);
+                  }}
+                  aria-label="Conta"
+                >
+                  <User size={20} />
+                </button>
+                {userMenuOpen && user && (
+                  <div className="absolute right-0 top-full mt-1 w-48 bg-popover border border-border rounded-lg shadow-lg py-1 z-50">
+                    <div className="px-4 py-2 text-sm font-medium text-popover-foreground border-b border-border">
+                      {user.name || user.email}
+                    </div>
+                    <button
+                      className="w-full text-left px-4 py-2 text-sm text-popover-foreground hover:bg-accent transition-colors"
+                      onClick={() => { logout(); setUserMenuOpen(false); }}
+                    >
+                      Terminar sessão
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Cart */}
+              <button
+                className="relative p-2 rounded-full hover:bg-accent transition-colors text-foreground"
+                onClick={openCart}
+                aria-label="Carrinho"
+              >
+                <ShoppingBag size={20} />
+                {itemCount > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 bg-red-600 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                    {itemCount > 9 ? "9+" : itemCount}
+                  </span>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <LoginModal open={loginOpen} onClose={() => setLoginOpen(false)} />
+    </>
+  );
+}
