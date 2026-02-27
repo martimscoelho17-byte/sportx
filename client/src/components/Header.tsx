@@ -48,7 +48,7 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
-        <div className="max-w-[1400px] mx-auto px-4">
+        <div className="w-full px-4">
           <div className="flex items-center justify-between h-16 gap-8">
             {/* Logo - Left */}
             <Link href="/" className="flex-shrink-0">

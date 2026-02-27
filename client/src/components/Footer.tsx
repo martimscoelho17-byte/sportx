@@ -10,32 +10,32 @@ export default function Footer() {
   return (
     <>
       <footer className="border-t border-border bg-background">
-        <div className="max-w-[1400px] mx-auto px-4 py-8">
+        <div className="w-full px-4 py-8">
           {/* Footer content */}
-          <div className="flex flex-col items-center justify-center gap-6 mb-6">
-            {/* Navigation links */}
-            <nav className="flex flex-wrap items-center justify-center gap-6">
+          <div className="flex flex-col gap-6 mb-6">
+            {/* Navigation links - spread across footer */}
+            <nav className="flex items-center justify-between gap-4">
               <button
                 onClick={() => setModal("sobre")}
-                className="text-sm font-semibold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors uppercase tracking-wider"
+                className="text-sm font-bold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
               >
                 Sobre
               </button>
               <button
                 onClick={() => setModal("contactos")}
-                className="text-sm font-semibold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors uppercase tracking-wider"
+                className="text-sm font-bold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
               >
                 Contactos
               </button>
               <button
                 onClick={() => setModal("localizacao")}
-                className="text-sm font-semibold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors uppercase tracking-wider"
+                className="text-sm font-bold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
               >
                 Localização
               </button>
               <button
                 onClick={() => setModal("privacidade")}
-                className="text-sm font-semibold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors uppercase tracking-wider"
+                className="text-sm font-bold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
               >
                 Política de Privacidade
               </button>
