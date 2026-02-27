@@ -52,10 +52,11 @@ export default function Header() {
           <div className="flex items-center justify-between h-16 gap-8">
             {/* Logo - Left */}
             <Link href="/" className="flex-shrink-0">
-              <span className="font-black text-2xl tracking-widest select-none" style={{ letterSpacing: "0.15em" }}>
-                <span style={{ color: "#660000" }}>Sport</span>
-                <span style={{ color: "#001a4d" }}>X</span>
-              </span>
+              <img
+                src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663389044073/EOapXdeqnlFypqTa.png?Expires=1803756858&Signature=uZMtHu87K7c~1Pk4rA9RKNrCOj1nmsilPMgktLUrzQQyNx25vEaVB-acV-C~XHRxBRMwxKwNey~f3XuNMGOyosudF7ZT5hMzgBtYv-BEDXMqLSz8p73WVdbaqjTIMRVL7TtcOdG-0za7Rbomt739O7z3rBlsYXUWsDTXW5ywydHna-2FjNyMuyJXmswiZL5LVFBkHljHRqSKXhcFlQRTXToR5sktDILn1am08N0bPHvCFrFMGpDMFSpbS1Ft0waclsFkH51fMr6F7mkmqRdMxWdp5mZOWsSbe6BZiLJoFcMTKYWlSyLQcYRlmsYR-WtKT4KQy9Omha5bEsz6gUxWlQ__&Key-Pair-Id=K2HSFNDJXOU9YS"
+                alt="SportX"
+                className="h-8 w-8"
+              />
             </Link>
 
             {/* Brand navigation - Center */}

@@ -34,3 +34,4 @@
 - [x] Header: Logo esquerda, 4 marcas centro com dropdowns, tema/login/carrinho direita
 - [x] Footer: 4 tópicos (Sobre, Contactos, Localização, Privacidade) + copyright
 - [x] Testar layout responsivo e checkpoint
+- [x] Substituir logo SportX por ícone azul (#001a4d)
