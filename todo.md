@@ -35,4 +35,4 @@
 - [x] Footer: 4 tópicos (Sobre, Contactos, Localização, Privacidade) + copyright
 - [x] Testar layout responsivo e checkpoint
 - [x] Substituir logo SportX por ícone azul (#001a4d)
-- [x] Página principal: hero com SportX + slogan + 4 marcas com espaçamento
+- [x] Página principal: hero com SportX + slogan (sem marcas por baixo)
