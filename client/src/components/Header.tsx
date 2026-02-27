@@ -60,7 +60,7 @@ export default function Header() {
             </Link>
 
             {/* Brand navigation - Center */}
-            <nav className="hidden md:flex items-center gap-8 flex-1 justify-center" ref={dropdownRef}>
+            <nav className="hidden md:flex items-center gap-16 flex-1 justify-center" ref={dropdownRef}>
               {brandMenus.map((brand) => (
                 <div key={brand.slug} className="relative">
                   <button
