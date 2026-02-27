@@ -53,7 +53,7 @@ export default function Header() {
             {/* Logo - Left */}
             <Link href="/" className="flex-shrink-0">
               <img
-                src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663389044073/EOapXdeqnlFypqTa.png?Expires=1803756858&Signature=uZMtHu87K7c~1Pk4rA9RKNrCOj1nmsilPMgktLUrzQQyNx25vEaVB-acV-C~XHRxBRMwxKwNey~f3XuNMGOyosudF7ZT5hMzgBtYv-BEDXMqLSz8p73WVdbaqjTIMRVL7TtcOdG-0za7Rbomt739O7z3rBlsYXUWsDTXW5ywydHna-2FjNyMuyJXmswiZL5LVFBkHljHRqSKXhcFlQRTXToR5sktDILn1am08N0bPHvCFrFMGpDMFSpbS1Ft0waclsFkH51fMr6F7mkmqRdMxWdp5mZOWsSbe6BZiLJoFcMTKYWlSyLQcYRlmsYR-WtKT4KQy9Omha5bEsz6gUxWlQ__&Key-Pair-Id=K2HSFNDJXOU9YS"
+                src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663389044073/JJVHNmCShuqbrlAT.png?Expires=1803757048&Signature=Bb~ZqK9r7xaFDiwCZlkLAW9kIHzYTCB4quACfhaHTBgZfG5p1Rz0vVmb7ZDVk8ruapztnDaGPJvODNFRAoWIfRObS7a5EE8Yq9isnR6RFxR~O3tNRg-kqmRQlpzH-j1Od~W~4Vlfee1DCB8lbvuxMxh9TEwSybQYbUk7Lrazdx1LtyjGGBBXdHfThephkFG6piCNitjnO8G39rvY9hG0usS7Sst4koPkW~jg6YyRcl884NSos05n2mZPBBUEbNJ81M7axHtXftAnJzJoSP9030BO94UZUFYK02BLWeTgREcQIxFy9qTt-3oR6OcFnochUF498S-D6ofj3bTSzEz11w__&Key-Pair-Id=K2HSFNDJXOU9YS"
                 alt="SportX"
                 className="h-8 w-8"
               />
