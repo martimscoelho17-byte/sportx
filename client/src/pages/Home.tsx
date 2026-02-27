@@ -17,7 +17,7 @@ function HomeContent() {
           <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-[#660000]/5 dark:bg-[#660000]/10 blur-3xl" />
         </div>
 
-        <div className="relative text-center space-y-4">
+        <div className="relative text-center space-y-4 w-full max-w-[1400px] mx-auto">
           {/* Main title */}
           <h1 className="text-[clamp(2.5rem,18vw,9rem)] leading-none select-none font-bold" style={{ fontFamily: "'Arial Black', 'Helvetica', sans-serif", fontWeight: 900, letterSpacing: "-0.02em" }}>
             <span style={{ color: "#660000" }}>Sport</span>
