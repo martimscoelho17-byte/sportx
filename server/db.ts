@@ -77,7 +77,9 @@ export async function getUserByOpenId(openId: string) {
 export async function getAllBrands(): Promise<Brand[]> {
   const db = await getDb();
   if (!db) return [];
-  return db.select().from(brands).orderBy(brands.name);
+  const brandOrder = ['Nike', 'Adidas', 'New Balance', 'Puma'];
+  const result = await db.select().from(brands);
+  return result.sort((a, b) => brandOrder.indexOf(a.name) - brandOrder.indexOf(b.name));
 }
 
 export async function getBrandBySlug(slug: string) {

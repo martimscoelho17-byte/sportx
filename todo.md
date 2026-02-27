@@ -36,3 +36,4 @@
 - [x] Testar layout responsivo e checkpoint
 - [x] Substituir logo SportX por ícone azul (#001a4d)
 - [x] Página principal: hero com SportX + slogan (sem marcas por baixo)
+- [x] Ordem das marcas: Nike, Adidas, New Balance, Puma
