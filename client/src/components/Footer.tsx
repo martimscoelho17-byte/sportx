@@ -9,57 +9,42 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="border-t border-border bg-background mt-auto">
-        <div className="max-w-[1400px] mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            {/* Brand */}
-            <div className="text-center md:text-left">
-              <span className="font-black text-xl tracking-widest">
-                <span style={{ color: "#660000" }}>Sport</span>
-                <span style={{ color: "#001a4d" }}>X</span>
-              </span>
-              <p className="text-xs text-muted-foreground mt-0.5 tracking-widest uppercase">The Next Level of Sports</p>
-            </div>
-
-            {/* Links */}
-            <nav className="flex flex-wrap items-center justify-center gap-4">
+      <footer className="border-t border-border bg-background">
+        <div className="max-w-[1400px] mx-auto px-4 py-8">
+          {/* Footer content */}
+          <div className="flex flex-col items-center justify-center gap-6 mb-6">
+            {/* Navigation links */}
+            <nav className="flex flex-wrap items-center justify-center gap-6">
               <button
                 onClick={() => setModal("sobre")}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-semibold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors uppercase tracking-wider"
               >
                 Sobre
               </button>
               <button
-                onClick={() => setModal("privacidade")}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Política de Privacidade
-              </button>
-              <button
                 onClick={() => setModal("contactos")}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-semibold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors uppercase tracking-wider"
               >
                 Contactos
               </button>
               <button
                 onClick={() => setModal("localizacao")}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                className="text-sm font-semibold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors uppercase tracking-wider"
               >
                 Localização
               </button>
-              <a
-                href="https://wa.me/351963430023"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 transition-colors flex items-center gap-1"
+              <button
+                onClick={() => setModal("privacidade")}
+                className="text-sm font-semibold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors uppercase tracking-wider"
               >
-                <MessageCircle size={14} />
-                WhatsApp
-              </a>
+                Política de Privacidade
+              </button>
             </nav>
+          </div>
 
-            {/* Copyright */}
-            <p className="text-xs text-muted-foreground text-center md:text-right">
+          {/* Copyright */}
+          <div className="text-center border-t border-border pt-6">
+            <p className="text-xs text-muted-foreground tracking-wider">
               © 2026 SportX. THE NEXT LEVEL OF SPORTS
             </p>
           </div>

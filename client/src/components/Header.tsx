@@ -49,22 +49,21 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
         <div className="max-w-[1400px] mx-auto px-4">
-          {/* Top row: logo | brand nav | actions */}
-          <div className="flex items-center h-16 gap-4">
-            {/* Logo */}
-            <Link href="/" className="flex-shrink-0 mr-4">
+          <div className="flex items-center justify-between h-16 gap-8">
+            {/* Logo - Left */}
+            <Link href="/" className="flex-shrink-0">
               <span className="font-black text-2xl tracking-widest select-none" style={{ letterSpacing: "0.15em" }}>
                 <span style={{ color: "#660000" }}>Sport</span>
                 <span style={{ color: "#001a4d" }}>X</span>
               </span>
             </Link>
 
-            {/* Brand navigation */}
-            <nav className="hidden md:flex items-center gap-1 flex-1 justify-center" ref={dropdownRef}>
+            {/* Brand navigation - Center */}
+            <nav className="hidden md:flex items-center gap-8 flex-1 justify-center" ref={dropdownRef}>
               {brandMenus.map((brand) => (
                 <div key={brand.slug} className="relative">
                   <button
-                    className="flex items-center gap-1 px-4 py-2 text-sm font-semibold uppercase tracking-wider text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors rounded-md hover:bg-accent"
+                    className="flex items-center gap-1.5 px-0 py-2 text-sm font-semibold uppercase tracking-wider text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
                     onMouseEnter={() => setActiveDropdown(brand.slug)}
                     onMouseLeave={() => setActiveDropdown(null)}
                     onClick={() => navigate(`/products/${brand.slug}`)}
@@ -78,7 +77,7 @@ export default function Header() {
 
                   {activeDropdown === brand.slug && (
                     <div
-                      className="absolute top-full left-0 mt-1 w-52 bg-popover border border-border rounded-lg shadow-lg py-1 z-50"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-popover border border-border rounded-lg shadow-lg py-1 z-50"
                       onMouseEnter={() => setActiveDropdown(brand.slug)}
                       onMouseLeave={() => setActiveDropdown(null)}
                     >
@@ -100,13 +99,14 @@ export default function Header() {
               ))}
             </nav>
 
-            {/* Actions */}
-            <div className="flex items-center gap-1 ml-auto">
+            {/* Actions - Right */}
+            <div className="flex items-center gap-2 ml-auto">
               {/* Theme toggle */}
               <button
                 onClick={toggleTheme}
                 className="p-2 rounded-full hover:bg-accent transition-colors text-foreground"
                 aria-label="Alternar tema"
+                title={theme === "dark" ? "Modo claro" : "Modo escuro"}
               >
                 {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
               </button>
@@ -120,6 +120,7 @@ export default function Header() {
                     else setLoginOpen(true);
                   }}
                   aria-label="Conta"
+                  title={user ? "Minha conta" : "Iniciar sessão"}
                 >
                   <User size={20} />
                 </button>
@@ -130,7 +131,10 @@ export default function Header() {
                     </div>
                     <button
                       className="w-full text-left px-4 py-2 text-sm text-popover-foreground hover:bg-accent transition-colors"
-                      onClick={() => { logout(); setUserMenuOpen(false); }}
+                      onClick={() => {
+                        logout();
+                        setUserMenuOpen(false);
+                      }}
                     >
                       Terminar sessão
                     </button>
@@ -143,6 +147,7 @@ export default function Header() {
                 className="relative p-2 rounded-full hover:bg-accent transition-colors text-foreground"
                 onClick={openCart}
                 aria-label="Carrinho"
+                title="Ver carrinho"
               >
                 <ShoppingBag size={20} />
                 {itemCount > 0 && (
