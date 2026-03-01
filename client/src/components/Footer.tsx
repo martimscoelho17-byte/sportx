@@ -64,10 +64,9 @@ export default function Footer() {
             <p>
               A SportX é a sua loja online de artigos desportivos de qualidade, especializada em chuteiras das marcas Nike, Adidas, New Balance e Puma.
             </p>
-            <div className="bg-accent rounded-lg p-4 space-y-3">
-              <h3 className="font-bold text-foreground text-base">A Nossa Missão</h3>
+            <div className="space-y-3">
               <p>
-                A nossa missão é fornecer aos atletas e aos entusiastas deste desporto os melhores produtos, com preços competitivos e um serviço de excelência, garantindo sempre a satisfação do cliente.
+                O nosso principal objetivo é fornecer aos atletas e aos entusiastas deste desporto os melhores produtos, com preços competitivos e um serviço de excelência, garantindo sempre a satisfação do cliente.
               </p>
               <p>
                 Disponibilizamos uma vasta variedade de artigos, assegurando envios rápidos e seguros para toda a União Europeia.
