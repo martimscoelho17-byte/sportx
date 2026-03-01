@@ -58,7 +58,6 @@ export default function Footer() {
             <DialogTitle className="text-xl font-bold">
               <span style={{ color: "#660000" }}>Sport</span>
               <span style={{ color: "#001a4d" }}>X</span>
-              <span className="text-foreground"> — Sobre nós</span>
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
