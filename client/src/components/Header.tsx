@@ -51,7 +51,7 @@ export default function Header() {
         <div className="w-full max-w-[1400px] mx-auto">
           <div className="flex items-center justify-between h-16 gap-8 px-4">
             {/* Logo - Left */}
-            <Link href="/" className="flex-shrink-0 -ml-2">
+            <Link href="/" className="flex-shrink-0 -ml-4">
               <img
                 src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663389044073/JJVHNmCShuqbrlAT.png?Expires=1803757048&Signature=Bb~ZqK9r7xaFDiwCZlkLAW9kIHzYTCB4quACfhaHTBgZfG5p1Rz0vVmb7ZDVk8ruapztnDaGPJvODNFRAoWIfRObS7a5EE8Yq9isnR6RFxR~O3tNRg-kqmRQlpzH-j1Od~W~4Vlfee1DCB8lbvuxMxh9TEwSybQYbUk7Lrazdx1LtyjGGBBXdHfThephkFG6piCNitjnO8G39rvY9hG0usS7Sst4koPkW~jg6YyRcl884NSos05n2mZPBBUEbNJ81M7axHtXftAnJzJoSP9030BO94UZUFYK02BLWeTgREcQIxFy9qTt-3oR6OcFnochUF498S-D6ofj3bTSzEz11w__&Key-Pair-Id=K2HSFNDJXOU9YS"
                 alt="SportX"
@@ -102,7 +102,7 @@ export default function Header() {
             </nav>
 
             {/* Actions - Right */}
-            <div className="flex items-center gap-2 ml-auto -mr-2">
+            <div className="flex items-center gap-2 ml-auto -mr-4">
               {/* Theme toggle */}
               <button
                 onClick={toggleTheme}
