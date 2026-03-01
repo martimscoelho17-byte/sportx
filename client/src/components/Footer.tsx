@@ -62,7 +62,7 @@ export default function Footer() {
           </DialogHeader>
           <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
             <p>
-              A <strong className="text-foreground">SportX</strong> é a sua loja online de artigos desportivos de qualidade, especializada em chuteiras das marcas Nike, Adidas, New Balance e Puma.
+              A SportX é a sua loja online de artigos desportivos de qualidade, especializada em chuteiras das marcas Nike, Adidas, New Balance e Puma.
             </p>
             <div className="bg-accent rounded-lg p-4 space-y-3">
               <h3 className="font-bold text-foreground text-base">A Nossa Missão</h3>
