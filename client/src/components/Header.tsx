@@ -48,10 +48,10 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
-        <div className="w-full max-w-[1400px] mx-auto">
-          <div className="flex items-center justify-between h-16 gap-8 px-4">
+        <div className="w-full">
+          <div className="flex items-center justify-between h-16 px-0">
             {/* Logo - Left */}
-            <Link href="/" className="flex-shrink-0 -ml-4">
+            <Link href="/" className="flex-shrink-0 pl-4">
               <img
                 src="https://private-us-east-1.manuscdn.com/user_upload_by_module/session_file/310519663389044073/JJVHNmCShuqbrlAT.png?Expires=1803757048&Signature=Bb~ZqK9r7xaFDiwCZlkLAW9kIHzYTCB4quACfhaHTBgZfG5p1Rz0vVmb7ZDVk8ruapztnDaGPJvODNFRAoWIfRObS7a5EE8Yq9isnR6RFxR~O3tNRg-kqmRQlpzH-j1Od~W~4Vlfee1DCB8lbvuxMxh9TEwSybQYbUk7Lrazdx1LtyjGGBBXdHfThephkFG6piCNitjnO8G39rvY9hG0usS7Sst4koPkW~jg6YyRcl884NSos05n2mZPBBUEbNJ81M7axHtXftAnJzJoSP9030BO94UZUFYK02BLWeTgREcQIxFy9qTt-3oR6OcFnochUF498S-D6ofj3bTSzEz11w__&Key-Pair-Id=K2HSFNDJXOU9YS"
                 alt="SportX"
@@ -61,7 +61,7 @@ export default function Header() {
             </Link>
 
             {/* Brand navigation - Center */}
-            <nav className="hidden md:flex items-center gap-16 flex-1 justify-center" ref={dropdownRef}>
+            <nav className="hidden md:flex items-center gap-16 absolute left-1/2 transform -translate-x-1/2" ref={dropdownRef}>
               {brandMenus.map((brand) => (
                 <div key={brand.slug} className="relative">
                   <button
@@ -102,7 +102,7 @@ export default function Header() {
             </nav>
 
             {/* Actions - Right */}
-            <div className="flex items-center gap-2 ml-auto -mr-4">
+            <div className="flex items-center gap-2 ml-auto pr-4">
               {/* Theme toggle */}
               <button
                 onClick={toggleTheme}
