@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Footer content */}
           <div className="flex flex-col gap-6 mb-6">
             {/* Navigation links - spread across footer */}
-            <nav className="flex items-center justify-center gap-12 px-12">
+            <nav className="flex items-center justify-center gap-16 px-12">
               <button
                 onClick={() => setModal("sobre")}
                 className="text-base font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"

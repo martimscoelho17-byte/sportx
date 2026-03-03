@@ -61,7 +61,7 @@ export default function Header() {
             </Link>
 
             {/* Brand navigation - Center */}
-            <nav className="hidden md:flex items-center gap-16 absolute left-1/2 transform -translate-x-1/2" ref={dropdownRef}>
+            <nav className="hidden md:flex items-center gap-20 absolute left-1/2 transform -translate-x-1/2" ref={dropdownRef}>
               {brandMenus.map((brand) => (
                 <div key={brand.slug} className="relative">
                   <button
