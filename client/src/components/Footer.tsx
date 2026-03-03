@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 
-type ModalType = "sobre" | "privacidade" | "contactos" | "localizacao" | null;
+type ModalType = "sobre" | "privacidade" | "contactos" | null;
 
 export default function Footer() {
   const [modal, setModal] = useState<ModalType>(null);
@@ -26,12 +26,6 @@ export default function Footer() {
                 className="text-sm font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
               >
                 Contactos
-              </button>
-              <button
-                onClick={() => setModal("localizacao")}
-                className="text-sm font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
-              >
-                Localização
               </button>
               <button
                 onClick={() => setModal("privacidade")}
@@ -165,37 +159,6 @@ export default function Footer() {
         </DialogContent>
       </Dialog>
 
-      {/* Modal Localização */}
-      <Dialog open={modal === "localizacao"} onOpenChange={(v) => !v && setModal(null)}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Localização</DialogTitle>
-          </DialogHeader>
-          <div className="space-y-4">
-            <div className="flex items-start gap-3 p-4 rounded-lg bg-accent">
-              <MapPin size={20} className="text-[#001a4d] dark:text-blue-300 flex-shrink-0 mt-0.5" />
-              <div>
-                <p className="font-semibold text-foreground">SportX — Loja Online</p>
-                <p className="text-sm text-muted-foreground mt-1">Coimbra, Portugal</p>
-                <p className="text-sm text-muted-foreground">União Europeia</p>
-              </div>
-            </div>
-            <p className="text-sm text-muted-foreground text-center">
-              Somos uma loja 100% online. Realizamos envios para toda a União Europeia com entrega rápida e segura.
-            </p>
-            <div className="text-center">
-              <a
-                href="https://maps.google.com/?q=Coimbra,Portugal"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-[#001a4d] dark:text-blue-300 hover:underline"
-              >
-                Ver no Google Maps →
-              </a>
-            </div>
-          </div>
-        </DialogContent>
-      </Dialog>
     </>
   );
 }
