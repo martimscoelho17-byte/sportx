@@ -11,10 +11,10 @@ export default function Footer() {
     <>
       <footer className="border-t border-border bg-background">
         <div className="w-full px-4 py-8">
-          {/* Footer content */}
-          <div className="flex flex-col gap-6 mb-6">
-            {/* Navigation links - spread across footer */}
-            <nav className="flex items-center justify-center gap-16 px-12">
+          {/* Footer content - Topics and Copyright in one row */}
+          <div className="flex items-center justify-between border-t border-border pt-6">
+            {/* Navigation links - Left side */}
+            <nav className="flex items-center gap-16 px-12">
               <button
                 onClick={() => setModal("sobre")}
                 className="text-base font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
@@ -34,11 +34,9 @@ export default function Footer() {
                 Política de Privacidade
               </button>
             </nav>
-          </div>
 
-          {/* Copyright */}
-          <div className="text-center border-t border-border pt-6">
-            <p className="text-sm text-muted-foreground tracking-wider">
+            {/* Copyright - Right side */}
+            <p className="text-sm text-muted-foreground tracking-wider px-12">
               © 2026 SportX. THE NEXT LEVEL OF SPORTS
             </p>
           </div>
