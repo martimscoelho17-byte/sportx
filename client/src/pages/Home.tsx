@@ -19,9 +19,9 @@ function HomeContent() {
 
         <div className="relative text-center space-y-4 w-full max-w-[1400px] mx-auto">
           {/* Main title */}
-          <h1 className="text-[clamp(2rem,14vw,7rem)] leading-none select-none font-bold" style={{ fontFamily: "'Arial Black', 'Helvetica', sans-serif", fontWeight: 900, letterSpacing: "-0.02em" }}>
-            <span style={{ color: "#660000" }}>Sport</span>
-            <span style={{ color: "#001a4d" }}>X</span>
+          <h1 className="text-[clamp(2rem,14vw,7rem)] leading-none select-none font-bold" style={{ fontFamily: "'Arial Black', 'Helvetica', sans-serif", fontWeight: 900, letterSpacing: "-0.02em", backgroundColor: "transparent" }}>
+            <span style={{ color: "#660000", backgroundColor: "transparent" }}>Sport</span>
+            <span style={{ color: "#001a4d", backgroundColor: "transparent" }}>X</span>
           </h1>
 
           {/* Slogan */}
