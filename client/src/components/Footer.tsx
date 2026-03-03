@@ -17,19 +17,19 @@ export default function Footer() {
             <nav className="flex items-center justify-around gap-8 px-12">
               <button
                 onClick={() => setModal("sobre")}
-                className="text-sm font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
+                className="text-base font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
               >
                 Sobre
               </button>
               <button
                 onClick={() => setModal("contactos")}
-                className="text-sm font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
+                className="text-base font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
               >
                 Contactos
               </button>
               <button
                 onClick={() => setModal("privacidade")}
-                className="text-sm font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
+                className="text-base font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
               >
                 Política de Privacidade
               </button>
@@ -38,7 +38,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <div className="text-center border-t border-border pt-6">
-            <p className="text-xs text-muted-foreground tracking-wider">
+            <p className="text-sm text-muted-foreground tracking-wider">
               © 2026 SportX. THE NEXT LEVEL OF SPORTS
             </p>
           </div>
