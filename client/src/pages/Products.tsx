@@ -150,28 +150,8 @@ function ProductsContent() {
 
       <main className="flex-1">
         <div className="max-w-[1400px] mx-auto px-4 py-8">
-          {/* Breadcrumb - only show when NOT in category view */}
-          {!selectedCategory && (
-            <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-              <button onClick={() => navigate("/")} className="hover:text-foreground transition-colors">
-                Início
-              </button>
-              {brand && (
-                <>
-                  <span>/</span>
-                  <button
-                    onClick={() => navigate(`/products/${brand.slug}`)}
-                    className="hover:text-foreground transition-colors"
-                  >
-                    {brand.name}
-                  </button>
-                </>
-              )}
-            </nav>
-          )}
-
-          {/* Category view header with logo and topics */}
-          {selectedCategory && brand && (
+          {/* Brand header with logo and category tabs */}
+          {brand && (
             <nav className="flex items-center justify-between mb-8 pb-6 border-b border-border">
               <img
                 src={`/${brand.slug}-logo.svg`}
@@ -179,46 +159,26 @@ function ProductsContent() {
                 className="h-16 w-16 object-contain dark:invert"
               />
               <div className="flex items-center gap-6 text-sm">
-                <button className="text-muted-foreground hover:text-foreground transition-colors">
-                  Sobre
-                </button>
-                <button className="text-muted-foreground hover:text-foreground transition-colors">
-                  Contactos
-                </button>
-                <button className="text-muted-foreground hover:text-foreground transition-colors">
-                  Política de Privacidade
-                </button>
+                {brandCategories.map((cat) => (
+                  <button
+                    key={cat.slug}
+                    onClick={() => navigate(`/products/${brand.slug}/${cat.slug}`)}
+                    className={`text-muted-foreground hover:text-foreground transition-colors ${
+                      selectedCategory?.slug === cat.slug ? "text-foreground font-semibold" : ""
+                    }`}
+                  >
+                    {cat.name}
+                  </button>
+                ))}
               </div>
             </nav>
           )}
 
-          {/* Brand header */}
-          {brand && (
-            <div className="mb-6">
-              <h1 className="text-3xl font-black text-foreground tracking-wide">
-                {selectedCategory ? selectedCategory.name : brand.name}
-              </h1>
-              {/* Category tabs */}
-              {brandCategories.length > 0 && (
-                <div className="flex flex-wrap gap-2 mt-4">
-                  <button
-                    className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${!selectedCategory ? "bg-[#001a4d] text-white" : "bg-accent text-muted-foreground hover:text-foreground"}`}
-                    onClick={() => navigate(`/products/${brand.slug}`)}
-                  >
-                    Todos
-                  </button>
-                  {brandCategories.map((cat) => (
-                    <button
-                      key={cat.slug}
-                      className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors ${selectedCategory?.slug === cat.slug ? "bg-[#001a4d] text-white" : "bg-accent text-muted-foreground hover:text-foreground"}`}
-                      onClick={() => navigate(`/products/${brand.slug}/${cat.slug}`)}
-                    >
-                      {cat.name}
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
+          {/* Category title */}
+          {selectedCategory && (
+            <h1 className="text-3xl font-black text-foreground tracking-wide mb-6">
+              {selectedCategory.name}
+            </h1>
           )}
 
           {/* Toolbar */}
