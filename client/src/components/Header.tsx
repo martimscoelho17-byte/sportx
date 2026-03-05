@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { ShoppingBag, User, Sun, Moon, ChevronDown, X } from "lucide-react";
+import { ShoppingBag, User, Sun, Moon, ChevronDown } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -113,36 +113,50 @@ export default function Header() {
                 {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
               </button>
 
-              {/* User */}
-              <div className="relative">
-                <button
-                  className="p-2 rounded-full hover:bg-accent transition-colors text-foreground"
-                  onClick={() => {
-                    if (user) setUserMenuOpen(!userMenuOpen);
-                    else setLoginOpen(true);
-                  }}
-                  aria-label="Conta"
-                  title={user ? "Minha conta" : "Iniciar sessão"}
-                >
-                  <User size={20} />
-                </button>
-                {userMenuOpen && user && (
-                  <div className="absolute right-0 top-full mt-1 w-48 bg-popover border border-border rounded-lg shadow-lg py-1 z-50">
-                    <div className="px-4 py-2 text-sm font-medium text-popover-foreground border-b border-border">
-                      {user.name || user.email}
+              {/* User - Authenticated */}
+              {user ? (
+                <div className="relative">
+                  <button
+                    className="p-2 rounded-full hover:bg-accent transition-colors text-foreground"
+                    onClick={() => setUserMenuOpen(!userMenuOpen)}
+                    aria-label="Conta"
+                    title="Minha conta"
+                  >
+                    <User size={20} />
+                  </button>
+                  {userMenuOpen && (
+                    <div className="absolute right-0 top-full mt-1 w-48 bg-popover border border-border rounded-lg shadow-lg py-1 z-50">
+                      <div className="px-4 py-2 text-sm font-medium text-popover-foreground border-b border-border">
+                        {user.name || user.email}
+                      </div>
+                      <button
+                        className="w-full text-left px-4 py-2 text-sm text-popover-foreground hover:bg-accent transition-colors"
+                        onClick={() => {
+                          logout();
+                          setUserMenuOpen(false);
+                        }}
+                      >
+                        Terminar sessão
+                      </button>
                     </div>
-                    <button
-                      className="w-full text-left px-4 py-2 text-sm text-popover-foreground hover:bg-accent transition-colors"
-                      onClick={() => {
-                        logout();
-                        setUserMenuOpen(false);
-                      }}
-                    >
-                      Terminar sessão
-                    </button>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <button
+                    className="px-3 py-1.5 text-sm font-medium text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
+                    onClick={() => setLoginOpen(true)}
+                  >
+                    Iniciar sessão
+                  </button>
+                  <button
+                    className="px-3 py-1.5 text-sm font-medium text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
+                    onClick={() => setLoginOpen(true)}
+                  >
+                    Registar
+                  </button>
+                </div>
+              )}
 
               {/* Cart */}
               <button
