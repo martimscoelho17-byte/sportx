@@ -131,9 +131,9 @@ export default function Header() {
                       </div>
                       <button
                         className="w-full text-left px-4 py-2 text-sm text-popover-foreground hover:bg-accent transition-colors"
-                        onClick={() => {
-                          logout();
+                        onClick={async () => {
                           setUserMenuOpen(false);
+                          await logout();
                         }}
                       >
                         Terminar sessão
