@@ -150,29 +150,47 @@ function ProductsContent() {
 
       <main className="flex-1">
         <div className="max-w-[1400px] mx-auto px-4 py-8">
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
-            <button onClick={() => navigate("/")} className="hover:text-foreground transition-colors">
-              Início
-            </button>
-            {brand && (
-              <>
-                <span>/</span>
-                <button
-                  onClick={() => navigate(`/products/${brand.slug}`)}
-                  className="hover:text-foreground transition-colors"
-                >
-                  {brand.name}
+          {/* Breadcrumb - only show when NOT in category view */}
+          {!selectedCategory && (
+            <nav className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+              <button onClick={() => navigate("/")} className="hover:text-foreground transition-colors">
+                Início
+              </button>
+              {brand && (
+                <>
+                  <span>/</span>
+                  <button
+                    onClick={() => navigate(`/products/${brand.slug}`)}
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {brand.name}
+                  </button>
+                </>
+              )}
+            </nav>
+          )}
+
+          {/* Category view header with logo and topics */}
+          {selectedCategory && brand && (
+            <nav className="flex items-center justify-between mb-8 pb-6 border-b border-border">
+              <img
+                src={`/${brand.slug}-logo.svg`}
+                alt={brand.name}
+                className="h-16 w-16 object-contain dark:invert"
+              />
+              <div className="flex items-center gap-6 text-sm">
+                <button className="text-muted-foreground hover:text-foreground transition-colors">
+                  Sobre
                 </button>
-              </>
-            )}
-            {selectedCategory && (
-              <>
-                <span>/</span>
-                <span className="text-foreground font-medium">{selectedCategory.name}</span>
-              </>
-            )}
-          </nav>
+                <button className="text-muted-foreground hover:text-foreground transition-colors">
+                  Contactos
+                </button>
+                <button className="text-muted-foreground hover:text-foreground transition-colors">
+                  Política de Privacidade
+                </button>
+              </div>
+            </nav>
+          )}
 
           {/* Brand header */}
           {brand && (
