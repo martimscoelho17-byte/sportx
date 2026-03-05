@@ -1,0 +1,1 @@
+ALTER TABLE `products` ADD `color` enum('preto','azul','castanho','verde','cinzento','rosa','laranja','roxo','vermelho','branco','amarelo');

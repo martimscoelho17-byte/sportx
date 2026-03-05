@@ -113,6 +113,7 @@ export async function getProducts(filters?: {
   bootHeight?: string;
   surface?: string;
   collection?: string;
+  color?: string;
   minPrice?: number;
   maxPrice?: number;
   sortBy?: string;
@@ -130,6 +131,7 @@ export async function getProducts(filters?: {
   if (filters?.bootHeight) conditions.push(eq(products.bootHeight, filters.bootHeight as any));
   if (filters?.surface) conditions.push(eq(products.surface, filters.surface as any));
   if (filters?.collection) conditions.push(like(products.collection, `%${filters.collection}%`));
+  if (filters?.color) conditions.push(eq(products.color, filters.color as any));
 
   if (conditions.length > 0) {
     query = query.where(and(...conditions));

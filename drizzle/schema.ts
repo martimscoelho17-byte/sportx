@@ -61,6 +61,7 @@ export const products = mysqlTable("products", {
   level: mysqlEnum("level", ["elite", "pro", "academy"]).default("pro"),
   bootHeight: mysqlEnum("bootHeight", ["cano_baixo", "cano_alto"]).default("cano_baixo"),
   surface: mysqlEnum("surface", ["terreno_firme", "terreno_mole", "relva", "relva_artificial"]).default("terreno_firme"),
+  color: mysqlEnum("color", ["preto", "azul", "castanho", "verde", "cinzento", "rosa", "laranja", "roxo", "vermelho", "branco", "amarelo"]),
   collection: varchar("collection", { length: 100 }),
   featured: boolean("featured").default(false),
   stock: int("stock").default(100),

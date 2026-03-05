@@ -15,6 +15,13 @@
       "when": 1772219287015,
       "tag": "0001_lethal_ozymandias",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1772701291145,
+      "tag": "0002_exotic_scarecrow",
+      "breakpoints": true
     }
   ]
 }

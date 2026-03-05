@@ -66,6 +66,7 @@ export const appRouter = router({
           bootHeight: z.string().optional(),
           surface: z.string().optional(),
           collection: z.string().optional(),
+          color: z.string().optional(),
           minPrice: z.number().optional(),
           maxPrice: z.number().optional(),
           sortBy: z.string().optional(),

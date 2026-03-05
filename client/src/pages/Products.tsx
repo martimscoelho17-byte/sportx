@@ -24,6 +24,20 @@ const PRICE_RANGES = [
   { label: "150€ - 300€", min: 150, max: 300 },
 ];
 
+const COLORS = [
+  { value: "preto", label: "Preto", color: "#000000" },
+  { value: "azul", label: "Azul", color: "#0066ff" },
+  { value: "castanho", label: "Castanho", color: "#8b6914" },
+  { value: "verde", label: "Verde", color: "#00aa00" },
+  { value: "cinzento", label: "Cinzento", color: "#888888" },
+  { value: "rosa", label: "Rosa", color: "#ff69b4" },
+  { value: "laranja", label: "Laranja", color: "#ff8800" },
+  { value: "roxo", label: "Roxo", color: "#9933ff" },
+  { value: "vermelho", label: "Vermelho", color: "#ff0000" },
+  { value: "branco", label: "Branco", color: "#ffffff" },
+  { value: "amarelo", label: "Amarelo", color: "#ffff00" },
+];
+
 function FilterSection({ title, children, defaultOpen = true }: { title: string; children: React.ReactNode; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
@@ -61,6 +75,7 @@ interface Filters {
   bootHeights: string[];
   collections: string[];
   surfaces: string[];
+  colors: string[];
 }
 
 function ProductsContent() {
@@ -76,6 +91,7 @@ function ProductsContent() {
     bootHeights: [],
     collections: [],
     surfaces: [],
+    colors: [],
   });
 
   const { data: brands = [] } = trpc.brands.list.useQuery();
@@ -96,6 +112,7 @@ function ProductsContent() {
     bootHeight: filters.bootHeights.length === 1 ? filters.bootHeights[0] : undefined,
     surface: filters.surfaces.length === 1 ? filters.surfaces[0] : undefined,
     collection: filters.collections.length === 1 ? filters.collections[0] : undefined,
+    color: filters.colors.length === 1 ? filters.colors[0] : undefined,
   });
 
   // Collections from current brand's products
@@ -121,6 +138,7 @@ function ProductsContent() {
     filters.bootHeights.length +
     filters.collections.length +
     filters.surfaces.length +
+    filters.colors.length +
     (filters.priceRange ? 1 : 0);
 
   const sortLabel = SORT_OPTIONS.find((o) => o.value === sortBy)?.label ?? "Em destaque";
@@ -242,7 +260,7 @@ function ProductsContent() {
                     {activeFilterCount > 0 && (
                       <button
                         className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
-                        onClick={() => setFilters({ genders: [], priceRange: null, levels: [], bootHeights: [], collections: [], surfaces: [] })}
+                        onClick={() => setFilters({ genders: [], priceRange: null, levels: [], bootHeights: [], collections: [], surfaces: [], colors: [] })}
                       >
                         <X size={12} /> Limpar
                       </button>
@@ -274,7 +292,7 @@ function ProductsContent() {
                             name="price"
                             checked={filters.priceRange?.min === range.min && filters.priceRange?.max === range.max}
                             onChange={() => setFilters((prev) => ({ ...prev, priceRange: { min: range.min, max: range.max } }))}
-                            className="accent-[#001a4d]"
+                            className="rounded-full border-border accent-[#001a4d]"
                           />
                           {range.label}
                         </label>
@@ -287,6 +305,45 @@ function ProductsContent() {
                           Limpar preço
                         </button>
                       )}
+                    </div>
+                  </FilterSection>
+
+                  <FilterSection title="Tamanho">
+                    <div className="grid grid-cols-3 gap-1">
+                      {SIZES.map((size) => (
+                        <button
+                          key={size}
+                          className="px-2 py-1 text-xs border border-border rounded hover:bg-accent transition-colors text-center"
+                        >
+                          {size}
+                        </button>
+                      ))}
+                    </div>
+                  </FilterSection>
+
+                  <FilterSection title="Cor">
+                    <div className="grid grid-cols-3 gap-3">
+                      {COLORS.map(({ value, label, color }) => (
+                        <button
+                          key={value}
+                          onClick={() => toggleFilter("colors", value)}
+                          className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all ${
+                            filters.colors.includes(value)
+                              ? "bg-accent ring-2 ring-[#001a4d]"
+                              : "hover:bg-accent"
+                          }`}
+                          title={label}
+                        >
+                          <div
+                            className="w-8 h-8 rounded-full border"
+                            style={{
+                              backgroundColor: color,
+                              borderColor: color === "#ffffff" ? "#ccc" : color,
+                            }}
+                          />
+                          <span className="text-xs text-center text-muted-foreground">{label}</span>
+                        </button>
+                      ))}
                     </div>
                   </FilterSection>
 
@@ -327,53 +384,46 @@ function ProductsContent() {
               </aside>
             )}
 
-            {/* Product grid */}
+            {/* Products grid */}
             <div className="flex-1">
               {isLoading ? (
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                  {[...Array(8)].map((_, i) => (
-                    <div key={i} className="rounded-xl bg-muted animate-pulse h-72" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <div key={i} className="bg-accent rounded-lg h-96 animate-pulse" />
                   ))}
                 </div>
               ) : products.length === 0 ? (
-                <div className="flex flex-col items-center justify-center py-20 text-center">
-                  <p className="text-muted-foreground text-lg font-medium">Nenhum produto encontrado</p>
-                  <p className="text-sm text-muted-foreground mt-2">Tente ajustar os filtros</p>
+                <div className="text-center py-12">
+                  <p className="text-muted-foreground">Nenhum produto encontrado com os filtros selecionados.</p>
                 </div>
               ) : (
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {products.map((product) => (
-                    <button
+                    <div
                       key={product.id}
-                      onClick={() => navigate(`/product/${product.id}`)}
-                      className="group text-left rounded-xl border border-border bg-card overflow-hidden hover:shadow-md hover:border-[#001a4d]/30 dark:hover:border-blue-400/30 transition-all duration-200"
+                      className="group cursor-pointer"
+                      onClick={() => navigate(`/products/${params.brandSlug}/${params.categorySlug || ""}/product/${product.id}`)}
                     >
-                      {/* Product image */}
-                      <div className="aspect-square bg-muted overflow-hidden">
-                        {product.imageUrl ? (
+                      <div className="relative bg-accent rounded-lg overflow-hidden mb-3 aspect-square">
+                        {product.imageUrl && (
                           <img
                             src={product.imageUrl}
                             alt={product.name}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <span className="text-4xl font-black text-muted-foreground/20">
-                              {product.collection?.[0] ?? "S"}
-                            </span>
+                        )}
+                        {product.featured && (
+                          <div className="absolute top-3 right-3 bg-[#001a4d] text-white px-2 py-1 rounded text-xs font-bold">
+                            Em destaque
                           </div>
                         )}
                       </div>
-                      {/* Product info */}
-                      <div className="p-3">
-                        <p className="text-sm font-semibold text-card-foreground line-clamp-2 leading-tight">
-                          {product.name}
-                        </p>
-                        <p className="text-base font-bold text-[#001a4d] dark:text-blue-300 mt-1.5">
-                          €{parseFloat(product.price).toFixed(2)}
-                        </p>
-                      </div>
-                    </button>
+                      <h3 className="font-semibold text-foreground group-hover:text-[#001a4d] transition-colors">
+                        {product.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-2">{product.description}</p>
+                      <p className="text-lg font-bold text-foreground">€{parseFloat(product.price).toFixed(2)}</p>
+                    </div>
                   ))}
                 </div>
               )}
