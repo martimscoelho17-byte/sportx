@@ -38,7 +38,7 @@ const COLORS = [
   { value: "amarelo", label: "Amarelo", color: "#ffff00" },
 ];
 
-function FilterSection({ title, children, defaultOpen = true }: { title: string; children: React.ReactNode; defaultOpen?: boolean }) {
+function FilterSection({ title, children, defaultOpen = false }: { title: string; children: React.ReactNode; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
     <div className="border-b border-border pb-4 mb-4">
