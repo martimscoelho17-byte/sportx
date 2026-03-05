@@ -47,7 +47,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-background border-b border-border shadow-sm">
+      <header className="sticky top-0 z-50 bg-white dark:bg-gray-800 border-b border-border shadow-sm">
         <div className="w-full">
           <div className="flex items-center justify-between h-16 px-0">
             {/* Logo - Left */}
