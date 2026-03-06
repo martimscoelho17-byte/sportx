@@ -6,22 +6,24 @@ import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import { CartProvider, useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
-import { ShoppingBag, ArrowLeft, CheckCircle } from "lucide-react";
+import { Heart, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { toast } from "sonner";
 
-const SIZES = ["36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46"];
+const SIZES = ["36", "36.5", "37.5", "38", "38.5", "39", "40", "40.5", "41", "42", "42.5", "43", "44", "44.5", "45", "45.5", "46", "47"];
 
 function ProductDetailContent() {
   const params = useParams<{ id: string }>();
   const [, navigate] = useLocation();
   const { addItem, openCart } = useCart();
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null | undefined>(null);
   const [adding, setAdding] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const { data: product, isLoading } = trpc.products.byId.useQuery({ id: parseInt(params.id) });
 
   const handleAddToCart = async () => {
-    if (!selectedSize || !product) return;
+    if (!selectedSize || !product || selectedSize === null || selectedSize === undefined) return;
     setAdding(true);
     try {
       await addItem(product.id, selectedSize);
@@ -35,9 +37,17 @@ function ProductDetailContent() {
     }
   };
 
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prev) => (prev === 0 ? 9 : prev - 1));
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prev) => (prev === 9 ? 0 : prev + 1));
+  };
+
   if (isLoading) {
     return (
-      <div className="min-h-screen flex flex-col bg-background">
+      <div className="min-h-screen flex flex-col bg-white dark:bg-black">
         <Header />
         <main className="flex-1 flex items-center justify-center">
           <div className="animate-spin rounded-full h-10 w-10 border-2 border-[#001a4d] border-t-transparent" />
@@ -49,7 +59,7 @@ function ProductDetailContent() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex flex-col bg-background">
+      <div className="min-h-screen flex flex-col bg-white dark:bg-black">
         <Header />
         <main className="flex-1 flex flex-col items-center justify-center gap-4">
           <p className="text-muted-foreground text-lg">Produto não encontrado</p>
@@ -62,138 +72,134 @@ function ProductDetailContent() {
     );
   }
 
-  const levelLabels: Record<string, string> = { elite: "Elite", pro: "Pro", academy: "Academy" };
-  const surfaceLabels: Record<string, string> = {
-    terreno_firme: "Terreno Firme",
-    terreno_mole: "Terreno Mole",
-    relva: "Relva",
-    relva_artificial: "Relva Artificial",
-  };
-  const heightLabels: Record<string, string> = { cano_baixo: "Cano Baixo", cano_alto: "Cano Alto" };
+  // Generate mock images for the product
+  const images = [product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl];
+  const currentImage = images[currentImageIndex];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-black">
       <Header />
       <CartDrawer />
 
       <main className="flex-1">
-        <div className="max-w-[1400px] mx-auto px-4 py-8">
-          {/* Back button */}
-          <button
-            onClick={() => navigate(-1 as any)}
-            className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
-          >
-            <ArrowLeft size={16} />
-            Voltar
-          </button>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Product image */}
-            <div className="aspect-square rounded-2xl overflow-hidden bg-muted">
-              {product.imageUrl ? (
-                <img
-                  src={product.imageUrl}
-                  alt={product.name}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <span className="text-8xl font-black text-muted-foreground/20">
-                    {product.collection?.[0] ?? "S"}
-                  </span>
-                </div>
-              )}
-            </div>
-
-            {/* Product info */}
-            <div className="flex flex-col">
-              {/* Collection badge */}
-              {product.collection && (
-                <span className="text-xs font-bold tracking-[0.3em] uppercase text-[#001a4d] dark:text-blue-300 mb-2">
-                  {product.collection}
-                </span>
-              )}
-
-              <h1 className="text-2xl md:text-3xl font-black text-foreground leading-tight mb-3">
-                {product.name}
-              </h1>
-
-              <p className="text-3xl font-black text-[#001a4d] dark:text-blue-300 mb-6">
-                €{parseFloat(product.price).toFixed(2)}
-              </p>
-
-              {/* Attributes */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {product.level && (
-                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-accent text-accent-foreground">
-                    {levelLabels[product.level] ?? product.level}
-                  </span>
-                )}
-                {product.surface && (
-                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-accent text-accent-foreground">
-                    {surfaceLabels[product.surface] ?? product.surface}
-                  </span>
-                )}
-                {product.bootHeight && (
-                  <span className="px-3 py-1 rounded-full text-xs font-semibold bg-accent text-accent-foreground">
-                    {heightLabels[product.bootHeight] ?? product.bootHeight}
-                  </span>
-                )}
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Image Gallery */}
+            <div className="flex gap-4">
+              {/* Thumbnails */}
+              <div className="flex flex-col gap-2 order-2 md:order-1">
+                {images.map((img, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImageIndex(idx)}
+                    className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-colors ${
+                      currentImageIndex === idx ? "border-foreground" : "border-border"
+                    }`}
+                  >
+                    <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
               </div>
 
-              {/* Description */}
-              {product.description && (
-                <p className="text-muted-foreground text-sm leading-relaxed mb-8">
-                  {product.description}
-                </p>
-              )}
+              {/* Main Image */}
+              <div className="flex-1 order-1 md:order-2 relative bg-gray-100 dark:bg-gray-900 rounded-lg overflow-hidden flex items-center justify-center min-h-96">
+                <img src={currentImage} alt={product.name} className="w-full h-full object-cover" />
 
-              {/* Size selector */}
-              <div className="mb-6">
-                <div className="flex items-center justify-between mb-3">
-                  <h3 className="text-sm font-bold text-foreground">Selecionar tamanho</h3>
-                  {selectedSize && (
-                    <span className="text-sm text-[#001a4d] dark:text-blue-300 font-medium flex items-center gap-1">
-                      <CheckCircle size={14} /> Tamanho {selectedSize} selecionado
-                    </span>
-                  )}
+                {/* Navigation Arrows */}
+                <button
+                  onClick={handlePrevImage}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white dark:bg-black rounded-full p-2 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                >
+                  <ChevronLeft size={24} />
+                </button>
+                <button
+                  onClick={handleNextImage}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white dark:bg-black rounded-full p-2 shadow-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                >
+                  <ChevronRight size={24} />
+                </button>
+
+                {/* Badge */}
+                <div className="absolute top-4 left-4 bg-white dark:bg-black rounded-full px-3 py-1 flex items-center gap-1 shadow-lg">
+                  <Star size={16} className="fill-yellow-400 text-yellow-400" />
+                  <span className="text-sm font-semibold">Os melhor cotados</span>
                 </div>
-                <div className="grid grid-cols-5 gap-2">
+              </div>
+            </div>
+
+            {/* Product Info */}
+            <div className="flex flex-col gap-6">
+              {/* Title and Description */}
+              <div>
+                <h1 className="text-3xl font-bold text-foreground mb-2">{product.name}</h1>
+                <p className="text-muted-foreground">{product.description}</p>
+              </div>
+
+              {/* Price */}
+              <div className="text-3xl font-bold text-foreground">€{parseFloat(product.price).toFixed(2)}</div>
+
+              {/* Design Customization */}
+              <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-100 dark:bg-gray-900">
+                <div className="w-12 h-12 rounded-lg border-2 border-foreground overflow-hidden">
+                  <img src={product.imageUrl} alt="Design" className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-foreground">CRIA O TEU DESIGN</p>
+                  <p className="text-xs text-muted-foreground">Personaliza o teu produto</p>
+                </div>
+              </div>
+
+              {/* Size Selection */}
+              <div>
+                <div className="flex items-center justify-between mb-4">
+                  <label className="text-sm font-semibold text-foreground">Selecionar tamanho</label>
+                  <a href="#" className="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+                    📏 Guia de tamanhos
+                  </a>
+                </div>
+                <p className="text-xs text-muted-foreground mb-4">
+                  Ajuste firme. Se preferires um ajuste ligeiramente mais folgado, recomendamos que encomandes meio tamanho acima
+                </p>
+                <div className="grid grid-cols-3 gap-2">
                   {SIZES.map((size) => (
                     <button
                       key={size}
-                      onClick={() => setSelectedSize(size)}
-                      className={`py-2.5 rounded-lg text-sm font-semibold border transition-all duration-150 ${
+                      onClick={() => setSelectedSize(size as string)}
+                      className={`py-3 px-2 rounded-lg border-2 text-sm font-medium transition-all ${
                         selectedSize === size
-                          ? "bg-[#001a4d] border-[#001a4d] text-white"
-                          : "border-border bg-background text-foreground hover:border-[#001a4d] dark:hover:border-blue-400"
+                          ? "border-foreground bg-foreground text-background"
+                          : "border-border text-foreground hover:border-foreground"
                       }`}
                     >
-                      {size}
+                      EU {size}
                     </button>
                   ))}
                 </div>
-                {!selectedSize && (
-                  <p className="text-xs text-muted-foreground mt-2">
-                    Por favor, selecione um tamanho para continuar
-                  </p>
-                )}
               </div>
 
-              {/* Add to cart button */}
-              <Button
-                className="w-full py-6 text-base font-bold bg-[#001a4d] hover:bg-[#002266] text-white disabled:opacity-50 disabled:cursor-not-allowed gap-2"
-                disabled={!selectedSize || adding}
-                onClick={handleAddToCart}
-              >
-                <ShoppingBag size={18} />
-                {adding ? "A adicionar..." : "Adicionar ao Carrinho"}
-              </Button>
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-3">
+                <Button
+                  className="w-full bg-black dark:bg-white text-white dark:text-black rounded-full py-6 font-semibold text-lg hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={!selectedSize || adding}
+                  onClick={handleAddToCart}
+                >
+                  {adding ? "A adicionar..." : "Adicionar ao carrinho"}
+                </Button>
+                <Button
+                  variant="outline"
+                  className="w-full rounded-full py-6 font-semibold text-lg border-2 border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
+                  onClick={() => setIsFavorite(!isFavorite)}
+                >
+                  <Heart size={20} className={isFavorite ? "fill-current" : ""} />
+                  Marcar como favorito
+                </Button>
+              </div>
 
-              {/* Free shipping notice */}
-              <p className="text-xs text-center text-muted-foreground mt-3">
-                Envio grátis em compras acima de €100 • Entrega para toda a UE
-              </p>
+              {/* Additional Info */}
+              <div className="pt-4 border-t border-border">
+                <p className="text-sm text-muted-foreground">✓ Levantamento grátis</p>
+              </div>
             </div>
           </div>
         </div>
