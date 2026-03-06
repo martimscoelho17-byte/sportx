@@ -141,13 +141,7 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-            <div className="flex items-center gap-3 p-3 rounded-lg bg-accent">
-              <MapPin size={20} className="text-[#001a4d] dark:text-blue-300 flex-shrink-0" />
-              <div>
-                <p className="text-xs text-muted-foreground">Morada</p>
-                <p className="text-sm font-medium text-foreground">Coimbra, Portugal</p>
-              </div>
-            </div>
+
             <div className="p-3 rounded-lg bg-accent">
               <p className="text-xs text-muted-foreground mb-1">Horário de Atendimento</p>
               <p className="text-sm text-foreground">Segunda-feira a Sexta-feira: 9h00 – 17h00</p>
