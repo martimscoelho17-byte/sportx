@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { ShoppingBag, User, Sun, Moon, ChevronDown } from "lucide-react";
+import { ShoppingBag, User, Sun, Moon, ChevronDown, Search } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/_core/hooks/useAuth";
@@ -21,6 +21,7 @@ export default function Header() {
   const [loginOpen, setLoginOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const { data: brands = [] } = trpc.brands.list.useQuery();
@@ -60,8 +61,8 @@ export default function Header() {
               />
             </Link>
 
-            {/* Brand navigation - Center */}
-            <nav className="hidden md:flex items-center gap-20 absolute left-1/2 transform -translate-x-1/2" ref={dropdownRef}>
+            {/* Brand navigation - Center-Left */}
+            <nav className="hidden md:flex items-center gap-20 absolute left-1/3 transform -translate-x-1/2" ref={dropdownRef}>
               {brandMenus.map((brand) => (
                 <div key={brand.slug} className="relative">
                   <button
@@ -101,8 +102,28 @@ export default function Header() {
               ))}
             </nav>
 
+            {/* Search Bar */}
+            <div className="hidden md:flex items-center ml-auto mr-4">
+              <div className="relative flex items-center bg-gray-100 dark:bg-gray-900 rounded-full px-4 py-2 w-48">
+                <Search size={18} className="text-muted-foreground flex-shrink-0" />
+                <input
+                  type="text"
+                  placeholder="Pesquisar"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && searchQuery.trim()) {
+                      // TODO: Implement search functionality
+                      console.log("Search for:", searchQuery);
+                    }
+                  }}
+                  className="ml-2 bg-transparent outline-none text-sm text-foreground placeholder-muted-foreground w-full"
+                />
+              </div>
+            </div>
+
             {/* Actions - Right */}
-            <div className="flex items-center gap-2 ml-auto pr-4">
+            <div className="flex items-center gap-2 pr-4">
               {/* Theme toggle */}
               <button
                 onClick={toggleTheme}
