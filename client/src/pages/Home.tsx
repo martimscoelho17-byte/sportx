@@ -13,8 +13,8 @@ function HomeContent() {
       <main className="flex-1 flex flex-col items-center justify-center min-h-[calc(100vh-64px-80px)] relative overflow-hidden px-4 bg-white dark:bg-black">
         {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-[#001a4d]/10 dark:bg-[#001a4d]/20 blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-[#660000]/10 dark:bg-[#660000]/10 blur-3xl" />
+          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-[#001a4d]/15 dark:bg-[#001a4d]/35 blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-[#660000]/15 dark:bg-[#660000]/25 blur-3xl" />
         </div>
 
         <div className="relative text-center space-y-4 w-full max-w-[1400px] mx-auto">
