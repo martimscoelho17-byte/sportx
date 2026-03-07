@@ -10,9 +10,9 @@ export default function Footer() {
   return (
     <>
       <footer className="bg-white dark:bg-black pt-0">
-        <div className="w-full px-4 py-4">
+        <div className="w-full px-4">
           {/* Footer content - Topics and Copyright in one row */}
-          <div className="flex items-center justify-between py-4">
+          <div className="flex items-center justify-between border-t border-border py-4">
             {/* Navigation links - Left side */}
             <nav className="flex items-center gap-24 px-12">
               <button
