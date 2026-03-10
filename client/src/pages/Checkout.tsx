@@ -152,12 +152,55 @@ function CheckoutContent() {
             Voltar
           </button>
 
-          <h1 className="text-2xl font-black text-foreground mb-8">Checkout</h1>
+          <h1 className="text-2xl font-black text-foreground mb-8 text-center">Finalizar compra</h1>
 
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Left: form */}
               <div className="lg:col-span-2 space-y-6">
+                {/* Delivery method */}
+                <div className="rounded-xl border border-border bg-card p-6">
+                  <h2 className="text-base font-bold text-card-foreground mb-4">Opções de Entrega</h2>
+                  <div className="grid grid-cols-2 gap-4">
+                    <label
+                      className={`flex items-center justify-center gap-3 p-4 rounded-lg border cursor-pointer transition-all ${
+                        form.deliveryMethod === "envio"
+                          ? "border-[#001a4d] bg-[#001a4d]/5 dark:bg-[#001a4d]/20"
+                          : "border-border hover:border-[#001a4d]/50"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="deliveryMethod"
+                        value="envio"
+                        checked={form.deliveryMethod === "envio"}
+                        onChange={() => setForm((p) => ({ ...p, deliveryMethod: "envio" }))}
+                        className="accent-[#001a4d]"
+                      />
+                      <Truck size={20} className="text-muted-foreground" />
+                      <span className="text-sm font-medium text-card-foreground">Envio</span>
+                    </label>
+                    <label
+                      className={`flex items-center justify-center gap-3 p-4 rounded-lg border cursor-pointer transition-all ${
+                        form.deliveryMethod === "levantamento"
+                          ? "border-[#001a4d] bg-[#001a4d]/5 dark:bg-[#001a4d]/20"
+                          : "border-border hover:border-[#001a4d]/50"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="deliveryMethod"
+                        value="levantamento"
+                        checked={form.deliveryMethod === "levantamento"}
+                        onChange={() => setForm((p) => ({ ...p, deliveryMethod: "levantamento" }))}
+                        className="accent-[#001a4d]"
+                      />
+                      <MapPin size={20} className="text-muted-foreground" />
+                      <span className="text-sm font-medium text-card-foreground">Levantamento</span>
+                    </label>
+                  </div>
+                </div>
+
                 {/* Delivery address */}
                 <div className="rounded-xl border border-border bg-card p-6">
                   <h2 className="text-base font-bold text-card-foreground mb-4">Morada de Entrega</h2>
@@ -268,49 +311,6 @@ function CheckoutContent() {
                         )}
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                {/* Delivery method */}
-                <div className="rounded-xl border border-border bg-card p-6">
-                  <h2 className="text-base font-bold text-card-foreground mb-4">Opções de Entrega</h2>
-                  <div className="grid grid-cols-2 gap-4">
-                    <label
-                      className={`flex items-center justify-center gap-3 p-4 rounded-lg border cursor-pointer transition-all ${
-                        form.deliveryMethod === "envio"
-                          ? "border-[#001a4d] bg-[#001a4d]/5 dark:bg-[#001a4d]/20"
-                          : "border-border hover:border-[#001a4d]/50"
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="deliveryMethod"
-                        value="envio"
-                        checked={form.deliveryMethod === "envio"}
-                        onChange={() => setForm((p) => ({ ...p, deliveryMethod: "envio" }))}
-                        className="accent-[#001a4d]"
-                      />
-                      <Truck size={20} className="text-muted-foreground" />
-                      <span className="text-sm font-medium text-card-foreground">Envio</span>
-                    </label>
-                    <label
-                      className={`flex items-center justify-center gap-3 p-4 rounded-lg border cursor-pointer transition-all ${
-                        form.deliveryMethod === "levantamento"
-                          ? "border-[#001a4d] bg-[#001a4d]/5 dark:bg-[#001a4d]/20"
-                          : "border-border hover:border-[#001a4d]/50"
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="deliveryMethod"
-                        value="levantamento"
-                        checked={form.deliveryMethod === "levantamento"}
-                        onChange={() => setForm((p) => ({ ...p, deliveryMethod: "levantamento" }))}
-                        className="accent-[#001a4d]"
-                      />
-                      <MapPin size={20} className="text-muted-foreground" />
-                      <span className="text-sm font-medium text-card-foreground">Levantamento</span>
-                    </label>
                   </div>
                 </div>
 

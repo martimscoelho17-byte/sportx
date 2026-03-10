@@ -77,5 +77,7 @@
 
 ## Checkout (Implementado)
 - [x] Logo SportX já aparece no header do checkout
-- [x] Adicionar opções de "Envio" e "Levantamento" com ícones
+- [x] Título "Finalizar compra" (centrado, em vez de "Checkout")
+- [x] Opções de "Envio" e "Levantamento" logo abaixo do título com ícones
+- [x] Campos de Morada de Entrega depois das opções
 - [x] Implementar seleção de método de entrega
