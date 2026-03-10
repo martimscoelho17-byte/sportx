@@ -10,6 +10,7 @@ import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
 import Favorites from "./pages/Favorites";
 import Checkout from "./pages/Checkout";
+import Payment from "./pages/Payment";
 import OrderConfirmation from "./pages/OrderConfirmation";
 
 function Router() {
@@ -23,6 +24,7 @@ function Router() {
       <Route path="/product/:id" component={ProductDetail} />
       <Route path="/favorites" component={Favorites} />
       <Route path="/checkout" component={Checkout} />
+      <Route path="/payment" component={Payment} />
       <Route path="/order-confirmation/:orderNumber" component={OrderConfirmation} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />

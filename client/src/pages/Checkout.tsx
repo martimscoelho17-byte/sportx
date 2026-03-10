@@ -124,7 +124,18 @@ function CheckoutContent() {
           size: i.size,
         })),
       });
-      navigate(`/order-confirmation/${order?.orderNumber}`);
+      // Store order data for payment page
+      sessionStorage.setItem("pendingOrder", JSON.stringify({
+        orderId: order?.id,
+        orderNumber: order?.orderNumber,
+        subtotal: total.toFixed(2),
+        discount: discount.toFixed(2),
+        shipping: shipping.toFixed(2),
+        total: orderTotal.toFixed(2),
+      }));
+      
+      // Redirect to payment page
+      navigate("/payment");
     } catch (err) {
       toast.error("Erro ao processar encomenda. Tente novamente.");
     } finally {
@@ -165,9 +176,9 @@ function CheckoutContent() {
           <h1 className="text-2xl font-black text-foreground mb-8 text-center">Finalizar compra</h1>
 
           <form onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Left: form */}
-              <div className="lg:col-span-2 space-y-6">
+              <div className="space-y-6">
                 {/* Delivery method */}
                 <div className="rounded-xl border border-border bg-card p-6">
                   <h2 className="text-base font-bold text-card-foreground mb-4">Opções de Entrega</h2>
@@ -308,41 +319,9 @@ function CheckoutContent() {
                   </div>
                 </div>
 
-                {/* Payment method */}
-                <div className="rounded-xl border border-border bg-card p-6">
-                  <h2 className="text-base font-bold text-card-foreground mb-4">Método de Pagamento</h2>
-                  <div className="space-y-2">
-                    {PAYMENT_METHODS.map((method) => {
-                      const Icon = method.icon;
-                      return (
-                        <label
-                          key={method.id}
-                          className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-all ${
-                            form.paymentMethod === method.id
-                              ? "border-[#001a4d] bg-[#001a4d]/5 dark:bg-[#001a4d]/20"
-                              : "border-border hover:border-[#001a4d]/50"
-                          }`}
-                        >
-                          <input
-                            type="radio"
-                            name="paymentMethod"
-                            value={method.id}
-                            checked={form.paymentMethod === method.id}
-                            onChange={() => setForm((p) => ({ ...p, paymentMethod: method.id }))}
-                            className="accent-[#001a4d]"
-                          />
-                          <Icon size={18} className="text-muted-foreground" />
-                          <span className="text-sm font-medium text-card-foreground">{method.label}</span>
-                        </label>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
 
-              {/* Right: order summary */}
-              <div className="lg:col-span-1">
-                <div className="sticky top-20 rounded-xl border border-border bg-card p-6 space-y-4">
+                {/* Order summary */}
+                <div className="rounded-xl border border-border bg-card p-6 space-y-4">
                   <h2 className="text-base font-bold text-card-foreground">Resumo da Encomenda</h2>
 
                   {/* Items */}

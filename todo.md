@@ -108,3 +108,9 @@
 
 ## Resumo da Encomenda (Implementado)
 - [x] Remover IVA (23%) do resumo (Checkout e OrderConfirmation)
+
+
+## Fluxo de Pagamento (Em Desenvolvimento)
+- [ ] Remover m\u00e9todos de pagamento do checkout
+- [ ] Criar p\u00e1gina de pagamento separada
+- [ ] Redirecionar para pagamento ap\u00f3s confirmar encomenda
