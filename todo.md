@@ -65,3 +65,7 @@
 - [x] Implementar página de confirmação de pedido com número de rastreamento
 - [x] Testar fluxo completo: adicionar ao carrinho → favoritos → checkout → pagamento → confirmação
 - [x] Criar testes vitest para validar desconto, envio, IVA, total (16 testes passados)
+
+
+## Melhorias (Implementadas)
+- [x] Atualizar página de Favoritos com mensagem centrada quando vazia

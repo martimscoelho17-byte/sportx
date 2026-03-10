@@ -6,7 +6,7 @@ import { useFavorites } from "@/contexts/FavoritesContext";
 import { CartProvider, useCart } from "@/contexts/CartContext";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
-import { Heart, ShoppingBag } from "lucide-react";
+import { ShoppingBag, Heart } from "lucide-react";
 import { toast } from "sonner";
 
 function FavoritesContent() {
@@ -42,23 +42,19 @@ function FavoritesContent() {
     <div className="min-h-screen flex flex-col bg-white dark:bg-black">
       <Header />
 
-      <main className="flex-1">
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <h1 className="text-3xl font-bold text-foreground mb-8">Meus Favoritos</h1>
-
-          {loading ? (
-            <div className="flex items-center justify-center py-12">
-              <div className="animate-spin rounded-full h-10 w-10 border-2 border-[#001a4d] border-t-transparent" />
-            </div>
-          ) : favoriteProducts.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-12 gap-4">
-              <Heart size={48} className="text-muted-foreground opacity-50" />
-              <p className="text-lg text-muted-foreground">Nenhum produto nos favoritos</p>
-              <Button onClick={() => navigate("/products/nike")} className="mt-4">
-                Continuar a comprar
-              </Button>
-            </div>
-          ) : (
+      <main className="flex-1 flex flex-col items-center justify-center">
+        {loading ? (
+          <div className="flex items-center justify-center py-12">
+            <div className="animate-spin rounded-full h-10 w-10 border-2 border-[#001a4d] border-t-transparent" />
+          </div>
+        ) : favoriteProducts.length === 0 ? (
+          <div className="flex flex-col items-center justify-center gap-4">
+            <h1 className="text-3xl font-bold text-foreground">Favoritos</h1>
+            <p className="text-lg text-muted-foreground mt-8">Os artigos adicionados aos favoritos serão guardados aqui.</p>
+          </div>
+        ) : (
+          <div className="w-full max-w-7xl mx-auto px-4 py-8">
+            <h1 className="text-3xl font-bold text-foreground mb-8">Favoritos</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {favoriteProducts.map((product) => (
                 <div key={product.id} className="rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow">
@@ -108,8 +104,8 @@ function FavoritesContent() {
                 </div>
               ))}
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </main>
 
       <Footer />
