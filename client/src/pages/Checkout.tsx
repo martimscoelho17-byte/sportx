@@ -65,7 +65,17 @@ function CheckoutContent() {
     country: "PT",
     paymentMethod: "cartao",
     deliveryMethod: "envio",
+    pickupStore: "",
   });
+
+  const PICKUP_STORES = [
+    { id: "store1", name: "SportX - Lisbon Center", address: "Rua Augusta, 100, Lisboa" },
+    { id: "store2", name: "SportX - Porto North", address: "Av. dos Aliados, 50, Porto" },
+    { id: "store3", name: "SportX - Covilha", address: "Rua da Paixao, 25, Covilha" },
+    { id: "store4", name: "SportX - Braga", address: "Rua do Souto, 10, Braga" },
+  ];
+
+  const selectedPickupStore = PICKUP_STORES.find((s) => s.id === form.pickupStore);
 
   const createOrder = trpc.orders.create.useMutation();
 
@@ -201,9 +211,10 @@ function CheckoutContent() {
                   </div>
                 </div>
 
-                {/* Delivery address */}
-                <div className="rounded-xl border border-border bg-card p-6">
-                  <h2 className="text-base font-bold text-card-foreground mb-4">Morada de Entrega</h2>
+                {/* Conditional: Delivery address or Pickup store */}
+                {form.deliveryMethod === "envio" ? (
+                  <div className="rounded-xl border border-border bg-card p-6">
+                    <h2 className="text-base font-bold text-card-foreground mb-4">Morada de Entrega</h2>
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-1.5">
@@ -310,6 +321,41 @@ function CheckoutContent() {
                     </div>
                   </div>
                 </div>
+                ) : (
+                  <div className="rounded-xl border border-border bg-card p-6">
+                    <h2 className="text-base font-bold text-card-foreground mb-4">Loja de Levantamento</h2>
+                    <div className="space-y-4">
+                      <div className="space-y-1.5">
+                        <Label>Selecione a loja *</Label>
+                        <div className="space-y-2">
+                          {PICKUP_STORES.map((store) => (
+                            <label
+                              key={store.id}
+                              className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-all ${
+                                form.pickupStore === store.id
+                                  ? "border-[#001a4d] bg-[#001a4d]/5 dark:bg-[#001a4d]/20"
+                                  : "border-border hover:border-[#001a4d]/50"
+                              }`}
+                            >
+                              <input
+                                type="radio"
+                                name="pickupStore"
+                                value={store.id}
+                                checked={form.pickupStore === store.id}
+                                onChange={() => setForm((p) => ({ ...p, pickupStore: store.id }))}
+                                className="accent-[#001a4d] mt-1"
+                              />
+                              <div className="flex-1">
+                                <div className="font-medium text-card-foreground">{store.name}</div>
+                                <div className="text-sm text-muted-foreground">{store.address}</div>
+                              </div>
+                            </label>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 {/* Payment method */}
                 <div className="rounded-xl border border-border bg-card p-6">

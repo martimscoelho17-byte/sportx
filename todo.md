@@ -87,3 +87,10 @@
 - [x] Remover placeholders dos campos (Nome, Apelido, Email, Telefone, Morada, Código Postal)
 - [x] Ordenar países da UE alfabeticamente (27 países)
 - [x] Mostrar apenas nomes dos países (sem bandeiras)
+
+
+## Campos Condicionais (Implementado)
+- [x] Mostrar "Morada de Entrega" quando "Envio" é selecionado
+- [x] Mostrar "Loja de Levantamento" quando "Levantamento" é selecionado
+- [x] Adicionar 4 lojas de levantamento (Lisbon, Porto, Covilha, Braga)
+- [x] Envio grátis quando "Levantamento" é selecionado
