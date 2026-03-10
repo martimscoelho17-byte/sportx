@@ -73,3 +73,9 @@
 ## Ajustes (Implementados)
 - [x] Alterar texto do botão de "Ir para checkout" para "Finalizar compra"
 - [x] Alterar CartDrawer para mostrar desconto (10%) em vez de IVA
+
+
+## Checkout (Implementado)
+- [x] Logo SportX já aparece no header do checkout
+- [x] Adicionar opções de "Envio" e "Levantamento" com ícones
+- [x] Implementar seleção de método de entrega

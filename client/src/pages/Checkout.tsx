@@ -8,7 +8,7 @@ import { CartProvider, useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, CreditCard, Banknote, Smartphone, ChevronDown } from "lucide-react";
+import { ArrowLeft, CreditCard, Banknote, Smartphone, ChevronDown, Truck, MapPin } from "lucide-react";
 import { toast } from "sonner";
 
 const EU_COUNTRIES = [
@@ -64,13 +64,14 @@ function CheckoutContent() {
     postalCode: "",
     country: "PT",
     paymentMethod: "cartao",
+    deliveryMethod: "envio",
   });
 
   const createOrder = trpc.orders.create.useMutation();
 
   const discount = total * 0.1; // 10% discount
   const subtotalAfterDiscount = total - discount;
-  const shipping = subtotalAfterDiscount >= 100 ? 0 : 5.99;
+  const shipping = form.deliveryMethod === "levantamento" ? 0 : (subtotalAfterDiscount >= 100 ? 0 : 5.99);
   const tax = subtotalAfterDiscount * 0.23;
   const orderTotal = subtotalAfterDiscount + shipping + tax;
 
@@ -267,6 +268,49 @@ function CheckoutContent() {
                         )}
                       </div>
                     </div>
+                  </div>
+                </div>
+
+                {/* Delivery method */}
+                <div className="rounded-xl border border-border bg-card p-6">
+                  <h2 className="text-base font-bold text-card-foreground mb-4">Opções de Entrega</h2>
+                  <div className="grid grid-cols-2 gap-4">
+                    <label
+                      className={`flex items-center justify-center gap-3 p-4 rounded-lg border cursor-pointer transition-all ${
+                        form.deliveryMethod === "envio"
+                          ? "border-[#001a4d] bg-[#001a4d]/5 dark:bg-[#001a4d]/20"
+                          : "border-border hover:border-[#001a4d]/50"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="deliveryMethod"
+                        value="envio"
+                        checked={form.deliveryMethod === "envio"}
+                        onChange={() => setForm((p) => ({ ...p, deliveryMethod: "envio" }))}
+                        className="accent-[#001a4d]"
+                      />
+                      <Truck size={20} className="text-muted-foreground" />
+                      <span className="text-sm font-medium text-card-foreground">Envio</span>
+                    </label>
+                    <label
+                      className={`flex items-center justify-center gap-3 p-4 rounded-lg border cursor-pointer transition-all ${
+                        form.deliveryMethod === "levantamento"
+                          ? "border-[#001a4d] bg-[#001a4d]/5 dark:bg-[#001a4d]/20"
+                          : "border-border hover:border-[#001a4d]/50"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="deliveryMethod"
+                        value="levantamento"
+                        checked={form.deliveryMethod === "levantamento"}
+                        onChange={() => setForm((p) => ({ ...p, deliveryMethod: "levantamento" }))}
+                        className="accent-[#001a4d]"
+                      />
+                      <MapPin size={20} className="text-muted-foreground" />
+                      <span className="text-sm font-medium text-card-foreground">Levantamento</span>
+                    </label>
                   </div>
                 </div>
 
