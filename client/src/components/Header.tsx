@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { ShoppingBag, User, Sun, Moon, ChevronDown, Search } from "lucide-react";
+import { ShoppingBag, User, Sun, Moon, ChevronDown, Search, Heart } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useCart } from "@/contexts/CartContext";
+import { useFavorites } from "@/contexts/FavoritesContext";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import LoginModal from "./LoginModal";
@@ -16,6 +17,7 @@ interface BrandMenu {
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
   const { itemCount, isOpen: cartOpen, openCart } = useCart();
+  const { favorites } = useFavorites();
   const { user, logout } = useAuth();
   const [, navigate] = useLocation();
   const [loginOpen, setLoginOpen] = useState(false);
@@ -178,6 +180,21 @@ export default function Header() {
                   </button>
                 </div>
               )}
+
+              {/* Favorites */}
+              <button
+                className="relative p-2 rounded-full hover:bg-accent transition-colors text-foreground"
+                onClick={() => navigate("/favorites")}
+                aria-label="Favoritos"
+                title="Ver favoritos"
+              >
+                <Heart size={20} />
+                {favorites.length > 0 && (
+                  <span className="absolute -top-0.5 -right-0.5 bg-red-600 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                    {favorites.length > 9 ? "9+" : favorites.length}
+                  </span>
+                )}
+              </button>
 
               {/* Cart */}
               <button

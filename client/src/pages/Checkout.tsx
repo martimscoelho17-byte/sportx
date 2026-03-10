@@ -68,9 +68,11 @@ function CheckoutContent() {
 
   const createOrder = trpc.orders.create.useMutation();
 
-  const shipping = total >= 100 ? 0 : 5.99;
-  const tax = total * 0.23;
-  const orderTotal = total + shipping + tax;
+  const discount = total * 0.1; // 10% discount
+  const subtotalAfterDiscount = total - discount;
+  const shipping = subtotalAfterDiscount >= 100 ? 0 : 5.99;
+  const tax = subtotalAfterDiscount * 0.23;
+  const orderTotal = subtotalAfterDiscount + shipping + tax;
 
   const selectedCountry = EU_COUNTRIES.find((c) => c.code === form.country);
 
@@ -99,6 +101,7 @@ function CheckoutContent() {
         country: form.country,
         paymentMethod: form.paymentMethod,
         subtotal: total,
+        discount,
         shipping,
         tax,
         total: orderTotal,
@@ -330,6 +333,10 @@ function CheckoutContent() {
                     <div className="flex justify-between text-muted-foreground">
                       <span>Subtotal</span>
                       <span>€{total.toFixed(2)}</span>
+                    </div>
+                    <div className="flex justify-between text-green-600 font-medium">
+                      <span>Desconto (10%)</span>
+                      <span>-€{discount.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-muted-foreground">
                       <span>Envio</span>

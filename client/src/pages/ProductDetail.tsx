@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import { CartProvider, useCart } from "@/contexts/CartContext";
+import { useFavorites } from "@/contexts/FavoritesContext";
 import { Button } from "@/components/ui/button";
 import { Heart, ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { toast } from "sonner";
@@ -15,10 +16,10 @@ function ProductDetailContent() {
   const params = useParams<{ id: string }>();
   const [, navigate] = useLocation();
   const { addItem, openCart } = useCart();
+  const { isFavorite, toggleFavorite } = useFavorites();
   const [selectedSize, setSelectedSize] = useState<string | null | undefined>(null);
   const [adding, setAdding] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isFavorite, setIsFavorite] = useState(false);
 
   const { data: product, isLoading } = trpc.products.byId.useQuery({ id: parseInt(params.id) });
 
@@ -191,10 +192,10 @@ function ProductDetailContent() {
                 <Button
                   variant="outline"
                   className="w-full rounded-full py-6 font-semibold text-lg border-2 border-foreground text-foreground hover:bg-foreground hover:text-background transition-colors"
-                  onClick={() => setIsFavorite(!isFavorite)}
+                  onClick={() => toggleFavorite(product.id)}
                 >
-                  <Heart size={20} className={isFavorite ? "fill-current" : ""} />
-                  Marcar como favorito
+                  <Heart size={20} className={isFavorite(product.id) ? "fill-current text-red-600" : ""} />
+                  {isFavorite(product.id) ? "Remover dos favoritos" : "Marcar como favorito"}
                 </Button>
               </div>
 

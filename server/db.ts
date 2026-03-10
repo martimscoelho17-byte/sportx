@@ -8,6 +8,7 @@ import {
   brands,
   cartItems,
   categories,
+  favorites,
   orders,
   products,
   productImages,
@@ -373,4 +374,46 @@ export async function seedDatabase() {
   ];
 
   await db.insert(products).values(productData);
+}
+
+// ─── Favorites ───────────────────────────────────────────────────────────────
+
+export async function getFavorites(sessionId: string) {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(favorites).where(eq(favorites.sessionId, sessionId));
+}
+
+export async function addToFavorites(sessionId: string, productId: number) {
+  const db = await getDb();
+  if (!db) return;
+
+  const existing = await db
+    .select()
+    .from(favorites)
+    .where(and(eq(favorites.sessionId, sessionId), eq(favorites.productId, productId)))
+    .limit(1);
+
+  if (!existing[0]) {
+    await db.insert(favorites).values({ sessionId, productId });
+  }
+}
+
+export async function removeFromFavorites(sessionId: string, productId: number) {
+  const db = await getDb();
+  if (!db) return;
+  await db
+    .delete(favorites)
+    .where(and(eq(favorites.sessionId, sessionId), eq(favorites.productId, productId)));
+}
+
+export async function isFavorite(sessionId: string, productId: number) {
+  const db = await getDb();
+  if (!db) return false;
+  const result = await db
+    .select()
+    .from(favorites)
+    .where(and(eq(favorites.sessionId, sessionId), eq(favorites.productId, productId)))
+    .limit(1);
+  return result.length > 0;
 }

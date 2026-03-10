@@ -4,9 +4,11 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { FavoritesProvider } from "./contexts/FavoritesContext";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import Favorites from "./pages/Favorites";
 import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
 
@@ -19,6 +21,7 @@ function Router() {
       <Route path="/products/:brandSlug/:categorySlug/product/:id" component={ProductDetail} />
       <Route path="/products/:brandSlug/product/:id" component={ProductDetail} />
       <Route path="/product/:id" component={ProductDetail} />
+      <Route path="/favorites" component={Favorites} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/order-confirmation/:orderNumber" component={OrderConfirmation} />
       <Route path="/404" component={NotFound} />
@@ -31,10 +34,12 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light" switchable>
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
+        <FavoritesProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </FavoritesProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

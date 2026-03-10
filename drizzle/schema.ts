@@ -129,3 +129,15 @@ export const orders = mysqlTable("orders", {
 });
 
 export type Order = typeof orders.$inferSelect;
+
+// Favoritos do utilizador
+export const favorites = mysqlTable("favorites", {
+  id: int("id").autoincrement().primaryKey(),
+  userId: int("userId"),
+  sessionId: varchar("sessionId", { length: 128 }),
+  productId: int("productId").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type Favorite = typeof favorites.$inferSelect;
+export type InsertFavorite = typeof favorites.$inferInsert;

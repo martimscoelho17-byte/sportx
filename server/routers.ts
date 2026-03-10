@@ -5,6 +5,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import {
   addToCart,
+  addToFavorites,
   clearCart,
   createOrder,
   getAllBrands,
@@ -12,11 +13,14 @@ import {
   getBrandBySlug,
   getCartItems,
   getCategoriesByBrand,
+  getFavorites,
   getOrderByNumber,
   getProductById,
   getProductWithImages,
   getProducts,
+  isFavorite,
   removeCartItem,
+  removeFromFavorites,
   seedDatabase,
   updateCartItemQuantity,
 } from "./db";
@@ -145,6 +149,7 @@ export const appRouter = router({
           country: z.string(),
           paymentMethod: z.string(),
           subtotal: z.number(),
+          discount: z.number().optional(),
           shipping: z.number(),
           tax: z.number(),
           total: z.number(),
@@ -160,6 +165,31 @@ export const appRouter = router({
       .input(z.object({ orderNumber: z.string() }))
       .query(async ({ input }) => {
         return getOrderByNumber(input.orderNumber);
+      }),
+  }),
+
+  favorites: router({
+    list: publicProcedure
+      .input(z.object({ sessionId: z.string() }))
+      .query(async ({ input }) => {
+        return getFavorites(input.sessionId);
+      }),
+    add: publicProcedure
+      .input(z.object({ sessionId: z.string(), productId: z.number() }))
+      .mutation(async ({ input }) => {
+        await addToFavorites(input.sessionId, input.productId);
+        return { success: true };
+      }),
+    remove: publicProcedure
+      .input(z.object({ sessionId: z.string(), productId: z.number() }))
+      .mutation(async ({ input }) => {
+        await removeFromFavorites(input.sessionId, input.productId);
+        return { success: true };
+      }),
+    isFavorite: publicProcedure
+      .input(z.object({ sessionId: z.string(), productId: z.number() }))
+      .query(async ({ input }) => {
+        return isFavorite(input.sessionId, input.productId);
       }),
   }),
 });

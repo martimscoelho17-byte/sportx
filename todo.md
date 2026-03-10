@@ -28,6 +28,9 @@
 
 ## Testes
 - [x] Testes vitest para routers de produtos, carrinho e encomendas (17 testes passados)
+- [x] Testes vitest para múltiplas imagens de produtos (12 testes passados)
+- [x] Testes vitest para features (desconto, envio, IVA, total, favoritos, carrinho) (16 testes passados)
+- [x] Total: 45 testes passados
 
 
 ## Reorganização (Nova)
@@ -48,3 +51,17 @@
 - [x] Implementar navegação entre imagens (anterior/próximo)
 - [x] Corrigir navegação para detalhe do produto (sem dupla barra)
 - [x] Criar testes vitest para validar produtos e imagens (12 testes passados)
+
+
+## Novas Funcionalidades (Implementadas)
+- [x] Alterar ícone de carrinho no header
+- [x] Adicionar ícone de favoritos (coração) no header entre login e carrinho
+- [x] Implementar sistema de favoritos funcional (guardar/remover produtos favoritos)
+- [x] Implementar carrinho de compras funcional (adicionar/remover/atualizar quantidade)
+- [x] Implementar desconto de 10% no checkout
+- [x] Implementar cálculo de envio (grátis para pedidos >= 100€)
+- [x] Implementar página de checkout com resumo de pedido
+- [x] Implementar sistema de pagamento (4 métodos: Cartão, MB Way, Transferência, Multibanco)
+- [x] Implementar página de confirmação de pedido com número de rastreamento
+- [x] Testar fluxo completo: adicionar ao carrinho → favoritos → checkout → pagamento → confirmação
+- [x] Criar testes vitest para validar desconto, envio, IVA, total (16 testes passados)
