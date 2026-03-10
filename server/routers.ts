@@ -14,6 +14,7 @@ import {
   getCategoriesByBrand,
   getOrderByNumber,
   getProductById,
+  getProductWithImages,
   getProducts,
   removeCartItem,
   seedDatabase,
@@ -77,7 +78,7 @@ export const appRouter = router({
         return getProducts(input ?? {});
       }),
     byId: publicProcedure.input(z.object({ id: z.number() })).query(async ({ input }) => {
-      return getProductById(input.id);
+      return getProductWithImages(input.id);
     }),
   }),
 

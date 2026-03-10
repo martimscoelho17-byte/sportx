@@ -380,7 +380,12 @@ function ProductsContent() {
                     <div
                       key={product.id}
                       className="group cursor-pointer"
-                      onClick={() => navigate(`/products/${params.brandSlug}/${params.categorySlug || ""}/product/${product.id}`)}
+                      onClick={() => {
+                        const url = params.categorySlug 
+                          ? `/products/${params.brandSlug}/${params.categorySlug}/product/${product.id}`
+                          : `/products/${params.brandSlug}/product/${product.id}`;
+                        navigate(url);
+                      }}
                     >
                       <div className="relative bg-accent rounded-lg overflow-hidden mb-3 aspect-square">
                         {product.imageUrl && (

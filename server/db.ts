@@ -10,6 +10,7 @@ import {
   categories,
   orders,
   products,
+  productImages,
   users,
 } from "../drizzle/schema";
 import { ENV } from "./_core/env";
@@ -168,6 +169,21 @@ export async function getProductById(id: number) {
   if (!db) return undefined;
   const result = await db.select().from(products).where(eq(products.id, id)).limit(1);
   return result[0];
+}
+
+export async function getProductWithImages(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const product = await getProductById(id);
+  if (!product) return undefined;
+  
+  const images = await db
+    .select()
+    .from(productImages)
+    .where(eq(productImages.productId, id))
+    .orderBy(productImages.order);
+  
+  return { ...product, images };
 }
 
 // ─── Cart ─────────────────────────────────────────────────────────────────────

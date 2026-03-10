@@ -71,6 +71,19 @@ export const products = mysqlTable("products", {
 export type Product = typeof products.$inferSelect;
 export type InsertProduct = typeof products.$inferInsert;
 
+// Imagens dos produtos (múltiplas imagens por produto)
+export const productImages = mysqlTable("product_images", {
+  id: int("id").autoincrement().primaryKey(),
+  productId: int("productId").notNull(),
+  imageUrl: text("imageUrl").notNull(),
+  isThumbnail: boolean("isThumbnail").default(false),
+  order: int("order").default(0),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type ProductImage = typeof productImages.$inferSelect;
+export type InsertProductImage = typeof productImages.$inferInsert;
+
 // Itens do carrinho (sessão)
 export const cartItems = mysqlTable("cart_items", {
   id: int("id").autoincrement().primaryKey(),

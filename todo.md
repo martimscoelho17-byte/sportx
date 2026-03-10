@@ -37,3 +37,14 @@
 - [x] Substituir logo SportX por ícone azul (#001a4d)
 - [x] Página principal: hero com SportX + slogan (sem marcas por baixo)
 - [x] Ordem das marcas: Nike, Adidas, New Balance, Puma
+
+## Múltiplas Imagens de Produtos (Nova)
+- [x] Criar tabela productImages para armazenar múltiplas imagens por produto
+- [x] Migrar esquema com `pnpm db:push`
+- [x] Adicionar função getProductWithImages() em server/db.ts
+- [x] Atualizar router de produtos para usar getProductWithImages()
+- [x] Popular base de dados com 10 chuteiras reais de 4 marcas
+- [x] Atualizar ProductDetail.tsx para exibir galeria de imagens
+- [x] Implementar navegação entre imagens (anterior/próximo)
+- [x] Corrigir navegação para detalhe do produto (sem dupla barra)
+- [x] Criar testes vitest para validar produtos e imagens (12 testes passados)

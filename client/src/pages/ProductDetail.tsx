@@ -38,11 +38,11 @@ function ProductDetailContent() {
   };
 
   const handlePrevImage = () => {
-    setCurrentImageIndex((prev) => (prev === 0 ? 9 : prev - 1));
+    setCurrentImageIndex((prev) => (prev === 0 ? Math.max(0, images.length - 1) : prev - 1));
   };
 
   const handleNextImage = () => {
-    setCurrentImageIndex((prev) => (prev === 9 ? 0 : prev + 1));
+    setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
   if (isLoading) {
@@ -72,9 +72,11 @@ function ProductDetailContent() {
     );
   }
 
-  // Generate mock images for the product
-  const images = [product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl, product.imageUrl];
-  const currentImage = images[currentImageIndex];
+  // Get images from product (with fallback to imageUrl)
+  const images = product.images && product.images.length > 0 
+    ? product.images.map((img: any) => img.imageUrl)
+    : [product.imageUrl];
+  const currentImage = images[currentImageIndex] || product.imageUrl;
 
   return (
     <div className="min-h-screen flex flex-col bg-white dark:bg-black">
@@ -141,7 +143,7 @@ function ProductDetailContent() {
               {/* Design Customization */}
               <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-100 dark:bg-gray-900">
                 <div className="w-12 h-12 rounded-lg border-2 border-foreground overflow-hidden">
-                  <img src={product.imageUrl} alt="Design" className="w-full h-full object-cover" />
+                  <img src={currentImage} alt="Design" className="w-full h-full object-cover" />
                 </div>
                 <div>
                   <p className="text-sm font-semibold text-foreground">CRIA O TEU DESIGN</p>
