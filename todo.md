@@ -104,3 +104,7 @@
 ## Dropdown de País (Implementado)
 - [x] Alterar placeholder de "Portugal" para "Selecione um país"
 - [x] Adicionar ícone de lupa (Search) antes do texto
+
+
+## Resumo da Encomenda (Implementado)
+- [x] Remover IVA (23%) do resumo (Checkout e OrderConfirmation)

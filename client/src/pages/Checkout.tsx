@@ -380,10 +380,7 @@ function CheckoutContent() {
                       <span>Envio</span>
                       <span>{shipping === 0 ? <span className="text-green-600 font-medium">Grátis</span> : `€${shipping.toFixed(2)}`}</span>
                     </div>
-                    <div className="flex justify-between text-muted-foreground">
-                      <span>IVA (23%)</span>
-                      <span>€{tax.toFixed(2)}</span>
-                    </div>
+
                     <div className="flex justify-between font-bold text-base text-foreground pt-1 border-t border-border">
                       <span>Total</span>
                       <span>€{orderTotal.toFixed(2)}</span>

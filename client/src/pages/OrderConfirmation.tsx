@@ -151,10 +151,7 @@ function OrderConfirmationContent() {
                   <span>Envio</span>
                   <span>{parseFloat(order.shipping ?? "0") === 0 ? <span className="text-green-600 font-medium">Grátis</span> : `€${parseFloat(order.shipping ?? "0").toFixed(2)}`}</span>
                 </div>
-                <div className="flex justify-between text-muted-foreground">
-                  <span>IVA (23%)</span>
-                  <span>€{parseFloat(order.tax ?? "0").toFixed(2)}</span>
-                </div>
+
                 <div className="flex justify-between font-bold text-base text-foreground pt-2 border-t border-border">
                   <span>Total</span>
                   <span>€{parseFloat(order.total ?? "0").toFixed(2)}</span>
