@@ -94,3 +94,8 @@
 - [x] Mostrar "Loja de Levantamento" quando "Levantamento" é selecionado
 - [x] Adicionar 4 lojas de levantamento (Lisbon, Porto, Covilha, Braga)
 - [x] Envio grátis quando "Levantamento" é selecionado
+
+
+## Alterações (Implementadas)
+- [x] Remover opção "Levantamento" do checkout
+- [x] Deixar apenas "Envio" como opção de entrega

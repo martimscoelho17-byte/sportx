@@ -190,31 +190,14 @@ function CheckoutContent() {
                       <Truck size={20} className="text-muted-foreground" />
                       <span className="text-sm font-medium text-card-foreground">Envio</span>
                     </label>
-                    <label
-                      className={`flex items-center justify-center gap-3 p-4 rounded-lg border cursor-pointer transition-all ${
-                        form.deliveryMethod === "levantamento"
-                          ? "border-[#001a4d] bg-[#001a4d]/5 dark:bg-[#001a4d]/20"
-                          : "border-border hover:border-[#001a4d]/50"
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="deliveryMethod"
-                        value="levantamento"
-                        checked={form.deliveryMethod === "levantamento"}
-                        onChange={() => setForm((p) => ({ ...p, deliveryMethod: "levantamento" }))}
-                        className="accent-[#001a4d]"
-                      />
-                      <MapPin size={20} className="text-muted-foreground" />
-                      <span className="text-sm font-medium text-card-foreground">Levantamento</span>
-                    </label>
+
                   </div>
                 </div>
 
                 {/* Conditional: Delivery address or Pickup store */}
-                {form.deliveryMethod === "envio" ? (
-                  <div className="rounded-xl border border-border bg-card p-6">
-                    <h2 className="text-base font-bold text-card-foreground mb-4">Morada de Entrega</h2>
+                {/* Delivery address */}
+                <div className="rounded-xl border border-border bg-card p-6">
+                  <h2 className="text-base font-bold text-card-foreground mb-4">Morada de Entrega</h2>
                   <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-1.5">
@@ -321,41 +304,6 @@ function CheckoutContent() {
                     </div>
                   </div>
                 </div>
-                ) : (
-                  <div className="rounded-xl border border-border bg-card p-6">
-                    <h2 className="text-base font-bold text-card-foreground mb-4">Loja de Levantamento</h2>
-                    <div className="space-y-4">
-                      <div className="space-y-1.5">
-                        <Label>Selecione a loja *</Label>
-                        <div className="space-y-2">
-                          {PICKUP_STORES.map((store) => (
-                            <label
-                              key={store.id}
-                              className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition-all ${
-                                form.pickupStore === store.id
-                                  ? "border-[#001a4d] bg-[#001a4d]/5 dark:bg-[#001a4d]/20"
-                                  : "border-border hover:border-[#001a4d]/50"
-                              }`}
-                            >
-                              <input
-                                type="radio"
-                                name="pickupStore"
-                                value={store.id}
-                                checked={form.pickupStore === store.id}
-                                onChange={() => setForm((p) => ({ ...p, pickupStore: store.id }))}
-                                className="accent-[#001a4d] mt-1"
-                              />
-                              <div className="flex-1">
-                                <div className="font-medium text-card-foreground">{store.name}</div>
-                                <div className="text-sm text-muted-foreground">{store.address}</div>
-                              </div>
-                            </label>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
 
                 {/* Payment method */}
                 <div className="rounded-xl border border-border bg-card p-6">
