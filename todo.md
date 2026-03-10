@@ -69,3 +69,6 @@
 
 ## Melhorias (Implementadas)
 - [x] Atualizar página de Favoritos com mensagem centrada quando vazia
+
+## Ajustes (Implementados)
+- [x] Alterar texto do botão de "Ir para checkout" para "Finalizar compra"

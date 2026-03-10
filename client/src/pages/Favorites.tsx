@@ -49,8 +49,7 @@ function FavoritesContent() {
           </div>
         ) : favoriteProducts.length === 0 ? (
           <div className="flex flex-col items-center justify-center gap-4">
-            <h1 className="text-3xl font-bold text-foreground">Favoritos</h1>
-            <p className="text-lg text-muted-foreground mt-8">Os artigos adicionados aos favoritos serão guardados aqui.</p>
+            <p className="text-lg text-muted-foreground">Os artigos adicionados aos favoritos serão guardados aqui.</p>
           </div>
         ) : (
           <div className="w-full max-w-7xl mx-auto px-4 py-8">

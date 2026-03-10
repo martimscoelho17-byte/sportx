@@ -148,7 +148,7 @@ export default function CartDrawer() {
                 navigate("/checkout");
               }}
             >
-              Ir para Checkout
+              Finalizar compra
             </Button>
           </div>
         )}
