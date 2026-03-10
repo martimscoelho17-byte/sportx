@@ -8,7 +8,7 @@ import { CartProvider, useCart } from "@/contexts/CartContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ArrowLeft, CreditCard, Banknote, Smartphone, ChevronDown, Truck, MapPin } from "lucide-react";
+import { ArrowLeft, CreditCard, Banknote, Smartphone, ChevronDown, Truck, MapPin, Search } from "lucide-react";
 import { toast } from "sonner";
 
 const EU_COUNTRIES = [
@@ -62,7 +62,7 @@ function CheckoutContent() {
     address: "",
     city: "",
     postalCode: "",
-    country: "PT",
+    country: "",
     paymentMethod: "cartao",
     deliveryMethod: "envio",
     pickupStore: "",
@@ -279,7 +279,10 @@ function CheckoutContent() {
                           className="w-full flex items-center justify-between px-3 py-2 border border-input rounded-md text-sm bg-background hover:bg-accent transition-colors"
                           onClick={() => setCountryOpen(!countryOpen)}
                         >
-                          <span>{selectedCountry?.name}</span>
+                          <span className="flex items-center gap-2">
+                            <Search size={14} className="text-muted-foreground" />
+                            {selectedCountry?.name || "Selecione um país"}
+                          </span>
                           <ChevronDown size={14} className={`transition-transform ${countryOpen ? "rotate-180" : ""}`} />
                         </button>
                         {countryOpen && (

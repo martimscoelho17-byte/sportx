@@ -99,3 +99,8 @@
 ## Alterações (Implementadas)
 - [x] Remover opção "Levantamento" do checkout
 - [x] Deixar apenas "Envio" como opção de entrega
+
+
+## Dropdown de País (Implementado)
+- [x] Alterar placeholder de "Portugal" para "Selecione um país"
+- [x] Adicionar ícone de lupa (Search) antes do texto
