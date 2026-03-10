@@ -81,3 +81,9 @@
 - [x] Opções de "Envio" e "Levantamento" logo abaixo do título com ícones
 - [x] Campos de Morada de Entrega depois das opções
 - [x] Implementar seleção de método de entrega
+
+
+## Campos do Checkout (Implementado)
+- [x] Remover placeholders dos campos (Nome, Apelido, Email, Telefone, Morada, Código Postal)
+- [x] Ordenar países da UE alfabeticamente (27 países)
+- [x] Mostrar apenas nomes dos países (sem bandeiras)

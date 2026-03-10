@@ -12,33 +12,33 @@ import { ArrowLeft, CreditCard, Banknote, Smartphone, ChevronDown, Truck, MapPin
 import { toast } from "sonner";
 
 const EU_COUNTRIES = [
-  { code: "PT", name: "Portugal", flag: "🇵🇹" },
-  { code: "AT", name: "Áustria", flag: "🇦🇹" },
-  { code: "BE", name: "Bélgica", flag: "🇧🇪" },
-  { code: "BG", name: "Bulgária", flag: "🇧🇬" },
-  { code: "CY", name: "Chipre", flag: "🇨🇾" },
-  { code: "CZ", name: "Chéquia", flag: "🇨🇿" },
-  { code: "DE", name: "Alemanha", flag: "🇩🇪" },
-  { code: "DK", name: "Dinamarca", flag: "🇩🇰" },
-  { code: "EE", name: "Estónia", flag: "🇪🇪" },
-  { code: "ES", name: "Espanha", flag: "🇪🇸" },
-  { code: "FI", name: "Finlândia", flag: "🇫🇮" },
-  { code: "FR", name: "França", flag: "🇫🇷" },
-  { code: "GR", name: "Grécia", flag: "🇬🇷" },
-  { code: "HR", name: "Croácia", flag: "🇭🇷" },
-  { code: "HU", name: "Hungria", flag: "🇭🇺" },
-  { code: "IE", name: "Irlanda", flag: "🇮🇪" },
-  { code: "IT", name: "Itália", flag: "🇮🇹" },
-  { code: "LT", name: "Lituânia", flag: "🇱🇹" },
-  { code: "LU", name: "Luxemburgo", flag: "🇱🇺" },
-  { code: "LV", name: "Letónia", flag: "🇱🇻" },
-  { code: "MT", name: "Malta", flag: "🇲🇹" },
-  { code: "NL", name: "Países Baixos", flag: "🇳🇱" },
-  { code: "PL", name: "Polónia", flag: "🇵🇱" },
-  { code: "RO", name: "Roménia", flag: "🇷🇴" },
-  { code: "SE", name: "Suécia", flag: "🇸🇪" },
-  { code: "SI", name: "Eslovénia", flag: "🇸🇮" },
-  { code: "SK", name: "Eslováquia", flag: "🇸🇰" },
+  { code: "DE", name: "Alemanha" },
+  { code: "AT", name: "Áustria" },
+  { code: "BE", name: "Bélgica" },
+  { code: "BG", name: "Bulgária" },
+  { code: "HR", name: "Croácia" },
+  { code: "CY", name: "Chipre" },
+  { code: "CZ", name: "Chéquia" },
+  { code: "DK", name: "Dinamarca" },
+  { code: "EE", name: "Estónia" },
+  { code: "ES", name: "Espanha" },
+  { code: "FI", name: "Finlândia" },
+  { code: "FR", name: "França" },
+  { code: "GR", name: "Grécia" },
+  { code: "HU", name: "Hungria" },
+  { code: "IE", name: "Irlanda" },
+  { code: "IT", name: "Itália" },
+  { code: "LV", name: "Letónia" },
+  { code: "LT", name: "Lituânia" },
+  { code: "LU", name: "Luxemburgo" },
+  { code: "MT", name: "Malta" },
+  { code: "NL", name: "Países Baixos" },
+  { code: "PL", name: "Polónia" },
+  { code: "PT", name: "Portugal" },
+  { code: "RO", name: "Roménia" },
+  { code: "SE", name: "Suécia" },
+  { code: "SI", name: "Eslovénia" },
+  { code: "SK", name: "Eslováquia" },
 ];
 
 const PAYMENT_METHODS = [
@@ -240,7 +240,7 @@ function CheckoutContent() {
                       <Input
                         id="phone"
                         type="tel"
-                        placeholder="+351 900 000 000"
+
                         value={form.phone}
                         onChange={(e) => setForm((p) => ({ ...p, phone: e.target.value }))}
                       />
@@ -249,7 +249,7 @@ function CheckoutContent() {
                       <Label htmlFor="address">Morada *</Label>
                       <Input
                         id="address"
-                        placeholder="Rua, número, andar"
+
                         value={form.address}
                         onChange={(e) => setForm((p) => ({ ...p, address: e.target.value }))}
                         required
@@ -269,7 +269,7 @@ function CheckoutContent() {
                         <Label htmlFor="postalCode">Código Postal *</Label>
                         <Input
                           id="postalCode"
-                          placeholder="0000-000"
+  
                           value={form.postalCode}
                           onChange={(e) => setForm((p) => ({ ...p, postalCode: e.target.value }))}
                           required
@@ -285,10 +285,7 @@ function CheckoutContent() {
                           className="w-full flex items-center justify-between px-3 py-2 border border-input rounded-md text-sm bg-background hover:bg-accent transition-colors"
                           onClick={() => setCountryOpen(!countryOpen)}
                         >
-                          <span className="flex items-center gap-2">
-                            <span>{selectedCountry?.flag}</span>
-                            <span>{selectedCountry?.name}</span>
-                          </span>
+                          <span>{selectedCountry?.name}</span>
                           <ChevronDown size={14} className={`transition-transform ${countryOpen ? "rotate-180" : ""}`} />
                         </button>
                         {countryOpen && (
@@ -297,16 +294,16 @@ function CheckoutContent() {
                               <button
                                 key={country.code}
                                 type="button"
-                                className="w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors flex items-center gap-2"
+                                className="w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors"
                                 onClick={() => {
                                   setForm((p) => ({ ...p, country: country.code }));
                                   setCountryOpen(false);
                                 }}
                               >
-                                <span>{country.flag}</span>
-                                <span>{country.name}</span>
+                                {country.name}
                               </button>
                             ))}
+
                           </div>
                         )}
                       </div>
