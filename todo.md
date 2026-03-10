@@ -72,3 +72,4 @@
 
 ## Ajustes (Implementados)
 - [x] Alterar texto do botão de "Ir para checkout" para "Finalizar compra"
+- [x] Alterar CartDrawer para mostrar desconto (10%) em vez de IVA

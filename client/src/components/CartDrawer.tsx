@@ -8,8 +8,9 @@ export default function CartDrawer() {
   const [, navigate] = useLocation();
 
   const shipping = total >= 100 ? 0 : 5.99;
-  const tax = total * 0.23;
-  const orderTotal = total + shipping + tax;
+  const discount = total * 0.1;
+  const subtotalAfterDiscount = total - discount;
+  const orderTotal = subtotalAfterDiscount + shipping;
 
   if (!isOpen) return null;
 
@@ -127,9 +128,9 @@ export default function CartDrawer() {
                 <span>Envio</span>
                 <span>{shipping === 0 ? <span className="text-green-600 font-medium">Grátis</span> : `€${shipping.toFixed(2)}`}</span>
               </div>
-              <div className="flex justify-between text-muted-foreground">
-                <span>IVA (23%)</span>
-                <span>€{tax.toFixed(2)}</span>
+              <div className="flex justify-between text-green-600 font-medium">
+                <span>Desconto (10%)</span>
+                <span>-€{discount.toFixed(2)}</span>
               </div>
               <div className="flex justify-between font-bold text-base text-foreground pt-1 border-t border-border">
                 <span>Total</span>
