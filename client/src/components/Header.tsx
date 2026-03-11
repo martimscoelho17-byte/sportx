@@ -163,6 +163,7 @@ export default function Header() {
                         onClick={async () => {
                           setUserMenuOpen(false);
                           await logout();
+                          setLoginOpen(true);
                         }}
                       >
                         Terminar sessão

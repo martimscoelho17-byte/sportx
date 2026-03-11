@@ -130,3 +130,8 @@
 - [x] Adicionar botão para guardar alterações
 - [x] Adicionar validação de campos
 - [x] Integrar com o menu de conta do header
+
+
+## Fluxo de Logout (Implementado)
+- [x] Ao clicar em "Terminar sessão", abrir modal de login automaticamente
+- [x] Permitir fazer login novamente ou criar nova conta
