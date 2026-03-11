@@ -53,6 +53,7 @@ function CheckoutContent() {
   const { items, total, sessionId, clearCart } = useCart();
   const [countryOpen, setCountryOpen] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, boolean>>({});
 
   const [form, setForm] = useState({
     firstName: "",
@@ -93,10 +94,24 @@ function CheckoutContent() {
       toast.error("O seu carrinho está vazio");
       return;
     }
-    if (!form.firstName || !form.lastName || !form.email || !form.address || !form.city || !form.postalCode) {
+    
+    // Validate required fields
+    const newErrors: Record<string, boolean> = {};
+    if (!form.firstName) newErrors.firstName = true;
+    if (!form.lastName) newErrors.lastName = true;
+    if (!form.email) newErrors.email = true;
+    if (!form.address) newErrors.address = true;
+    if (!form.city) newErrors.city = true;
+    if (!form.postalCode) newErrors.postalCode = true;
+    if (!form.country) newErrors.country = true;
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       toast.error("Por favor, preencha todos os campos obrigatórios");
       return;
     }
+    
+    setErrors({});
 
     setSubmitting(true);
     try {
@@ -133,6 +148,9 @@ function CheckoutContent() {
         shipping: shipping.toFixed(2),
         total: orderTotal.toFixed(2),
       }));
+      
+      // Clear errors on success
+      setErrors({});
       
       // Redirect to payment page
       navigate("/payment");
@@ -217,6 +235,7 @@ function CheckoutContent() {
                           id="firstName"
                           value={form.firstName}
                           onChange={(e) => setForm((p) => ({ ...p, firstName: e.target.value }))}
+                          className={errors.firstName ? "border-red-500 focus-visible:ring-red-500" : ""}
                           required
                         />
                       </div>
@@ -226,6 +245,7 @@ function CheckoutContent() {
                           id="lastName"
                           value={form.lastName}
                           onChange={(e) => setForm((p) => ({ ...p, lastName: e.target.value }))}
+                          className={errors.lastName ? "border-red-500 focus-visible:ring-red-500" : ""}
                           required
                         />
                       </div>
@@ -237,6 +257,7 @@ function CheckoutContent() {
                         type="email"
                         value={form.email}
                         onChange={(e) => setForm((p) => ({ ...p, email: e.target.value }))}
+                        className={errors.email ? "border-red-500 focus-visible:ring-red-500" : ""}
                         required
                       />
                     </div>
@@ -254,9 +275,9 @@ function CheckoutContent() {
                       <Label htmlFor="address">Morada *</Label>
                       <Input
                         id="address"
-
                         value={form.address}
                         onChange={(e) => setForm((p) => ({ ...p, address: e.target.value }))}
+                        className={errors.address ? "border-red-500 focus-visible:ring-red-500" : ""}
                         required
                       />
                     </div>
@@ -267,6 +288,7 @@ function CheckoutContent() {
                           id="city"
                           value={form.city}
                           onChange={(e) => setForm((p) => ({ ...p, city: e.target.value }))}
+                          className={errors.city ? "border-red-500 focus-visible:ring-red-500" : ""}
                           required
                         />
                       </div>
@@ -274,9 +296,9 @@ function CheckoutContent() {
                         <Label htmlFor="postalCode">Código Postal *</Label>
                         <Input
                           id="postalCode"
-  
                           value={form.postalCode}
                           onChange={(e) => setForm((p) => ({ ...p, postalCode: e.target.value }))}
+                          className={errors.postalCode ? "border-red-500 focus-visible:ring-red-500" : ""}
                           required
                         />
                       </div>
@@ -287,7 +309,9 @@ function CheckoutContent() {
                       <div className="relative">
                         <button
                           type="button"
-                          className="w-full flex items-center justify-between px-3 py-2 border border-input rounded-md text-sm bg-background hover:bg-accent transition-colors"
+                          className={`w-full flex items-center justify-between px-3 py-2 border rounded-md text-sm bg-background hover:bg-accent transition-colors ${
+                            errors.country ? "border-red-500" : "border-input"
+                          }`}
                           onClick={() => setCountryOpen(!countryOpen)}
                         >
                           <span className="flex items-center gap-2">

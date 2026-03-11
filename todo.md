@@ -108,9 +108,16 @@
 
 ## Resumo da Encomenda (Implementado)
 - [x] Remover IVA (23%) do resumo (Checkout e OrderConfirmation)
+- [x] Remover métodos de pagamento do checkout (movidos para página separada)
 
 
-## Fluxo de Pagamento (Em Desenvolvimento)
-- [ ] Remover m\u00e9todos de pagamento do checkout
-- [ ] Criar p\u00e1gina de pagamento separada
-- [ ] Redirecionar para pagamento ap\u00f3s confirmar encomenda
+## Fluxo de Pag## Fluxo de Pagamento (Implementado)
+- [x] Remover métodos de pagamento do checkout
+- [x] Criar página de pagamento separada
+- [x] Redirecionar para pagamento após confirmar encomenda
+- [x] Reorganizar layout: resumo da encomenda abaixo da morada
+
+## Validação (Implementado)
+- [x] Adicionar borda vermelha em campos vazios ao clicar em "Confirmar Encomenda"
+- [x] Criar testes vitest para validação de formulário (16 testes passados)
+- [x] Validação funciona corretamente (bordas vermelhas aplicadas aos campos obrigatórios vazios)
