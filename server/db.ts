@@ -74,6 +74,30 @@ export async function getUserByOpenId(openId: string) {
   return result[0];
 }
 
+export async function updateUserProfile(
+  userId: number,
+  data: {
+    name?: string;
+    email?: string;
+    phone?: string;
+    address?: string;
+    city?: string;
+    postalCode?: string;
+    country?: string;
+  }
+) {
+  const db = await getDb();
+  if (!db) return undefined;
+  
+  const updateSet: Record<string, unknown> = {};
+  if (data.name !== undefined) updateSet.name = data.name;
+  if (data.email !== undefined) updateSet.email = data.email;
+  
+  if (Object.keys(updateSet).length === 0) return;
+  
+  await db.update(users).set(updateSet).where(eq(users.id, userId));
+}
+
 // ─── Brands ──────────────────────────────────────────────────────────────────
 
 export async function getAllBrands(): Promise<Brand[]> {

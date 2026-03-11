@@ -149,9 +149,15 @@ export default function Header() {
                   </button>
                   {userMenuOpen && (
                     <div className="absolute right-0 top-full mt-1 w-48 bg-popover border border-border rounded-lg shadow-lg py-1 z-50">
-                      <div className="px-4 py-2 text-sm font-medium text-popover-foreground border-b border-border">
+                      <button
+                        className="w-full text-left px-4 py-2 text-sm font-medium text-popover-foreground border-b border-border hover:bg-accent transition-colors"
+                        onClick={() => {
+                          setUserMenuOpen(false);
+                          navigate("/profile");
+                        }}
+                      >
                         {user.name || user.email}
-                      </div>
+                      </button>
                       <button
                         className="w-full text-left px-4 py-2 text-sm text-popover-foreground hover:bg-accent transition-colors"
                         onClick={async () => {

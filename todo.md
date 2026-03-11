@@ -121,3 +121,12 @@
 - [x] Adicionar borda vermelha em campos vazios ao clicar em "Confirmar Encomenda"
 - [x] Criar testes vitest para validação de formulário (16 testes passados)
 - [x] Validação funciona corretamente (bordas vermelhas aplicadas aos campos obrigatórios vazios)
+
+
+## Perfil do Utilizador (Implementado)
+- [x] Criar página de perfil do utilizador
+- [x] Implementar funcionalidade de edição de perfil
+- [x] Adicionar campos editáveis: nome, email, telefone, morada, código postal, país
+- [x] Adicionar botão para guardar alterações
+- [x] Adicionar validação de campos
+- [x] Integrar com o menu de conta do header

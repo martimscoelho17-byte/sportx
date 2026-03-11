@@ -23,6 +23,7 @@ import {
   removeFromFavorites,
   seedDatabase,
   updateCartItemQuantity,
+  updateUserProfile,
 } from "./db";
 
 export const appRouter = router({
@@ -190,6 +191,26 @@ export const appRouter = router({
       .input(z.object({ sessionId: z.string(), productId: z.number() }))
       .query(async ({ input }) => {
         return isFavorite(input.sessionId, input.productId);
+      }),
+  }),
+
+  users: router({
+    updateProfile: publicProcedure
+      .input(
+        z.object({
+          name: z.string().optional(),
+          email: z.string().optional(),
+          phone: z.string().optional(),
+          address: z.string().optional(),
+          city: z.string().optional(),
+          postalCode: z.string().optional(),
+          country: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        if (!ctx.user) throw new Error("Not authenticated");
+        await updateUserProfile(ctx.user.id, input);
+        return { success: true };
       }),
   }),
 });
