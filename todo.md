@@ -130,3 +130,14 @@
 - [x] Adicionar botão para guardar alterações
 - [x] Adicionar validação de campos
 - [x] Integrar com o menu de conta do header
+
+## Fluxo de Logout (Em Desenvolvimento)
+- [ ] Ao clicar em "Terminar sessão", abrir modal de login automaticamente
+- [ ] Permitir fazer login novamente ou criar nova conta
+- [ ] Corrigir problema com remoção de cookie de sessão
+
+
+## Problemas Identificados (Corrigidos)
+- [x] Rodapé não estava visível na página inicial (corrigido: ajustado min-h-[calc(100vh-64px-57px)])
+- [x] Página de perfil redireciona para home mesmo com utilizador autenticado (corrigido: adicionado loading check no useEffect)
+- [x] Menu de conta funciona corretamente com opções de perfil e logout

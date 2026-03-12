@@ -10,7 +10,7 @@ function HomeContent() {
       <CartDrawer />
 
       {/* Hero Section - Main Content */}
-      <main className="flex-1 flex flex-col items-center justify-center min-h-[calc(100vh-64px-80px)] relative overflow-hidden px-4 bg-white dark:bg-black">
+      <main className="flex-1 flex flex-col items-center justify-center min-h-[calc(100vh-64px-57px)] relative overflow-hidden px-4 bg-white dark:bg-black">
         {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-[#001a4d]/10 dark:bg-[#001a4d]/35 blur-3xl" />

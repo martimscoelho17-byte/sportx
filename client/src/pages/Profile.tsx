@@ -39,7 +39,7 @@ const EU_COUNTRIES = [
 ];
 
 export default function Profile() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const [, navigate] = useLocation();
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -56,10 +56,11 @@ export default function Profile() {
   const updateUserProfile = trpc.users.updateProfile.useMutation();
 
   useEffect(() => {
+    if (loading) return;
     if (!user) {
       navigate("/");
     }
-  }, [user, navigate]);
+  }, [user, loading, navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
