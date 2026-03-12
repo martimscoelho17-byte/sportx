@@ -1,0 +1,70 @@
+{
+  "query": "SELECT c.id, c.name, c.slug, b.name as brand_name FROM categories c LEFT JOIN brands b ON c.brandId = b.id ORDER BY b.name, c.name;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user J8Way2fBP2mENXM.root --database SRqbrBKqBpwDCXUNRC7znd --execute SELECT c.id, c.name, c.slug, b.name as brand_name FROM categories c LEFT JOIN brands b ON c.brandId = b.id ORDER BY b.name, c.name;",
+  "rows": [
+    {
+      "id": "30005",
+      "name": "Copa",
+      "slug": "copa",
+      "brand_name": "Adidas"
+    },
+    {
+      "id": "30006",
+      "name": "F50",
+      "slug": "f50",
+      "brand_name": "Adidas"
+    },
+    {
+      "id": "30004",
+      "name": "Predator",
+      "slug": "predator",
+      "brand_name": "Adidas"
+    },
+    {
+      "id": "30008",
+      "name": "Furon",
+      "slug": "furon",
+      "brand_name": "New Balance"
+    },
+    {
+      "id": "30007",
+      "name": "Tekela",
+      "slug": "tekela",
+      "brand_name": "New Balance"
+    },
+    {
+      "id": "30001",
+      "name": "Mercurial",
+      "slug": "mercurial",
+      "brand_name": "Nike"
+    },
+    {
+      "id": "30002",
+      "name": "Phantom",
+      "slug": "phantom",
+      "brand_name": "Nike"
+    },
+    {
+      "id": "30003",
+      "name": "Tiempo",
+      "slug": "tiempo",
+      "brand_name": "Nike"
+    },
+    {
+      "id": "30009",
+      "name": "Future",
+      "slug": "future",
+      "brand_name": "Puma"
+    },
+    {
+      "id": "30010",
+      "name": "Ultra",
+      "slug": "ultra",
+      "brand_name": "Puma"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tslug\tbrand_name\n30005\tCopa\tcopa\tAdidas\n30006\tF50\tf50\tAdidas\n30004\tPredator\tpredator\tAdidas\n30008\tFuron\tfuron\tNew Balance\n30007\tTekela\ttekela\tNew Balance\n30001\tMercurial\tmercurial\tNike\n30002\tPhantom\tphantom\tNike\n30003\tTiempo\ttiempo\tNike\n30009\tFuture\tfuture\tPuma\n30010\tUltra\tultra\tPuma\n",
+  "stderr": "",
+  "execution_time_ms": 461
+}

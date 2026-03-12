@@ -141,3 +141,10 @@
 - [x] Rodapé não estava visível na página inicial (corrigido: ajustado min-h-[calc(100vh-64px-57px)])
 - [x] Página de perfil redireciona para home mesmo com utilizador autenticado (corrigido: adicionado loading check no useEffect)
 - [x] Menu de conta funciona corretamente com opções de perfil e logout
+
+
+## Menu Dropdown de Categorias (Implementado)
+- [x] Implementar dropdown ao passar cursor sobre marcas
+- [x] Adicionar subcategorias: Nike (Mercurial, Phantom, Tiempo), Adidas (Predator, F50, Copa), New Balance (Tekela, Furon), Puma (Future, Ultra)
+- [x] Dropdown deve permanecer visível até cursor sair da área
+- [x] Testar funcionalidade em todos os navegadores
