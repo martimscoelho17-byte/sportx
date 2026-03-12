@@ -151,3 +151,18 @@
 - [x] Corrigir layout do dropdown para coluna vertical
 - [x] Atualizar nomes das categorias com prefixo da marca (Nike Mercurial, Adidas Predator, etc.)
 - [x] Testar todas as 4 marcas com nomes corretos
+
+
+## Adicionar Produtos (Concluído)
+- [x] Pesquisar 3 produtos para Nike Mercurial no site oficial
+- [x] Pesquisar 3 produtos para Nike Phantom no site oficial
+- [x] Pesquisar 3 produtos para Nike Tiempo no site oficial
+- [x] Pesquisar 3 produtos para Adidas Predator no site oficial
+- [x] Pesquisar 3 produtos para Adidas F50 no site oficial
+- [x] Pesquisar 3 produtos para Adidas Copa no site oficial
+- [x] Pesquisar 3 produtos para New Balance Tekela no site oficial
+- [x] Pesquisar 3 produtos para New Balance Furon no site oficial
+- [x] Pesquisar 3 produtos para Puma Future no site oficial
+- [x] Pesquisar 3 produtos para Puma Ultra no site oficial
+- [x] Adicionar todos os 24 produtos à base de dados
+- [x] Testar exibição dos produtos no catálogo

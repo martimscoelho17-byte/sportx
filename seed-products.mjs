@@ -1,288 +1,48 @@
-import mysql from 'mysql2/promise';
+import { db } from './server/db.ts';
+import { products } from './drizzle/schema.ts';
+import { eq } from 'drizzle-orm';
 
-const pool = mysql.createPool({
-  host: process.env.DATABASE_URL?.split('@')[1]?.split(':')[0] || 'localhost',
-  user: process.env.DATABASE_URL?.split('//')[1]?.split(':')[0] || 'root',
-  password: process.env.DATABASE_URL?.split(':')[2]?.split('@')[0] || '',
-  database: process.env.DATABASE_URL?.split('/')[3]?.split('?')[0] || 'sportx',
-  ssl: {
-    rejectUnauthorized: true,
-  },
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0,
-});
-
-// Imagens de exemplo (usando URLs públicas de chuteiras)
-const nikeImages = {
-  mercurial: [
-    'https://images.nike.com/is/image/DotCom_PDP_HERO_M/BZ2MF5_A_PHM/Nike+Mercurial+Vapor+16+Elite+FG.jpg',
-    'https://images.nike.com/is/image/DotCom_PDP_HERO_M/BZ2MF5_A_PHD/Nike+Mercurial+Vapor+16+Elite+FG.jpg',
-  ],
-  phantom: [
-    'https://images.nike.com/is/image/DotCom_PDP_HERO_M/DV4159_A_PHM/Nike+Phantom+GX+Elite+FG.jpg',
-    'https://images.nike.com/is/image/DotCom_PDP_HERO_M/DV4159_A_PHD/Nike+Phantom+GX+Elite+FG.jpg',
-  ],
-  tiempoLegend: [
-    'https://images.nike.com/is/image/DotCom_PDP_HERO_M/DJ5962_A_PHM/Nike+Tiempo+Legend+10+Elite+FG.jpg',
-    'https://images.nike.com/is/image/DotCom_PDP_HERO_M/DJ5962_A_PHD/Nike+Tiempo+Legend+10+Elite+FG.jpg',
-  ],
-};
-
-const adidasImages = {
-  predator: [
-    'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/e0a2f4b4e4e34c5e9b5e4c5e9b5e4c5e_9366/Predator+24+Elite+Firm+Ground+Boots.jpg',
-    'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/e0a2f4b4e4e34c5e9b5e4c5e9b5e4c5e_9367/Predator+24+Elite+Firm+Ground+Boots.jpg',
-  ],
-  copa: [
-    'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d5e3c4b5e4e34c5e9b5e4c5e9b5e4c5e_9366/Copa+Pure+II+Elite+Firm+Ground+Boots.jpg',
-    'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/d5e3c4b5e4e34c5e9b5e4c5e9b5e4c5e_9367/Copa+Pure+II+Elite+Firm+Ground+Boots.jpg',
-  ],
-  f50: [
-    'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/c4d2b3a5e4e34c5e9b5e4c5e9b5e4c5e_9366/F50+Elite+Firm+Ground+Boots.jpg',
-    'https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/c4d2b3a5e4e34c5e9b5e4c5e9b5e4c5e_9367/F50+Elite+Firm+Ground+Boots.jpg',
-  ],
-};
-
-const newbalanceImages = {
-  tekela: [
-    'https://www.newbalance.com/pd/tekela-v4-pro-fg/MTKELFB4.html',
-    'https://www.newbalance.com/pd/tekela-v4-pro-fg/MTKELFB4.html',
-  ],
-  furon: [
-    'https://www.newbalance.com/pd/furon-v7-pro-fg/MFUROFG7.html',
-    'https://www.newbalance.com/pd/furon-v7-pro-fg/MFUROFG7.html',
-  ],
-};
-
-const pumaImages = {
-  future: [
-    'https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/107607/01-PNA/fnd/PNA/fmt/png/FUTURE-Z-1.2-FG-AG-Men%27s-Football-Boots',
-    'https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/107607/02-PNA/fnd/PNA/fmt/png/FUTURE-Z-1.2-FG-AG-Men%27s-Football-Boots',
-  ],
-  ultra: [
-    'https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/107608/01-PNA/fnd/PNA/fmt/png/ULTRA-1.4-FG-AG-Men%27s-Football-Boots',
-    'https://images.puma.com/image/upload/f_auto,q_auto,b_rgb:fafafa,w_600,h_600/global/107608/02-PNA/fnd/PNA/fmt/png/ULTRA-1.4-FG-AG-Men%27s-Football-Boots',
-  ],
-};
-
-const productsData = [
-  // Nike
-  {
-    brand: 'Nike',
-    category: 'Mercurial',
-    name: 'Nike Mercurial Vapor 16 Elite FG',
-    price: 259.99,
-    gender: 'homem',
-    level: 'elite',
-    bootHeight: 'cano_baixo',
-    surface: 'terreno_firme',
-    color: 'preto',
-    collection: 'Vapor',
-    images: nikeImages.mercurial,
-  },
-  {
-    brand: 'Nike',
-    category: 'Phantom',
-    name: 'Nike Phantom GX Elite FG',
-    price: 279.99,
-    gender: 'homem',
-    level: 'elite',
-    bootHeight: 'cano_baixo',
-    surface: 'terreno_firme',
-    color: 'branco',
-    collection: 'Phantom',
-    images: nikeImages.phantom,
-  },
-  {
-    brand: 'Nike',
-    category: 'Tiempo',
-    name: 'Nike Tiempo Legend 10 Elite FG',
-    price: 249.99,
-    gender: 'homem',
-    level: 'elite',
-    bootHeight: 'cano_alto',
-    surface: 'terreno_firme',
-    color: 'laranja',
-    collection: 'Tiempo',
-    images: nikeImages.tiempoLegend,
-  },
-  // Adidas
-  {
-    brand: 'Adidas',
-    category: 'Predator',
-    name: 'Adidas Predator 24 Elite FG',
-    price: 269.99,
-    gender: 'homem',
-    level: 'elite',
-    bootHeight: 'cano_baixo',
-    surface: 'terreno_firme',
-    color: 'preto',
-    collection: 'Predator',
-    images: adidasImages.predator,
-  },
-  {
-    brand: 'Adidas',
-    category: 'Copa',
-    name: 'Adidas Copa Pure II Elite FG',
-    price: 249.99,
-    gender: 'homem',
-    level: 'elite',
-    bootHeight: 'cano_baixo',
-    surface: 'terreno_firme',
-    color: 'branco',
-    collection: 'Copa',
-    images: adidasImages.copa,
-  },
-  {
-    brand: 'Adidas',
-    category: 'F50',
-    name: 'Adidas F50 Elite FG',
-    price: 239.99,
-    gender: 'homem',
-    level: 'pro',
-    bootHeight: 'cano_baixo',
-    surface: 'terreno_firme',
-    color: 'vermelho',
-    collection: 'F50',
-    images: adidasImages.f50,
-  },
-  // New Balance
-  {
-    brand: 'New Balance',
-    category: 'Tekela',
-    name: 'New Balance Tekela v4 Pro FG',
-    price: 199.99,
-    gender: 'homem',
-    level: 'pro',
-    bootHeight: 'cano_baixo',
-    surface: 'terreno_firme',
-    color: 'azul',
-    collection: 'Tekela',
-    images: newbalanceImages.tekela,
-  },
-  {
-    brand: 'New Balance',
-    category: 'Furon',
-    name: 'New Balance Furon v7 Pro FG',
-    price: 189.99,
-    gender: 'homem',
-    level: 'pro',
-    bootHeight: 'cano_baixo',
-    surface: 'terreno_firme',
-    color: 'verde',
-    collection: 'Furon',
-    images: newbalanceImages.furon,
-  },
-  // Puma
-  {
-    brand: 'Puma',
-    category: 'Future',
-    name: 'Puma Future Z 1.2 FG/AG',
-    price: 209.99,
-    gender: 'homem',
-    level: 'pro',
-    bootHeight: 'cano_baixo',
-    surface: 'terreno_firme',
-    color: 'amarelo',
-    collection: 'Future',
-    images: pumaImages.future,
-  },
-  {
-    brand: 'Puma',
-    category: 'Ultra',
-    name: 'Puma Ultra 1.4 FG/AG',
-    price: 219.99,
-    gender: 'homem',
-    level: 'elite',
-    bootHeight: 'cano_baixo',
-    surface: 'terreno_firme',
-    color: 'roxo',
-    collection: 'Ultra',
-    images: pumaImages.ultra,
-  },
+const productData = [
+  // Nike Mercurial
+  { brandId: 1, categoryId: 1, name: 'Nike Mercurial Vapor 16 Elite FG "Kylian Mbappé"', description: 'Chuteiras de futebol de perfil baixo para terreno firme com tecnologia Gripknit', price: '279.99', imageUrl: 'https://images.nike.com/is/image/DotCom_PLP_Zoom/mercurial-vapor-16-elite', gender: 'homem', level: 'elite', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'azul', collection: 'Mercurial 2024', featured: true, stock: 50 },
+  { brandId: 1, categoryId: 1, name: 'Nike Mercurial Superfly 10 Elite FG "Kylian Mbappé"', description: 'Chuteiras de futebol de cano alto FG com design premium', price: '289.99', imageUrl: 'https://images.nike.com/is/image/DotCom_PLP_Zoom/mercurial-superfly-10-elite', gender: 'homem', level: 'elite', bootHeight: 'cano_alto', surface: 'terreno_firme', color: 'preto', collection: 'Mercurial 2024', featured: true, stock: 45 },
+  { brandId: 1, categoryId: 1, name: 'Nike Mercurial Vapor 16 Elite FG', description: 'Chuteiras de futebol de perfil baixo para terreno firme', price: '269.99', imageUrl: 'https://images.nike.com/is/image/DotCom_PLP_Zoom/mercurial-vapor-16-elite-fg', gender: 'homem', level: 'elite', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'vermelho', collection: 'Mercurial 2024', featured: false, stock: 40 },
+  // Nike Phantom
+  { brandId: 1, categoryId: 2, name: 'Nike Phantom 6 Low Elite FG', description: 'Chuteiras de futebol para terreno firme com precisão', price: '269.99', imageUrl: 'https://images.nike.com/is/image/DotCom_PLP_Zoom/phantom-6-low-elite', gender: 'homem', level: 'elite', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'azul', collection: 'Phantom 2024', featured: true, stock: 50 },
+  { brandId: 1, categoryId: 2, name: 'Nike Phantom 6 High Elite FG', description: 'Chuteiras de futebol para terreno firme com cano alto', price: '279.99', imageUrl: 'https://images.nike.com/is/image/DotCom_PLP_Zoom/phantom-6-high-elite', gender: 'homem', level: 'elite', bootHeight: 'cano_alto', surface: 'terreno_firme', color: 'preto', collection: 'Phantom 2024', featured: true, stock: 45 },
+  { brandId: 1, categoryId: 2, name: 'Nike Phantom 6 Low Pro FG', description: 'Chuteiras de futebol para terreno firme com tecnologia Cyclone 360', price: '159.99', imageUrl: 'https://images.nike.com/is/image/DotCom_PLP_Zoom/phantom-6-low-pro', gender: 'homem', level: 'pro', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'branco', collection: 'Phantom 2024', featured: false, stock: 55 },
+  // Nike Tiempo
+  { brandId: 1, categoryId: 3, name: 'Nike Tiempo Maestro Elite FG', description: 'Chuteiras de futebol de perfil baixo para terreno firme com pele clássica', price: '249.99', imageUrl: 'https://images.nike.com/is/image/DotCom_PLP_Zoom/tiempo-maestro-elite', gender: 'homem', level: 'elite', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'rosa', collection: 'Tiempo 2024', featured: false, stock: 40 },
+  { brandId: 1, categoryId: 3, name: 'Nike Tiempo Maestro Elite LE FG', description: 'Chuteiras de futebol de perfil baixo para terreno firme edição limitada', price: '259.99', imageUrl: 'https://images.nike.com/is/image/DotCom_PLP_Zoom/tiempo-maestro-elite-le', gender: 'homem', level: 'elite', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'laranja', collection: 'Tiempo 2024', featured: true, stock: 35 },
+  { brandId: 1, categoryId: 3, name: 'Nike Tiempo Ligera Pro LE FG', description: 'Chuteiras de futebol de perfil baixo para terreno firme com design leve', price: '159.99', imageUrl: 'https://images.nike.com/is/image/DotCom_PLP_Zoom/tiempo-ligera-pro-le', gender: 'homem', level: 'pro', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'verde', collection: 'Tiempo 2024', featured: false, stock: 50 },
+  // Adidas Predator
+  { brandId: 2, categoryId: 4, name: 'Adidas Predator Elite FG', description: 'Chuteiras de futebol de perfil baixo para terreno firme com STRIKESKIN', price: '269.99', imageUrl: 'https://images.adidas.com/is/image/adidas/predator-elite-fg', gender: 'homem', level: 'elite', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'preto', collection: 'Predator 2024', featured: true, stock: 50 },
+  { brandId: 2, categoryId: 4, name: 'Adidas Predator Pro FG', description: 'Chuteiras de futebol para terreno firme com tecnologia HYBRIDTOUCH 2.0', price: '199.99', imageUrl: 'https://images.adidas.com/is/image/adidas/predator-pro-fg', gender: 'homem', level: 'pro', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'vermelho', collection: 'Predator 2024', featured: false, stock: 45 },
+  { brandId: 2, categoryId: 4, name: 'Adidas Predator Academy FG', description: 'Chuteiras de futebol para terreno firme nível academy', price: '99.99', imageUrl: 'https://images.adidas.com/is/image/adidas/predator-academy-fg', gender: 'homem', level: 'academy', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'azul', collection: 'Predator 2024', featured: false, stock: 60 },
+  // Adidas F50
+  { brandId: 2, categoryId: 5, name: 'Adidas F50 Elite FG', description: 'Chuteiras de futebol de perfil baixo para terreno firme com design aerodinâmico', price: '239.99', imageUrl: 'https://images.adidas.com/is/image/adidas/f50-elite-fg', gender: 'homem', level: 'elite', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'amarelo', collection: 'F50 2024', featured: true, stock: 48 },
+  { brandId: 2, categoryId: 5, name: 'Adidas F50 Pro FG', description: 'Chuteiras de futebol para terreno firme com tecnologia de velocidade', price: '179.99', imageUrl: 'https://images.adidas.com/is/image/adidas/f50-pro-fg', gender: 'homem', level: 'pro', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'laranja', collection: 'F50 2024', featured: false, stock: 52 },
+  { brandId: 2, categoryId: 5, name: 'Adidas F50 Academy FG', description: 'Chuteiras de futebol para terreno firme nível academy', price: '89.99', imageUrl: 'https://images.adidas.com/is/image/adidas/f50-academy-fg', gender: 'homem', level: 'academy', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'branco', collection: 'F50 2024', featured: false, stock: 65 },
+  // Adidas Copa
+  { brandId: 2, categoryId: 6, name: 'Adidas Copa Pure Elite FG', description: 'Chuteiras de futebol para terreno firme com pele premium', price: '249.99', imageUrl: 'https://images.adidas.com/is/image/adidas/copa-pure-elite-fg', gender: 'homem', level: 'elite', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'castanho', collection: 'Copa 2024', featured: true, stock: 42 },
+  { brandId: 2, categoryId: 6, name: 'Adidas Copa Pure Pro FG', description: 'Chuteiras de futebol para terreno firme com design clássico', price: '169.99', imageUrl: 'https://images.adidas.com/is/image/adidas/copa-pure-pro-fg', gender: 'homem', level: 'pro', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'preto', collection: 'Copa 2024', featured: false, stock: 55 },
+  { brandId: 2, categoryId: 6, name: 'Adidas Copa Pure Academy FG', description: 'Chuteiras de futebol para terreno firme nível academy', price: '79.99', imageUrl: 'https://images.adidas.com/is/image/adidas/copa-pure-academy-fg', gender: 'homem', level: 'academy', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'verde', collection: 'Copa 2024', featured: false, stock: 70 },
+  // New Balance Tekela
+  { brandId: 3, categoryId: 7, name: 'New Balance Tekela v4 Pro FG', description: 'Chuteiras de futebol para terreno firme com tecnologia Tekela', price: '199.99', imageUrl: 'https://images.newbalance.com/is/image/newbalance/tekela-v4-pro-fg', gender: 'homem', level: 'pro', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'azul', collection: 'Tekela 2024', featured: false, stock: 40 },
+  { brandId: 3, categoryId: 7, name: 'New Balance Tekela v4 Elite FG', description: 'Chuteiras de futebol para terreno firme nível elite', price: '229.99', imageUrl: 'https://images.newbalance.com/is/image/newbalance/tekela-v4-elite-fg', gender: 'homem', level: 'elite', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'preto', collection: 'Tekela 2024', featured: true, stock: 38 },
+  { brandId: 3, categoryId: 7, name: 'New Balance Tekela v4 Academy FG', description: 'Chuteiras de futebol para terreno firme nível academy', price: '119.99', imageUrl: 'https://images.newbalance.com/is/image/newbalance/tekela-v4-academy-fg', gender: 'homem', level: 'academy', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'branco', collection: 'Tekela 2024', featured: false, stock: 58 },
+  // New Balance Furon
+  { brandId: 3, categoryId: 8, name: 'New Balance Furon v7 Pro FG', description: 'Chuteiras de futebol para terreno firme com tecnologia Furon', price: '189.99', imageUrl: 'https://images.newbalance.com/is/image/newbalance/furon-v7-pro-fg', gender: 'homem', level: 'pro', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'vermelho', collection: 'Furon 2024', featured: false, stock: 44 },
+  { brandId: 3, categoryId: 8, name: 'New Balance Furon v7 Elite FG', description: 'Chuteiras de futebol para terreno firme nível elite', price: '219.99', imageUrl: 'https://images.newbalance.com/is/image/newbalance/furon-v7-elite-fg', gender: 'homem', level: 'elite', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'laranja', collection: 'Furon 2024', featured: true, stock: 36 },
+  { brandId: 3, categoryId: 8, name: 'New Balance Furon v7 Academy FG', description: 'Chuteiras de futebol para terreno firme nível academy', price: '109.99', imageUrl: 'https://images.newbalance.com/is/image/newbalance/furon-v7-academy-fg', gender: 'homem', level: 'academy', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'azul', collection: 'Furon 2024', featured: false, stock: 62 },
+  // Puma Future
+  { brandId: 4, categoryId: 9, name: 'Puma Future Z 1.4 Elite FG', description: 'Chuteiras de futebol para terreno firme com tecnologia Future Z', price: '219.99', imageUrl: 'https://images.puma.com/is/image/puma/future-z-1-4-elite-fg', gender: 'homem', level: 'elite', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'preto', collection: 'Future Z 2024', featured: true, stock: 46 },
+  { brandId: 4, categoryId: 9, name: 'Puma Future Z 1.4 Pro FG', description: 'Chuteiras de futebol para terreno firme com design moderno', price: '179.99', imageUrl: 'https://images.puma.com/is/image/puma/future-z-1-4-pro-fg', gender: 'homem', level: 'pro', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'azul', collection: 'Future Z 2024', featured: false, stock: 51 },
+  { brandId: 4, categoryId: 9, name: 'Puma Future Z 1.4 Academy FG', description: 'Chuteiras de futebol para terreno firme nível academy', price: '99.99', imageUrl: 'https://images.puma.com/is/image/puma/future-z-1-4-academy-fg', gender: 'homem', level: 'academy', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'branco', collection: 'Future Z 2024', featured: false, stock: 68 },
+  // Puma Ultra
+  { brandId: 4, categoryId: 10, name: 'Puma Ultra 1.4 Elite FG', description: 'Chuteiras de futebol para terreno firme com tecnologia Ultra', price: '219.99', imageUrl: 'https://images.puma.com/is/image/puma/ultra-1-4-elite-fg', gender: 'homem', level: 'elite', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'vermelho', collection: 'Ultra 2024', featured: true, stock: 43 },
+  { brandId: 4, categoryId: 10, name: 'Puma Ultra 1.4 Pro FG', description: 'Chuteiras de futebol para terreno firme com design aerodinâmico', price: '179.99', imageUrl: 'https://images.puma.com/is/image/puma/ultra-1-4-pro-fg', gender: 'homem', level: 'pro', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'laranja', collection: 'Ultra 2024', featured: false, stock: 54 },
+  { brandId: 4, categoryId: 10, name: 'Puma Ultra 1.4 Academy FG', description: 'Chuteiras de futebol para terreno firme nível academy', price: '99.99', imageUrl: 'https://images.puma.com/is/image/puma/ultra-1-4-academy-fg', gender: 'homem', level: 'academy', bootHeight: 'cano_baixo', surface: 'terreno_firme', color: 'preto', collection: 'Ultra 2024', featured: false, stock: 66 },
 ];
 
-async function seedDatabase() {
-  const connection = await pool.getConnection();
-
-  try {
-    console.log('🌱 Iniciando seeding de produtos...');
-
-    // Limpar dados existentes
-    await connection.execute('DELETE FROM product_images');
-    await connection.execute('DELETE FROM products');
-    await connection.execute('DELETE FROM categories');
-    await connection.execute('DELETE FROM brands');
-
-    // Inserir marcas
-    const brands = [
-      { name: 'Nike', slug: 'nike' },
-      { name: 'Adidas', slug: 'adidas' },
-      { name: 'New Balance', slug: 'new-balance' },
-      { name: 'Puma', slug: 'puma' },
-    ];
-
-    const brandMap = {};
-    for (const brand of brands) {
-      const [result] = await connection.execute(
-        'INSERT INTO brands (name, slug) VALUES (?, ?)',
-        [brand.name, brand.slug]
-      );
-      brandMap[brand.name] = result.insertId;
-      console.log(`✓ Marca criada: ${brand.name}`);
-    }
-
-    // Inserir categorias e produtos
-    for (const product of productsData) {
-      const brandId = brandMap[product.brand];
-
-      // Inserir categoria
-      const [categoryResult] = await connection.execute(
-        'INSERT INTO categories (brandId, name, slug) VALUES (?, ?, ?)',
-        [brandId, product.category, product.category.toLowerCase()]
-      );
-      const categoryId = categoryResult.insertId;
-
-      // Inserir produto
-      const [productResult] = await connection.execute(
-        'INSERT INTO products (brandId, categoryId, name, description, price, gender, level, bootHeight, surface, color, collection, stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-        [
-          brandId,
-          categoryId,
-          product.name,
-          `Chuteira de futebol ${product.name}. Nível: ${product.level}. Altura do cano: ${product.bootHeight}.`,
-          product.price,
-          product.gender,
-          product.level,
-          product.bootHeight,
-          product.surface,
-          product.color,
-          product.collection,
-          100,
-        ]
-      );
-      const productId = productResult.insertId;
-
-      // Inserir imagens
-      for (let i = 0; i < product.images.length; i++) {
-        await connection.execute(
-          'INSERT INTO product_images (productId, imageUrl, isThumbnail, `order`) VALUES (?, ?, ?, ?)',
-          [productId, product.images[i], i === 0, i]
-        );
-      }
-
-      console.log(`✓ Produto criado: ${product.name}`);
-    }
-
-    console.log('✅ Seeding concluído com sucesso!');
-  } catch (error) {
-    console.error('❌ Erro ao fazer seeding:', error);
-    throw error;
-  } finally {
-    await connection.end();
-    await pool.end();
-  }
-}
-
-seedDatabase();
+console.log('Total de produtos para adicionar:', productData.length);

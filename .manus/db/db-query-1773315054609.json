@@ -1,0 +1,130 @@
+{
+  "query": "SELECT brandId, categoryId, COUNT(*) as total, GROUP_CONCAT(name) as nomes FROM products GROUP BY brandId, categoryId ORDER BY brandId, categoryId;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user J8Way2fBP2mENXM.root --database SRqbrBKqBpwDCXUNRC7znd --execute SELECT brandId, categoryId, COUNT(*) as total, GROUP_CONCAT(name) as nomes FROM products GROUP BY brandId, categoryId ORDER BY brandId, categoryId;",
+  "rows": [
+    {
+      "brandId": "1",
+      "categoryId": "1",
+      "total": "3",
+      "nomes": "Nike Mercurial Vapor 16 Elite FG \"Kylian Mbappé\",Nike Mercurial Superfly 10 Elite FG \"Kylian Mbappé\",Nike Mercurial Vapor 16 Elite FG"
+    },
+    {
+      "brandId": "1",
+      "categoryId": "2",
+      "total": "3",
+      "nomes": "Nike Phantom 6 Low Elite FG,Nike Phantom 6 High Elite FG,Nike Phantom 6 Low Pro FG"
+    },
+    {
+      "brandId": "1",
+      "categoryId": "3",
+      "total": "3",
+      "nomes": "Nike Tiempo Maestro Elite FG,Nike Tiempo Maestro Elite LE FG,Nike Tiempo Ligera Pro LE FG"
+    },
+    {
+      "brandId": "2",
+      "categoryId": "4",
+      "total": "3",
+      "nomes": "Adidas Predator Elite FG,Adidas Predator Pro FG,Adidas Predator Academy FG"
+    },
+    {
+      "brandId": "2",
+      "categoryId": "5",
+      "total": "3",
+      "nomes": "Adidas F50 Elite FG,Adidas F50 Pro FG,Adidas F50 Academy FG"
+    },
+    {
+      "brandId": "2",
+      "categoryId": "6",
+      "total": "3",
+      "nomes": "Adidas Copa Pure Elite FG,Adidas Copa Pure Pro FG,Adidas Copa Pure Academy FG"
+    },
+    {
+      "brandId": "3",
+      "categoryId": "7",
+      "total": "3",
+      "nomes": "New Balance Tekela v4 Pro FG,New Balance Tekela v4 Elite FG,New Balance Tekela v4 Academy FG"
+    },
+    {
+      "brandId": "3",
+      "categoryId": "8",
+      "total": "3",
+      "nomes": "New Balance Furon v7 Pro FG,New Balance Furon v7 Elite FG,New Balance Furon v7 Academy FG"
+    },
+    {
+      "brandId": "4",
+      "categoryId": "9",
+      "total": "3",
+      "nomes": "Puma Future Z 1.4 Elite FG,Puma Future Z 1.4 Pro FG,Puma Future Z 1.4 Academy FG"
+    },
+    {
+      "brandId": "4",
+      "categoryId": "10",
+      "total": "3",
+      "nomes": "Puma Ultra 1.4 Elite FG,Puma Ultra 1.4 Pro FG,Puma Ultra 1.4 Academy FG"
+    },
+    {
+      "brandId": "30001",
+      "categoryId": "30001",
+      "total": "1",
+      "nomes": "Nike Mercurial Vapor 16 Elite FG"
+    },
+    {
+      "brandId": "30001",
+      "categoryId": "30002",
+      "total": "1",
+      "nomes": "Nike Phantom GX Elite FG"
+    },
+    {
+      "brandId": "30001",
+      "categoryId": "30003",
+      "total": "1",
+      "nomes": "Nike Tiempo Legend 10 Elite FG"
+    },
+    {
+      "brandId": "30002",
+      "categoryId": "30004",
+      "total": "1",
+      "nomes": "Adidas Predator 24 Elite FG"
+    },
+    {
+      "brandId": "30002",
+      "categoryId": "30005",
+      "total": "1",
+      "nomes": "Adidas Copa Pure II Elite FG"
+    },
+    {
+      "brandId": "30002",
+      "categoryId": "30006",
+      "total": "1",
+      "nomes": "Adidas F50 Elite FG"
+    },
+    {
+      "brandId": "30003",
+      "categoryId": "30007",
+      "total": "1",
+      "nomes": "New Balance Tekela v4 Pro FG"
+    },
+    {
+      "brandId": "30003",
+      "categoryId": "30008",
+      "total": "1",
+      "nomes": "New Balance Furon v7 Pro FG"
+    },
+    {
+      "brandId": "30004",
+      "categoryId": "30009",
+      "total": "1",
+      "nomes": "Puma Future Z 1.2 FG/AG"
+    },
+    {
+      "brandId": "30004",
+      "categoryId": "30010",
+      "total": "1",
+      "nomes": "Puma Ultra 1.4 FG/AG"
+    }
+  ],
+  "messages": [],
+  "stdout": "brandId\tcategoryId\ttotal\tnomes\n1\t1\t3\tNike Mercurial Vapor 16 Elite FG \"Kylian Mbappé\",Nike Mercurial Superfly 10 Elite FG \"Kylian Mbappé\",Nike Mercurial Vapor 16 Elite FG\n1\t2\t3\tNike Phantom 6 Low Elite FG,Nike Phantom 6 High Elite FG,Nike Phantom 6 Low Pro FG\n1\t3\t3\tNike Tiempo Maestro Elite FG,Nike Tiempo Maestro Elite LE FG,Nike Tiempo Ligera Pro LE FG\n2\t4\t3\tAdidas Predator Elite FG,Adidas Predator Pro FG,Adidas Predator Academy FG\n2\t5\t3\tAdidas F50 Elite FG,Adidas F50 Pro FG,Adidas F50 Academy FG\n2\t6\t3\tAdidas Copa Pure Elite FG,Adidas Copa Pure Pro FG,Adidas Copa Pure Academy FG\n3\t7\t3\tNew Balance Tekela v4 Pro FG,New Balance Tekela v4 Elite FG,New Balance Tekela v4 Academy FG\n3\t8\t3\tNew Balance Furon v7 Pro FG,New Balance Furon v7 Elite FG,New Balance Furon v7 Academy FG\n4\t9\t3\tPuma Future Z 1.4 Elite FG,Puma Future Z 1.4 Pro FG,Puma Future Z 1.4 Academy FG\n4\t10\t3\tPuma Ultra 1.4 Elite FG,Puma Ultra 1.4 Pro FG,Puma Ultra 1.4 Academy FG\n30001\t30001\t1\tNike Mercurial Vapor 16 Elite FG\n30001\t30002\t1\tNike Phantom GX Elite FG\n30001\t30003\t1\tNike Tiempo Legend 10 Elite FG\n30002\t30004\t1\tAdidas Predator 24 Elite FG\n30002\t30005\t1\tAdidas Copa Pure II Elite FG\n30002\t30006\t1\tAdidas F50 Elite FG\n30003\t30007\t1\tNew Balance Tekela v4 Pro FG\n30003\t30008\t1\tNew Balance Furon v7 Pro FG\n30004\t30009\t1\tPuma Future Z 1.2 FG/AG\n30004\t30010\t1\tPuma Ultra 1.4 FG/AG\n",
+  "stderr": "",
+  "execution_time_ms": 365
+}
