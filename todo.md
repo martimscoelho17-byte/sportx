@@ -148,3 +148,6 @@
 - [x] Adicionar subcategorias: Nike (Mercurial, Phantom, Tiempo), Adidas (Predator, F50, Copa), New Balance (Tekela, Furon), Puma (Future, Ultra)
 - [x] Dropdown deve permanecer visível até cursor sair da área
 - [x] Testar funcionalidade em todos os navegadores
+- [x] Corrigir layout do dropdown para coluna vertical
+- [x] Atualizar nomes das categorias com prefixo da marca (Nike Mercurial, Adidas Predator, etc.)
+- [x] Testar todas as 4 marcas com nomes corretos
