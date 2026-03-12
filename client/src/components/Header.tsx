@@ -82,14 +82,14 @@ export default function Header() {
 
                   {activeDropdown === brand.slug && (
                     <div
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-popover border border-border rounded-lg shadow-lg py-1 z-50"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-2 flex gap-2 bg-popover border border-border rounded-lg shadow-lg px-4 py-2 z-50"
                       onMouseEnter={() => setActiveDropdown(brand.slug)}
                       onMouseLeave={() => setActiveDropdown(null)}
                     >
                       {brand.categories.map((cat) => (
                         <button
                           key={cat.slug}
-                          className="w-full text-left px-4 py-2.5 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                          className="px-3 py-1.5 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded"
                           onClick={() => {
                             navigate(`/products/${brand.slug}/${cat.slug}`);
                             setActiveDropdown(null);
