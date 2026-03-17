@@ -78,7 +78,6 @@ export default function Footer() {
             <DialogTitle>Política de Privacidade</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-            <p className="text-foreground font-medium">Última atualização: Janeiro de 2026</p>
             <p>A SportX compromete-se a proteger a sua privacidade em conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD) da União Europeia.</p>
 
             <h3 className="font-bold text-foreground">1. Dados Recolhidos</h3>

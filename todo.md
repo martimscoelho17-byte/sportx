@@ -180,3 +180,7 @@
 
 ## Logos das Marcas (Concluído)
 - [x] Adicionar logo da New Balance na página de produtos
+
+
+## Ajustes Finais (Concluído)
+- [x] Remover frase "Última atualização: Janeiro de 2026" da Política de Privacidade
