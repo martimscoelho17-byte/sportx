@@ -192,5 +192,5 @@
 - [x] Deixar apenas o ícone do carrinho vazio com mensagem "O seu carrinho está vazio"
 
 
-## Página de Favoritos (Em Desenvolvimento)
-- [ ] Adicionar título "Favoritos" em negrito no canto superior esquerdo da página
+## Página de Favoritos (Concluído)
+- [x] Adicionar título "Favoritos" em negrito no canto superior esquerdo da página

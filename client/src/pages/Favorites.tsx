@@ -42,18 +42,22 @@ function FavoritesContent() {
     <div className="min-h-screen flex flex-col bg-white dark:bg-black">
       <Header />
 
-      <main className="flex-1 flex flex-col items-center justify-center">
+      <main className="flex-1 flex flex-col">
+        {/* Title */}
+        <div className="w-full max-w-7xl mx-auto px-4 py-8">
+          <h1 className="text-3xl font-bold text-foreground">Favoritos</h1>
+        </div>
+
         {loading ? (
-          <div className="flex items-center justify-center py-12">
+          <div className="flex items-center justify-center py-12 flex-1">
             <div className="animate-spin rounded-full h-10 w-10 border-2 border-[#001a4d] border-t-transparent" />
           </div>
         ) : favoriteProducts.length === 0 ? (
-          <div className="flex flex-col items-center justify-center gap-4">
+          <div className="flex flex-col items-center justify-center gap-4 flex-1">
             <p className="text-lg text-muted-foreground">Os artigos adicionados aos favoritos serão guardados aqui.</p>
           </div>
         ) : (
-          <div className="w-full max-w-7xl mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold text-foreground mb-8">Favoritos</h1>
+          <div className="w-full max-w-7xl mx-auto px-4 pb-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {favoriteProducts.map((product) => (
                 <div key={product.id} className="rounded-lg border border-border overflow-hidden hover:shadow-lg transition-shadow">
