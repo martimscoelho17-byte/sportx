@@ -166,3 +166,13 @@
 - [x] Pesquisar 3 produtos para Puma Ultra no site oficial
 - [x] Adicionar todos os 24 produtos à base de dados
 - [x] Testar exibição dos produtos no catálogo
+
+## Correções Aplicadas (Implementadas)
+- [x] Corrigir conexão com a base de dados (ENV.databaseUrl em vez de process.env.DATABASE_URL)
+- [x] Corrigir IDs de marca e categoria na base de dados (30001-30010)
+- [x] Testar todas as 4 marcas com produtos exibindo corretamente
+  - Nike: 9 produtos (3 Mercurial + 3 Phantom + 3 Tiempo)
+  - Adidas: 9 produtos (3 Predator + 3 F50 + 3 Copa)
+  - New Balance: 6 produtos (3 Tekela + 3 Furon)
+  - Puma: 6 produtos (3 Future + 3 Ultra)
+  - Total: 30 produtos

@@ -1,0 +1,115 @@
+{
+  "query": "SELECT * FROM brands; SELECT * FROM categories;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user J8Way2fBP2mENXM.root --database SRqbrBKqBpwDCXUNRC7znd --execute SELECT * FROM brands; SELECT * FROM categories;",
+  "rows": [
+    {
+      "id": "30001",
+      "name": "Nike",
+      "slug": "nike",
+      "logoUrl": "NULL",
+      "createdAt": "2026-03-09 11:38:12"
+    },
+    {
+      "id": "30002",
+      "name": "Adidas",
+      "slug": "adidas",
+      "logoUrl": "NULL",
+      "createdAt": "2026-03-09 11:38:12"
+    },
+    {
+      "id": "30003",
+      "name": "New Balance",
+      "slug": "new-balance",
+      "logoUrl": "NULL",
+      "createdAt": "2026-03-09 11:38:12"
+    },
+    {
+      "id": "30004",
+      "name": "Puma",
+      "slug": "puma",
+      "logoUrl": "NULL",
+      "createdAt": "2026-03-09 11:38:12"
+    },
+    {
+      "id": "id",
+      "name": "brandId",
+      "slug": "name",
+      "logoUrl": "slug",
+      "createdAt": "createdAt"
+    },
+    {
+      "id": "30001",
+      "name": "30001",
+      "slug": "Nike Mercurial",
+      "logoUrl": "mercurial",
+      "createdAt": "2026-03-09 11:38:12"
+    },
+    {
+      "id": "30002",
+      "name": "30001",
+      "slug": "Nike Phantom",
+      "logoUrl": "phantom",
+      "createdAt": "2026-03-09 11:38:12"
+    },
+    {
+      "id": "30003",
+      "name": "30001",
+      "slug": "Nike Tiempo",
+      "logoUrl": "tiempo",
+      "createdAt": "2026-03-09 11:38:12"
+    },
+    {
+      "id": "30004",
+      "name": "30002",
+      "slug": "Adidas Predator",
+      "logoUrl": "predator",
+      "createdAt": "2026-03-09 11:38:13"
+    },
+    {
+      "id": "30005",
+      "name": "30002",
+      "slug": "Adidas Copa",
+      "logoUrl": "copa",
+      "createdAt": "2026-03-09 11:38:13"
+    },
+    {
+      "id": "30006",
+      "name": "30002",
+      "slug": "Adidas F50",
+      "logoUrl": "f50",
+      "createdAt": "2026-03-09 11:38:13"
+    },
+    {
+      "id": "30007",
+      "name": "30003",
+      "slug": "New Balance Tekela",
+      "logoUrl": "tekela",
+      "createdAt": "2026-03-09 11:38:13"
+    },
+    {
+      "id": "30008",
+      "name": "30003",
+      "slug": "New Balance Furon",
+      "logoUrl": "furon",
+      "createdAt": "2026-03-09 11:38:13"
+    },
+    {
+      "id": "30009",
+      "name": "30004",
+      "slug": "Puma Future",
+      "logoUrl": "future",
+      "createdAt": "2026-03-09 11:38:14"
+    },
+    {
+      "id": "30010",
+      "name": "30004",
+      "slug": "Puma Ultra",
+      "logoUrl": "ultra",
+      "createdAt": "2026-03-09 11:38:14"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tslug\tlogoUrl\tcreatedAt\n30001\tNike\tnike\tNULL\t2026-03-09 11:38:12\n30002\tAdidas\tadidas\tNULL\t2026-03-09 11:38:12\n30003\tNew Balance\tnew-balance\tNULL\t2026-03-09 11:38:12\n30004\tPuma\tpuma\tNULL\t2026-03-09 11:38:12\nid\tbrandId\tname\tslug\tcreatedAt\n30001\t30001\tNike Mercurial\tmercurial\t2026-03-09 11:38:12\n30002\t30001\tNike Phantom\tphantom\t2026-03-09 11:38:12\n30003\t30001\tNike Tiempo\ttiempo\t2026-03-09 11:38:12\n30004\t30002\tAdidas Predator\tpredator\t2026-03-09 11:38:13\n30005\t30002\tAdidas Copa\tcopa\t2026-03-09 11:38:13\n30006\t30002\tAdidas F50\tf50\t2026-03-09 11:38:13\n30007\t30003\tNew Balance Tekela\ttekela\t2026-03-09 11:38:13\n30008\t30003\tNew Balance Furon\tfuron\t2026-03-09 11:38:13\n30009\t30004\tPuma Future\tfuture\t2026-03-09 11:38:14\n30010\t30004\tPuma Ultra\tultra\t2026-03-09 11:38:14\n",
+  "stderr": "",
+  "execution_time_ms": 417
+}

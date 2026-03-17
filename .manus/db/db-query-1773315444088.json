@@ -1,0 +1,40 @@
+{
+  "query": "SELECT id, brandId, categoryId, name FROM products LIMIT 5;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user J8Way2fBP2mENXM.root --database SRqbrBKqBpwDCXUNRC7znd --execute SELECT id, brandId, categoryId, name FROM products LIMIT 5;",
+  "rows": [
+    {
+      "id": "60031",
+      "brandId": "1",
+      "categoryId": "1",
+      "name": "Nike Mercurial Vapor 16 Elite FG \"Kylian Mbappé\""
+    },
+    {
+      "id": "60032",
+      "brandId": "1",
+      "categoryId": "1",
+      "name": "Nike Mercurial Superfly 10 Elite FG \"Kylian Mbappé\""
+    },
+    {
+      "id": "60033",
+      "brandId": "1",
+      "categoryId": "1",
+      "name": "Nike Mercurial Vapor 16 Elite FG"
+    },
+    {
+      "id": "60034",
+      "brandId": "1",
+      "categoryId": "2",
+      "name": "Nike Phantom 6 Low Elite FG"
+    },
+    {
+      "id": "60035",
+      "brandId": "1",
+      "categoryId": "2",
+      "name": "Nike Phantom 6 High Elite FG"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tbrandId\tcategoryId\tname\n60031\t1\t1\tNike Mercurial Vapor 16 Elite FG \"Kylian Mbappé\"\n60032\t1\t1\tNike Mercurial Superfly 10 Elite FG \"Kylian Mbappé\"\n60033\t1\t1\tNike Mercurial Vapor 16 Elite FG\n60034\t1\t2\tNike Phantom 6 Low Elite FG\n60035\t1\t2\tNike Phantom 6 High Elite FG\n",
+  "stderr": "",
+  "execution_time_ms": 382
+}

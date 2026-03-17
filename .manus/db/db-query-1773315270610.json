@@ -1,0 +1,80 @@
+{
+  "query": "SELECT id, brandId, categoryId, name, price FROM products ORDER BY id DESC LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user J8Way2fBP2mENXM.root --database SRqbrBKqBpwDCXUNRC7znd --execute SELECT id, brandId, categoryId, name, price FROM products ORDER BY id DESC LIMIT 10;",
+  "rows": [
+    {
+      "id": "60030",
+      "brandId": "4",
+      "categoryId": "10",
+      "name": "Puma Ultra 1.4 Academy FG",
+      "price": "99.99"
+    },
+    {
+      "id": "60029",
+      "brandId": "4",
+      "categoryId": "10",
+      "name": "Puma Ultra 1.4 Pro FG",
+      "price": "179.99"
+    },
+    {
+      "id": "60028",
+      "brandId": "4",
+      "categoryId": "10",
+      "name": "Puma Ultra 1.4 Elite FG",
+      "price": "219.99"
+    },
+    {
+      "id": "60027",
+      "brandId": "4",
+      "categoryId": "9",
+      "name": "Puma Future Z 1.4 Academy FG",
+      "price": "99.99"
+    },
+    {
+      "id": "60026",
+      "brandId": "4",
+      "categoryId": "9",
+      "name": "Puma Future Z 1.4 Pro FG",
+      "price": "179.99"
+    },
+    {
+      "id": "60025",
+      "brandId": "4",
+      "categoryId": "9",
+      "name": "Puma Future Z 1.4 Elite FG",
+      "price": "219.99"
+    },
+    {
+      "id": "60024",
+      "brandId": "3",
+      "categoryId": "8",
+      "name": "New Balance Furon v7 Academy FG",
+      "price": "109.99"
+    },
+    {
+      "id": "60023",
+      "brandId": "3",
+      "categoryId": "8",
+      "name": "New Balance Furon v7 Elite FG",
+      "price": "219.99"
+    },
+    {
+      "id": "60022",
+      "brandId": "3",
+      "categoryId": "8",
+      "name": "New Balance Furon v7 Pro FG",
+      "price": "189.99"
+    },
+    {
+      "id": "60021",
+      "brandId": "3",
+      "categoryId": "7",
+      "name": "New Balance Tekela v4 Academy FG",
+      "price": "119.99"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tbrandId\tcategoryId\tname\tprice\n60030\t4\t10\tPuma Ultra 1.4 Academy FG\t99.99\n60029\t4\t10\tPuma Ultra 1.4 Pro FG\t179.99\n60028\t4\t10\tPuma Ultra 1.4 Elite FG\t219.99\n60027\t4\t9\tPuma Future Z 1.4 Academy FG\t99.99\n60026\t4\t9\tPuma Future Z 1.4 Pro FG\t179.99\n60025\t4\t9\tPuma Future Z 1.4 Elite FG\t219.99\n60024\t3\t8\tNew Balance Furon v7 Academy FG\t109.99\n60023\t3\t8\tNew Balance Furon v7 Elite FG\t219.99\n60022\t3\t8\tNew Balance Furon v7 Pro FG\t189.99\n60021\t3\t7\tNew Balance Tekela v4 Academy FG\t119.99\n",
+  "stderr": "",
+  "execution_time_ms": 371
+}

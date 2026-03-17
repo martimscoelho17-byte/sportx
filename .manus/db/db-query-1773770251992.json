@@ -1,0 +1,60 @@
+{
+  "query": "SELECT id, brandId, name FROM categories ORDER BY id;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway04.us-east-1.prod.aws.tidbcloud.com --port 4000 --user J8Way2fBP2mENXM.root --database SRqbrBKqBpwDCXUNRC7znd --execute SELECT id, brandId, name FROM categories ORDER BY id;",
+  "rows": [
+    {
+      "id": "30001",
+      "brandId": "30001",
+      "name": "Nike Mercurial"
+    },
+    {
+      "id": "30002",
+      "brandId": "30001",
+      "name": "Nike Phantom"
+    },
+    {
+      "id": "30003",
+      "brandId": "30001",
+      "name": "Nike Tiempo"
+    },
+    {
+      "id": "30004",
+      "brandId": "30002",
+      "name": "Adidas Predator"
+    },
+    {
+      "id": "30005",
+      "brandId": "30002",
+      "name": "Adidas Copa"
+    },
+    {
+      "id": "30006",
+      "brandId": "30002",
+      "name": "Adidas F50"
+    },
+    {
+      "id": "30007",
+      "brandId": "30003",
+      "name": "New Balance Tekela"
+    },
+    {
+      "id": "30008",
+      "brandId": "30003",
+      "name": "New Balance Furon"
+    },
+    {
+      "id": "30009",
+      "brandId": "30004",
+      "name": "Puma Future"
+    },
+    {
+      "id": "30010",
+      "brandId": "30004",
+      "name": "Puma Ultra"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tbrandId\tname\n30001\t30001\tNike Mercurial\n30002\t30001\tNike Phantom\n30003\t30001\tNike Tiempo\n30004\t30002\tAdidas Predator\n30005\t30002\tAdidas Copa\n30006\t30002\tAdidas F50\n30007\t30003\tNew Balance Tekela\n30008\t30003\tNew Balance Furon\n30009\t30004\tPuma Future\n30010\t30004\tPuma Ultra\n",
+  "stderr": "",
+  "execution_time_ms": 1170
+}
