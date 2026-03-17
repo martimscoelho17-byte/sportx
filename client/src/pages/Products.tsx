@@ -82,7 +82,7 @@ function ProductsContent() {
   const params = useParams<{ brandSlug: string; categorySlug?: string }>();
   const [, navigate] = useLocation();
   const [showFilters, setShowFilters] = useState(false);
-  const [sortBy, setSortBy] = useState("featured");
+  const [sortBy, setSortBy] = useState<string | null>(null);
   const [sortOpen, setSortOpen] = useState(false);
   const [filters, setFilters] = useState<Filters>({
     genders: [],
@@ -104,7 +104,7 @@ function ProductsContent() {
   const { data: products = [], isLoading } = trpc.products.list.useQuery({
     brandId: brand?.id,
     categoryId: selectedCategory?.id,
-    sortBy,
+    sortBy: sortBy || undefined,
     minPrice: filters.priceRange?.min,
     maxPrice: filters.priceRange?.max,
     gender: filters.genders.length === 1 ? filters.genders[0] : undefined,
@@ -141,7 +141,7 @@ function ProductsContent() {
     filters.colors.length +
     (filters.priceRange ? 1 : 0);
 
-  const sortLabel = SORT_OPTIONS.find((o) => o.value === sortBy)?.label ?? "Em destaque";
+  const sortLabel = sortBy ? SORT_OPTIONS.find((o) => o.value === sortBy)?.label : null;
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -209,7 +209,7 @@ function ProductsContent() {
                 className="flex items-center gap-2 px-4 py-2 text-sm border border-border rounded-lg bg-background hover:bg-accent transition-colors"
                 onClick={() => setSortOpen(!sortOpen)}
               >
-                <span>Ordenar por: <strong>{sortLabel}</strong></span>
+                <span>Ordenar por: {sortLabel && <strong>{sortLabel}</strong>}</span>
                 {sortOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
               </button>
               {sortOpen && (

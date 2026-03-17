@@ -194,3 +194,9 @@
 
 ## Página de Favoritos (Concluído)
 - [x] Adicionar título "Favoritos" em negrito no canto superior esquerdo da página
+
+
+## Dropdown de Ordenação (Concluído)
+- [x] Remover "em destaque" como valor padrão do dropdown
+- [x] Mostrar apenas "Ordenar por:" quando nenhuma opção é selecionada
+- [x] Exibir a opção selecionada após o utilizador escolher
