@@ -184,3 +184,13 @@
 
 ## Ajustes Finais (Concluído)
 - [x] Remover frase "Última atualização: Janeiro de 2026" da Política de Privacidade
+
+
+## Ajustes do Carrinho (Concluído)
+- [x] Remover texto "Adicione produtos para continuar" do carrinho vazio
+- [x] Remover botão "Continuar a comprar" do carrinho vazio
+- [x] Deixar apenas o ícone do carrinho vazio com mensagem "O seu carrinho está vazio"
+
+
+## Página de Favoritos (Em Desenvolvimento)
+- [ ] Adicionar título "Favoritos" em negrito no canto superior esquerdo da página

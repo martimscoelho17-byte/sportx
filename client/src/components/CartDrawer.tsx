@@ -49,14 +49,6 @@ export default function CartDrawer() {
             <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
               <ShoppingBag size={48} className="text-muted-foreground/40" />
               <p className="text-muted-foreground font-medium">O seu carrinho está vazio</p>
-              <p className="text-sm text-muted-foreground">Adicione produtos para continuar</p>
-              <Button
-                variant="outline"
-                onClick={closeCart}
-                className="mt-2"
-              >
-                Continuar a comprar
-              </Button>
             </div>
           ) : (
             items.map((item) => (
