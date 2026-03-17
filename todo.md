@@ -176,3 +176,7 @@
   - New Balance: 6 produtos (3 Tekela + 3 Furon)
   - Puma: 6 produtos (3 Future + 3 Ultra)
   - Total: 30 produtos
+
+
+## Logos das Marcas (Concluído)
+- [x] Adicionar logo da New Balance na página de produtos
