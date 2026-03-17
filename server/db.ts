@@ -189,6 +189,26 @@ export async function getProducts(filters?: {
   return result;
 }
 
+export async function searchProducts(query: string) {
+  const db = await getDb();
+  if (!db) return [];
+
+  const searchTerm = `%${query}%`;
+  const results = await db
+    .select()
+    .from(products)
+    .where(
+      or(
+        like(products.name, searchTerm),
+        like(products.description, searchTerm),
+        like(products.collection, searchTerm)
+      )
+    )
+    .limit(10);
+
+  return results;
+}
+
 export async function getProductById(id: number) {
   const db = await getDb();
   if (!db) return undefined;

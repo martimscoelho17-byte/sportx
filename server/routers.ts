@@ -21,6 +21,7 @@ import {
   isFavorite,
   removeCartItem,
   removeFromFavorites,
+  searchProducts,
   seedDatabase,
   updateCartItemQuantity,
   updateUserProfile,
@@ -84,6 +85,11 @@ export const appRouter = router({
       }),
     byId: publicProcedure.input(z.object({ id: z.number() })).query(async ({ input }) => {
       return getProductWithImages(input.id);
+    }),
+    search: publicProcedure.input(z.object({ query: z.string() })).query(async ({ input }) => {
+      if (input.query.length < 2) return [];
+      await seedDatabase();
+      return searchProducts(input.query);
     }),
   }),
 

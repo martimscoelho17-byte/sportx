@@ -200,3 +200,11 @@
 - [x] Remover "em destaque" como valor padrão do dropdown
 - [x] Mostrar apenas "Ordenar por:" quando nenhuma opção é selecionada
 - [x] Exibir a opção selecionada após o utilizador escolher
+
+
+## Funcionalidade de Pesquisa (Concluído)
+- [x] Implementar endpoint de pesquisa no servidor
+- [x] Criar componente de pesquisa com sugestões dinâmicas
+- [x] Testar pesquisa com diferentes termos (marca, nome de produto, etc.)
+- [x] Adicionar seedDatabase ao endpoint de pesquisa
+- [x] Exibir estado vazio quando nenhum resultado é encontrado
