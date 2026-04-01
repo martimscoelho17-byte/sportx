@@ -141,17 +141,6 @@ function ProductDetailContent() {
               {/* Price */}
               <div className="text-3xl font-bold text-foreground">€{parseFloat(product.price).toFixed(2)}</div>
 
-              {/* Design Customization */}
-              <div className="flex items-center gap-3 p-3 rounded-lg bg-gray-100 dark:bg-gray-900">
-                <div className="w-12 h-12 rounded-lg border-2 border-foreground overflow-hidden">
-                  <img src={currentImage} alt="Design" className="w-full h-full object-cover" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">CRIA O TEU DESIGN</p>
-                  <p className="text-xs text-muted-foreground">Personaliza o teu produto</p>
-                </div>
-              </div>
-
               {/* Size Selection */}
               <div>
                 <div className="flex items-center justify-between mb-4">

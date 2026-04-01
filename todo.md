@@ -208,3 +208,35 @@
 - [x] Testar pesquisa com diferentes termos (marca, nome de produto, etc.)
 - [x] Adicionar seedDatabase ao endpoint de pesquisa
 - [x] Exibir estado vazio quando nenhum resultado é encontrado
+
+
+## Melhorar Design do Dropdown de Categorias (Em Desenvolvimento)
+- [ ] Adicionar animações suaves ao dropdown
+- [ ] Melhorar cores e contraste com gradientes
+- [ ] Adicionar sombras e efeitos visuais
+- [ ] Melhorar espaçamento e padding
+- [ ] Adicionar efeito hover nas categorias com transições
+
+## Integração Stripe (Em Desenvolvimento)
+- [ ] Adicionar feature Stripe ao projeto
+- [ ] Configurar chaves Stripe (pública e privada)
+- [ ] Implementar botão de checkout no carrinho
+- [ ] Criar página de sucesso de pagamento
+- [ ] Testar fluxo de pagamento com Stripe
+
+
+## Adicionar Imagens aos Produtos (Concluído)
+- [x] Pesquisar imagens dos produtos Nike
+- [x] Pesquisar imagens dos produtos Adidas
+- [x] Pesquisar imagens dos produtos New Balance
+- [x] Pesquisar imagens dos produtos Puma
+- [x] Fazer upload de 36 imagens para o S3
+- [x] Criar script SQL para atualizar URLs de imagens
+- [x] Exibir imagens nos cards de produtos (já implementado no código)
+- [x] Preparar para testar exibição das imagens
+
+
+## Remover Opção "Recria o teu design" (Concluído)
+- [x] Localizar onde está a opção "Recria o teu design" no código
+- [x] Remover a opção da página de detalhe dos produtos
+- [x] Testar a mudança no website
