@@ -240,3 +240,8 @@
 - [x] Localizar onde está a opção "Recria o teu design" no código
 - [x] Remover a opção da página de detalhe dos produtos
 - [x] Testar a mudança no website
+
+## Corrigir Inversão de Categorias Adidas Copa e F50 (Concluído)
+- [x] Investigar o problema: Adidas Copa mostrava produtos F50 e vice-versa
+- [x] Corrigir os categoryIds na base de dados
+- [x] Testar as categorias no website para verificar se os produtos estão corretos
