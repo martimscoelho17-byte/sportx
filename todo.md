@@ -245,3 +245,14 @@
 - [x] Investigar o problema: Adidas Copa mostrava produtos F50 e vice-versa
 - [x] Corrigir os categoryIds na base de dados
 - [x] Testar as categorias no website para verificar se os produtos estão corretos
+
+## Alterar Header e Modal de Login (Concluído)
+- [x] Remover botões de texto "Iniciar sessão" e "Registar" do header
+- [x] Adicionar ícone de login no header
+- [x] Criar modal de login/registo com abas ("Iniciar Sessão" e "Registar-se")
+- [x] Implementar header do modal com logo SportX e slogan
+- [x] Adicionar campos de email e password no modal
+- [x] Adicionar botão "Iniciar Sessão" em azul
+- [x] Adicionar opção "OU CONTINUAR COM Google"
+- [x] Adicionar botão de fechar (X) no canto superior direito do modal
+- [x] Testar funcionalidade de abas no modal

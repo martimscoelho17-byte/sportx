@@ -207,20 +207,14 @@ export default function Header() {
                   )}
                 </div>
               ) : (
-                <div className="flex items-center gap-2">
-                  <button
-                    className="px-3 py-1.5 text-sm font-medium text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
-                    onClick={() => setLoginOpen(true)}
-                  >
-                    Iniciar sessão
-                  </button>
-                  <button
-                    className="px-3 py-1.5 text-sm font-medium text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
-                    onClick={() => setLoginOpen(true)}
-                  >
-                    Registar
-                  </button>
-                </div>
+                <button
+                  className="p-2 rounded-full hover:bg-accent transition-colors text-foreground"
+                  onClick={() => setLoginOpen(true)}
+                  aria-label="Iniciar sessão"
+                  title="Iniciar sessão"
+                >
+                  <User size={20} />
+                </button>
               )}
 
               {/* Favorites */}
