@@ -86,11 +86,11 @@ export default function LoginModal({ open, onClose }: Props) {
             <>
               <div className="space-y-2">
                 <Label htmlFor="login-email">Utilizador</Label>
-                <Input id="login-email" type="email" placeholder="email@exemplo.com" />
+                <Input id="login-email" type="email" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="login-password">Palavra-passe</Label>
-                <Input id="login-password" type="password" placeholder="••••••••" />
+                <Input id="login-password" type="password" />
               </div>
               <Button className="w-full bg-[#001a4d] hover:bg-[#002266] text-white">
                 Iniciar Sessão
