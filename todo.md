@@ -256,3 +256,9 @@
 - [x] Adicionar opção "OU CONTINUAR COM Google"
 - [x] Adicionar botão de fechar (X) no canto superior direito do modal
 - [x] Testar funcionalidade de abas no modal
+
+## Limpar Placeholders do Modal (Concluído)
+- [x] Remover placeholders dos campos de email, password, nome, apelido e telefone
+- [x] Corrigir dropdown de país para mostrar apenas nomes dos países da UE por ordem alfabética
+- [x] Remover flags dos países no dropdown
+- [x] Testar o modal com os campos vazios
