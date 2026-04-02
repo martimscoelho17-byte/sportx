@@ -273,3 +273,8 @@
 - [x] Executar script SQL para adicionar as 36 imagens de produtos
 - [x] Testar as imagens no website
 - [x] Verificar que as imagens aparecem corretamente nos produtos
+
+## Adicionar Imagens dos Produtos Puma (Concluído)
+- [x] Adicionar imagens para os produtos Puma Future Z 1.4
+- [x] Adicionar imagens para os produtos Puma Ultra 1.4
+- [x] Testar as imagens no website
