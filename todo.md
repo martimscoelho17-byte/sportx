@@ -268,3 +268,8 @@
 - [x] Remover placeholders dos campos de Palavra-passe e Confirmar palavra-passe
 - [x] Remover flags do dropdown de país
 - [x] Manter apenas nomes dos países da UE por ordem alfabética
+
+## Adicionar Imagens dos Produtos (Concluído)
+- [x] Executar script SQL para adicionar as 36 imagens de produtos
+- [x] Testar as imagens no website
+- [x] Verificar que as imagens aparecem corretamente nos produtos
