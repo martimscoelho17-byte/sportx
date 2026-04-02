@@ -120,20 +120,20 @@ export default function LoginModal({ open, onClose }: Props) {
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-2">
                   <Label htmlFor="reg-first">Nome</Label>
-                  <Input id="reg-first" placeholder="Nome" />
+                  <Input id="reg-first" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="reg-last">Apelido</Label>
-                  <Input id="reg-last" placeholder="Apelido" />
+                  <Input id="reg-last" />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="reg-email">Email</Label>
-                <Input id="reg-email" type="email" placeholder="email@exemplo.com" />
+                <Input id="reg-email" type="email" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="reg-phone">Telefone</Label>
-                <Input id="reg-phone" type="tel" placeholder="+351 900 000 000" />
+                <Input id="reg-phone" type="tel" />
               </div>
               {/* Country selector */}
               <div className="space-y-2">
@@ -146,7 +146,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   >
                     <span className={selectedCountry ? "text-foreground" : "text-muted-foreground"}>
                       {selectedCountry
-                        ? EU_COUNTRIES.find((c) => c.code === selectedCountry)?.flag + " " + EU_COUNTRIES.find((c) => c.code === selectedCountry)?.name
+                        ? EU_COUNTRIES.find((c) => c.code === selectedCountry)?.name
                         : "Selecione um país"}
                     </span>
                     <ChevronDownIcon open={countryOpen} />
@@ -157,14 +157,13 @@ export default function LoginModal({ open, onClose }: Props) {
                         <button
                           key={country.code}
                           type="button"
-                          className="w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors flex items-center gap-2"
+                          className="w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors"
                           onClick={() => {
                             setSelectedCountry(country.code);
                             setCountryOpen(false);
                           }}
                         >
-                          <span>{country.flag}</span>
-                          <span>{country.name}</span>
+                          {country.name}
                         </button>
                       ))}
                     </div>
@@ -173,11 +172,11 @@ export default function LoginModal({ open, onClose }: Props) {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="reg-pass">Palavra-passe</Label>
-                <Input id="reg-pass" type="password" placeholder="••••••••" />
+                <Input id="reg-pass" type="password" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="reg-confirm">Confirmar palavra-passe</Label>
-                <Input id="reg-confirm" type="password" placeholder="••••••••" />
+                <Input id="reg-confirm" type="password" />
               </div>
               <Button className="w-full bg-[#001a4d] hover:bg-[#002266] text-white">
                 Criar Conta

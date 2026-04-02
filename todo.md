@@ -262,3 +262,9 @@
 - [x] Corrigir dropdown de país para mostrar apenas nomes dos países da UE por ordem alfabética
 - [x] Remover flags dos países no dropdown
 - [x] Testar o modal com os campos vazios
+
+## Limpar Placeholders do Modal de Registo (Concluído)
+- [x] Remover placeholders dos campos de Nome, Apelido, Email, Telefone
+- [x] Remover placeholders dos campos de Palavra-passe e Confirmar palavra-passe
+- [x] Remover flags do dropdown de país
+- [x] Manter apenas nomes dos países da UE por ordem alfabética
