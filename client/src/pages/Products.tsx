@@ -379,7 +379,7 @@ function ProductsContent() {
                   {products.map((product) => (
                     <div
                       key={product.id}
-                      className="group cursor-pointer"
+                      className="group cursor-pointer bg-card rounded-lg p-4"
                       onClick={() => {
                         const url = params.categorySlug 
                           ? `/products/${params.brandSlug}/${params.categorySlug}/product/${product.id}`
