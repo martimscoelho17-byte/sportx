@@ -387,7 +387,7 @@ function ProductsContent() {
                         navigate(url);
                       }}
                     >
-                      <div className="relative bg-accent rounded-lg overflow-hidden mb-3 aspect-square">
+                      <div className="relative rounded-lg overflow-hidden mb-3 aspect-square">
                         {product.imageUrl && (
                           <img
                             src={product.imageUrl}
