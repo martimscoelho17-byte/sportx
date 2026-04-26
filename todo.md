@@ -133,8 +133,9 @@
 
 ## Fluxo de Logout (Implementado)
 - [x] Corrigir funcionalidade de logout - o utilizador permanece logado após clicar em "Terminar sessão"
-- [ ] Ao clicar em "Terminar sessão", abrir modal de login automaticamente
-- [ ] Permitir fazer login novamente ou criar nova conta
+- [x] Ao clicar em "Terminar sessão", abrir modal de login automaticamente
+- [x] Permitir fazer login novamente ou criar nova conta
+- [x] Ao clicar no nome do utilizador, redirecionar para a página de perfil
 
 
 ## Problemas Identificados (Corrigidos)

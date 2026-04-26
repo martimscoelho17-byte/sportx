@@ -186,7 +186,7 @@ export default function Header() {
                   {userMenuOpen && (
                     <div className="absolute right-0 top-full mt-1 w-48 bg-popover border border-border rounded-lg shadow-lg py-1 z-50">
                       <button
-                        className="w-full text-left px-4 py-2 text-sm font-medium text-popover-foreground border-b border-border hover:bg-accent transition-colors"
+                        className="w-full text-left px-4 py-2 text-sm font-medium text-popover-foreground border-b border-border hover:bg-accent transition-colors cursor-pointer"
                         onClick={() => {
                           setUserMenuOpen(false);
                           navigate("/profile");
@@ -195,10 +195,12 @@ export default function Header() {
                         {user.name || user.email}
                       </button>
                       <button
-                        className="w-full text-left px-4 py-2 text-sm text-popover-foreground hover:bg-accent transition-colors"
+                        className="w-full text-left px-4 py-2 text-sm text-popover-foreground hover:bg-accent transition-colors cursor-pointer"
                         onClick={async () => {
                           setUserMenuOpen(false);
                           await logout();
+                          // Abrir modal de login após logout
+                          setTimeout(() => setLoginOpen(true), 100);
                         }}
                       >
                         Terminar sessão
