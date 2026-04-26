@@ -86,11 +86,11 @@ export default function LoginModal({ open, onClose }: Props) {
             <>
               <div className="space-y-2">
                 <Label htmlFor="login-email">Utilizador</Label>
-                  <Input id="login-email" type="email" autoComplete="off" />
+                <Input id="login-email" type="email" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="login-password">Palavra-passe</Label>
-                  <Input id="login-pass" type="password" autoComplete="off" />
+                <Input id="login-password" type="password" />
               </div>
               <Button className="w-full bg-[#001a4d] hover:bg-[#002266] text-white">
                 Iniciar Sessão
@@ -120,20 +120,20 @@ export default function LoginModal({ open, onClose }: Props) {
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-2">
                   <Label htmlFor="reg-first">Nome</Label>
-                  <Input id="reg-first" autoComplete="off" />
+                  <Input id="reg-first" />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="reg-last">Apelido</Label>
-                  <Input id="reg-last" autoComplete="off" />
+                  <Input id="reg-last" />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="reg-email">Email</Label>
-                  <Input id="reg-email" type="email" autoComplete="off" />
+                <Input id="reg-email" type="email" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="reg-phone">Telefone</Label>
-                  <Input id="reg-phone" type="tel" autoComplete="off" />
+                <Input id="reg-phone" type="tel" />
               </div>
               {/* Country selector */}
               <div className="space-y-2">
@@ -172,11 +172,11 @@ export default function LoginModal({ open, onClose }: Props) {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="reg-pass">Palavra-passe</Label>
-                  <Input id="reg-pass" type="password" autoComplete="off" />
+                <Input id="reg-pass" type="password" />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="reg-confirm">Confirmar palavra-passe</Label>
-                  <Input id="reg-confirm" type="password" autoComplete="off" />
+                <Input id="reg-confirm" type="password" />
               </div>
               <Button className="w-full bg-[#001a4d] hover:bg-[#002266] text-white">
                 Criar Conta

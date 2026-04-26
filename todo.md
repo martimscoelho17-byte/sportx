@@ -278,3 +278,9 @@
 - [x] Adicionar imagens para os produtos Puma Future Z 1.4
 - [x] Adicionar imagens para os produtos Puma Ultra 1.4
 - [x] Testar as imagens no website
+
+## Adicionar Métodos de Pagamento no Checkout (Em Desenvolvimento)
+- [ ] Localizar a página de checkout/finalização de encomenda
+- [ ] Adicionar opções de pagamento (Cartão de Crédito, PayPal, etc.)
+- [ ] Integrar com Stripe para processamento de cartão
+- [ ] Testar os métodos de pagamento

@@ -1,0 +1,45 @@
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import CartDrawer from "@/components/CartDrawer";
+import { CartProvider } from "@/contexts/CartContext";
+
+function HomeContent() {
+  return (
+    <div className="min-h-screen flex flex-col bg-background">
+      <Header />
+      <CartDrawer />
+
+      {/* Hero Section - Main Content */}
+      <main className="flex-1 flex flex-col items-center justify-center min-h-[calc(100vh-64px-57px)] relative overflow-hidden px-4 bg-white dark:bg-black">
+        {/* Background decoration */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-96 h-96 rounded-full bg-[#001a4d]/10 dark:bg-[#001a4d]/35 blur-3xl" />
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-[#660000]/8 dark:bg-[#660000]/25 blur-3xl" />
+        </div>
+
+        <div className="relative text-center space-y-4 w-full max-w-[1400px] mx-auto">
+          {/* Main title */}
+          <h1 className="text-[clamp(2rem,14vw,7rem)] leading-none select-none font-bold" style={{ fontFamily: "'Arial Black', 'Helvetica', sans-serif", fontWeight: 900, letterSpacing: "-0.02em", backgroundColor: "transparent" }}>
+            <span style={{ color: "#660000", backgroundColor: "transparent" }}>Sport</span>
+            <span style={{ color: "#001a4d", backgroundColor: "transparent" }}>X</span>
+          </h1>
+
+          {/* Slogan */}
+          <p className="text-sm md:text-lg font-semibold tracking-[0.3em] uppercase text-muted-foreground">
+            The Next Level of Sports
+          </p>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <CartProvider>
+      <HomeContent />
+    </CartProvider>
+  );
+}
