@@ -2,6 +2,7 @@ import { getLoginUrl } from "@/const";
 import { trpc } from "@/lib/trpc";
 import { TRPCClientError } from "@trpc/client";
 import { useCallback, useEffect, useMemo } from "react";
+import { useLocation } from "wouter";
 
 type UseAuthOptions = {
   redirectOnUnauthenticated?: boolean;
@@ -12,6 +13,7 @@ export function useAuth(options?: UseAuthOptions) {
   const { redirectOnUnauthenticated = false, redirectPath = getLoginUrl() } =
     options ?? {};
   const utils = trpc.useUtils();
+  const [, navigate] = useLocation();
 
   const meQuery = trpc.auth.me.useQuery(undefined, {
     retry: false,
@@ -38,8 +40,10 @@ export function useAuth(options?: UseAuthOptions) {
     } finally {
       utils.auth.me.setData(undefined, null);
       await utils.auth.me.invalidate();
+      // Redirecionar para a página inicial após logout
+      navigate("/");
     }
-  }, [logoutMutation, utils]);
+  }, [logoutMutation, utils, navigate]);
 
   const state = useMemo(() => {
     localStorage.setItem(
