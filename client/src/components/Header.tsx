@@ -27,6 +27,7 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
+  const userMenuRef = useRef<HTMLDivElement>(null);
 
   const { data: brands = [] } = trpc.brands.list.useQuery();
   const { data: allCategories = [] } = trpc.categories.all.useQuery();
@@ -47,6 +48,8 @@ export default function Header() {
     function handleClickOutside(e: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setActiveDropdown(null);
+      }
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
         setUserMenuOpen(false);
       }
       if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
@@ -174,7 +177,7 @@ export default function Header() {
 
               {/* User - Authenticated */}
               {user ? (
-                <div className="relative">
+                <div className="relative" ref={userMenuRef}>
                   <button
                     className="p-2 rounded-full hover:bg-accent transition-colors text-foreground"
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
@@ -186,6 +189,7 @@ export default function Header() {
                   {userMenuOpen && (
                     <div className="absolute right-0 top-full mt-1 w-48 bg-popover border border-border rounded-lg shadow-lg py-1 z-50">
                       <button
+                        type="button"
                         className="w-full text-left px-4 py-2 text-sm font-medium text-popover-foreground border-b border-border hover:bg-accent transition-colors cursor-pointer"
                         onClick={() => {
                           setUserMenuOpen(false);
@@ -195,11 +199,11 @@ export default function Header() {
                         {user.name || user.email}
                       </button>
                       <button
+                        type="button"
                         className="w-full text-left px-4 py-2 text-sm text-popover-foreground hover:bg-accent transition-colors cursor-pointer"
                         onClick={async () => {
                           setUserMenuOpen(false);
                           await logout();
-                          // Abrir modal de login após logout
                           setTimeout(() => setLoginOpen(true), 100);
                         }}
                       >
