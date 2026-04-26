@@ -284,3 +284,11 @@
 - [ ] Adicionar opções de pagamento (Cartão de Crédito, PayPal, etc.)
 - [ ] Integrar com Stripe para processamento de cartão
 - [ ] Testar os métodos de pagamento
+
+## Implementar Página de Perfil do Utilizador (Em Desenvolvimento)
+- [ ] Criar dropdown de perfil no header com nome do utilizador
+- [ ] Adicionar opção "Terminar sessão" no dropdown
+- [ ] Criar página de perfil com dados pessoais
+- [ ] Adicionar campos de edição para nome, email, telefone
+- [ ] Implementar upload de foto de perfil
+- [ ] Testar a funcionalidade de edição de dados
