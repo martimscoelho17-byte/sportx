@@ -78,6 +78,8 @@ export async function updateUserProfile(
   userId: number,
   data: {
     name?: string;
+    firstName?: string;
+    lastName?: string;
     email?: string;
     phone?: string;
     address?: string;
@@ -91,11 +93,50 @@ export async function updateUserProfile(
   
   const updateSet: Record<string, unknown> = {};
   if (data.name !== undefined) updateSet.name = data.name;
+  if (data.firstName !== undefined) updateSet.firstName = data.firstName;
+  if (data.lastName !== undefined) updateSet.lastName = data.lastName;
   if (data.email !== undefined) updateSet.email = data.email;
+  if (data.phone !== undefined) updateSet.phone = data.phone;
+  if (data.country !== undefined) updateSet.country = data.country;
   
   if (Object.keys(updateSet).length === 0) return;
   
   await db.update(users).set(updateSet).where(eq(users.id, userId));
+}
+
+export async function registerLocalUser(data: {
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  country: string;
+  password: string;
+}) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  const openId = `local_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  
+  const result = await db.insert(users).values({
+    openId,
+    email: data.email,
+    firstName: data.firstName,
+    lastName: data.lastName,
+    phone: data.phone,
+    country: data.country,
+    password: data.password,
+    loginMethod: "local",
+    role: "user",
+  });
+  
+  return result;
+}
+
+export async function getUserByEmail(email: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(users).where(eq(users.email, email)).limit(1);
+  return result[0];
 }
 
 // ─── Brands ──────────────────────────────────────────────────────────────────

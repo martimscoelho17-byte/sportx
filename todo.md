@@ -293,3 +293,14 @@
 - [ ] Adicionar campos de edição para nome, email, telefone
 - [ ] Implementar upload de foto de perfil
 - [ ] Testar a funcionalidade de edição de dados
+
+## Registo e Login Local (Concluído)
+- [x] Implementar endpoint de registo local com firstName, lastName, email, telefone, país, palavra-passe
+- [x] Implementar endpoint de login local com email e palavra-passe
+- [x] Adicionar campos firstName e lastName à tabela users
+- [x] Adicionar campos address, city, postalCode à tabela users
+- [x] Atualizar modal de registo com campos completos
+- [x] Testar registo de novo utilizador
+- [x] Testar login com credenciais registadas
+- [x] Verificar que os dados são salvos corretamente na base de dados
+- [x] Testar edição de dados pessoais na página de perfil

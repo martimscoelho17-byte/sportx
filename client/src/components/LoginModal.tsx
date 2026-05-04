@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { X } from "lucide-react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getLoginUrl } from "@/const";
+import { trpc } from "@/lib/trpc";
 
 interface Props {
   open: boolean;
@@ -45,17 +46,132 @@ export default function LoginModal({ open, onClose }: Props) {
   const [mode, setMode] = useState<"login" | "register">("login");
   const [countryOpen, setCountryOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+  
+  // Login fields
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  
+  // Register fields
+  const [regFirstName, setRegFirstName] = useState("");
+  const [regLastName, setRegLastName] = useState("");
+  const [regEmail, setRegEmail] = useState("");
+  const [regPhone, setRegPhone] = useState("");
+  const [regPassword, setRegPassword] = useState("");
+  const [regConfirmPassword, setRegConfirmPassword] = useState("");
+  
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const registerMutation = trpc.auth.register.useMutation();
+  const loginLocalMutation = trpc.auth.loginLocal.useMutation();
 
   const handleClose = () => {
     setMode("login");
     setSelectedCountry(null);
     setCountryOpen(false);
+    setLoginEmail("");
+    setLoginPassword("");
+    setRegFirstName("");
+    setRegLastName("");
+    setRegEmail("");
+    setRegPhone("");
+    setRegPassword("");
+    setRegConfirmPassword("");
     onClose();
+  };
+
+  const handleLogin = async () => {
+    if (!loginEmail.trim()) {
+      alert("Email é obrigatório");
+      return;
+    }
+    if (!loginPassword.trim()) {
+      alert("Palavra-passe é obrigatória");
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      await loginLocalMutation.mutateAsync({
+        email: loginEmail,
+        password: loginPassword,
+      });
+      
+      alert("Login realizado com sucesso!");
+      setLoginEmail("");
+      setLoginPassword("");
+      handleClose();
+      window.location.reload();
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Erro ao fazer login";
+      alert("Erro: " + message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRegister = async () => {
+    if (!regFirstName.trim()) {
+      alert("Nome é obrigatório");
+      return;
+    }
+    if (!regLastName.trim()) {
+      alert("Apelido é obrigatório");
+      return;
+    }
+    if (!regEmail.trim()) {
+      alert("Email é obrigatório");
+      return;
+    }
+    if (!regPhone.trim()) {
+      alert("Telefone é obrigatório");
+      return;
+    }
+    if (!selectedCountry) {
+      alert("País é obrigatório");
+      return;
+    }
+    if (!regPassword.trim() || regPassword.length < 6) {
+      alert("Palavra-passe deve ter pelo menos 6 caracteres");
+      return;
+    }
+    if (regPassword !== regConfirmPassword) {
+      alert("Palavras-passe não coincidem");
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      await registerMutation.mutateAsync({
+        email: regEmail,
+        firstName: regFirstName,
+        lastName: regLastName,
+        phone: regPhone,
+        country: selectedCountry,
+        password: regPassword,
+      });
+      
+      alert("Conta criada com sucesso! Por favor, faça login.");
+      setMode("login");
+      setRegFirstName("");
+      setRegLastName("");
+      setRegEmail("");
+      setRegPhone("");
+      setRegPassword("");
+      setRegConfirmPassword("");
+      setSelectedCountry(null);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Erro ao criar conta";
+      alert("Erro: " + message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && handleClose()}>
       <DialogContent className="sm:max-w-md p-0 overflow-hidden">
+        <DialogTitle className="sr-only">SportX - Autenticação</DialogTitle>
+        
         {/* Header */}
         <div className="bg-[#001a4d] text-white px-6 py-8 text-center">
           <div className="text-3xl font-black tracking-widest mb-1">
@@ -86,14 +202,30 @@ export default function LoginModal({ open, onClose }: Props) {
             <>
               <div className="space-y-2">
                 <Label htmlFor="login-email">Utilizador</Label>
-                  <Input id="login-email" type="email" autoComplete="off" />
+                <Input 
+                  id="login-email" 
+                  type="email" 
+                  autoComplete="off"
+                  value={loginEmail}
+                  onChange={(e) => setLoginEmail(e.target.value)}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="login-password">Palavra-passe</Label>
-                  <Input id="login-pass" type="password" autoComplete="off" />
+                <Input 
+                  id="login-pass" 
+                  type="password" 
+                  autoComplete="off"
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                />
               </div>
-              <Button className="w-full bg-[#001a4d] hover:bg-[#002266] text-white">
-                Iniciar Sessão
+              <Button 
+                className="w-full bg-[#001a4d] hover:bg-[#002266] text-white"
+                onClick={handleLogin}
+                disabled={isLoading}
+              >
+                {isLoading ? "Iniciando..." : "Iniciar Sessão"}
               </Button>
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
@@ -120,20 +252,42 @@ export default function LoginModal({ open, onClose }: Props) {
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-2">
                   <Label htmlFor="reg-first">Nome</Label>
-                  <Input id="reg-first" autoComplete="off" />
+                  <Input 
+                    id="reg-first" 
+                    autoComplete="off"
+                    value={regFirstName}
+                    onChange={(e) => setRegFirstName(e.target.value)}
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="reg-last">Apelido</Label>
-                  <Input id="reg-last" autoComplete="off" />
+                  <Input 
+                    id="reg-last" 
+                    autoComplete="off"
+                    value={regLastName}
+                    onChange={(e) => setRegLastName(e.target.value)}
+                  />
                 </div>
               </div>
               <div className="space-y-2">
                 <Label htmlFor="reg-email">Email</Label>
-                  <Input id="reg-email" type="email" autoComplete="off" />
+                <Input 
+                  id="reg-email" 
+                  type="email" 
+                  autoComplete="off"
+                  value={regEmail}
+                  onChange={(e) => setRegEmail(e.target.value)}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="reg-phone">Telefone</Label>
-                  <Input id="reg-phone" type="tel" autoComplete="off" />
+                <Input 
+                  id="reg-phone" 
+                  type="tel" 
+                  autoComplete="off"
+                  value={regPhone}
+                  onChange={(e) => setRegPhone(e.target.value)}
+                />
               </div>
               {/* Country selector */}
               <div className="space-y-2">
@@ -172,14 +326,30 @@ export default function LoginModal({ open, onClose }: Props) {
               </div>
               <div className="space-y-2">
                 <Label htmlFor="reg-pass">Palavra-passe</Label>
-                  <Input id="reg-pass" type="password" autoComplete="off" />
+                <Input 
+                  id="reg-pass" 
+                  type="password" 
+                  autoComplete="off"
+                  value={regPassword}
+                  onChange={(e) => setRegPassword(e.target.value)}
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="reg-confirm">Confirmar palavra-passe</Label>
-                  <Input id="reg-confirm" type="password" autoComplete="off" />
+                <Input 
+                  id="reg-confirm" 
+                  type="password" 
+                  autoComplete="off"
+                  value={regConfirmPassword}
+                  onChange={(e) => setRegConfirmPassword(e.target.value)}
+                />
               </div>
-              <Button className="w-full bg-[#001a4d] hover:bg-[#002266] text-white">
-                Criar Conta
+              <Button 
+                className="w-full bg-[#001a4d] hover:bg-[#002266] text-white"
+                onClick={handleRegister}
+                disabled={isLoading}
+              >
+                {isLoading ? "Criando conta..." : "Criar Conta"}
               </Button>
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">

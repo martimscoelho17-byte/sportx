@@ -25,6 +25,8 @@ import {
   seedDatabase,
   updateCartItemQuantity,
   updateUserProfile,
+  registerLocalUser,
+  getUserByEmail,
 } from "./db";
 
 export const appRouter = router({
@@ -37,6 +39,69 @@ export const appRouter = router({
       ctx.res.clearCookie(COOKIE_NAME, { ...cookieOptions, maxAge: -1 });
       return { success: true } as const;
     }),
+    register: publicProcedure
+      .input(
+        z.object({
+          email: z.string().email(),
+          firstName: z.string().min(1),
+          lastName: z.string().min(1),
+          phone: z.string(),
+          country: z.string(),
+          password: z.string().min(6),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const existingUser = await getUserByEmail(input.email);
+        if (existingUser) {
+          throw new Error("Email já registado");
+        }
+        
+        await registerLocalUser({
+          email: input.email,
+          firstName: input.firstName,
+          lastName: input.lastName,
+          phone: input.phone,
+          country: input.country,
+          password: input.password,
+        });
+        
+        return { success: true };
+      }),
+    loginLocal: publicProcedure
+      .input(
+        z.object({
+          email: z.string().email(),
+          password: z.string(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const user = await getUserByEmail(input.email);
+        if (!user) {
+          throw new Error("Utilizador não encontrado");
+        }
+        
+        if (user.password !== input.password) {
+          throw new Error("Palavra-passe incorreta");
+        }
+        
+        const { sdk } = await import("./_core/sdk");
+        const sessionToken = await sdk.createSessionToken(user.openId, {
+          name: `${user.firstName} ${user.lastName}`,
+        });
+        
+        const cookieOptions = getSessionCookieOptions(ctx.req);
+        ctx.res.cookie(COOKIE_NAME, sessionToken, cookieOptions);
+        
+        return { 
+          success: true,
+          user: {
+            id: user.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+          }
+        };
+      }),
   }),
 
   // ─── Brands ─────────────────────────────────────────────────────────────

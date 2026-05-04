@@ -36,6 +36,20 @@
       "when": 1773153365451,
       "tag": "0004_colossal_malice",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1777907062210,
+      "tag": "0005_next_norman_osborn",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1777907746251,
+      "tag": "0006_dry_kree",
+      "breakpoints": true
     }
   ]
 }
