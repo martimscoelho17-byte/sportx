@@ -196,7 +196,7 @@ export default function Header() {
                           navigate("/profile");
                         }}
                       >
-                        {user.name || user.email}
+                        {user.firstName && user.lastName ? `${user.firstName} ${user.lastName}` : user.name || user.email}
                       </button>
                       <button
                         type="button"

@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { getLoginUrl } from "@/const";
 import { trpc } from "@/lib/trpc";
+import { useTheme } from "@/contexts/ThemeContext";
 
 interface Props {
   open: boolean;
@@ -43,6 +44,7 @@ const EU_COUNTRIES = [
 ];
 
 export default function LoginModal({ open, onClose }: Props) {
+  const { theme } = useTheme();
   const [mode, setMode] = useState<"login" | "register">("login");
   const [countryOpen, setCountryOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
@@ -173,12 +175,12 @@ export default function LoginModal({ open, onClose }: Props) {
         <DialogTitle className="sr-only">SportX - Autenticação</DialogTitle>
         
         {/* Header */}
-        <div className="bg-[#001a4d] text-white px-6 py-8 text-center">
+        <div className={`${theme === "dark" ? "bg-black" : "bg-white"} px-6 py-8 text-center border-b border-border`}>
           <div className="text-3xl font-black tracking-widest mb-1">
-            <span style={{ color: "#cc3333" }}>Sport</span>
-            <span className="text-white">X</span>
+            <span style={{ color: "#660000" }}>Sport</span>
+            <span style={{ color: "#001a4d" }}>X</span>
           </div>
-          <p className="text-xs tracking-[0.3em] text-blue-200 uppercase">The Next Level of Sports</p>
+          <p className={`text-xs tracking-[0.3em] uppercase ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>The Next Level of Sports</p>
         </div>
 
         {/* Tabs */}
@@ -221,7 +223,8 @@ export default function LoginModal({ open, onClose }: Props) {
                 />
               </div>
               <Button 
-                className="w-full bg-[#001a4d] hover:bg-[#002266] text-white"
+                className="w-full text-white"
+                style={{ backgroundColor: "#001a4d" }}
                 onClick={handleLogin}
                 disabled={isLoading}
               >
