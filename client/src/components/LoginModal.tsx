@@ -186,13 +186,13 @@ export default function LoginModal({ open, onClose }: Props) {
         {/* Tabs */}
         <div className="flex border-b border-border">
           <button
-            className={`flex-1 py-3 text-sm font-semibold transition-colors ${mode === "login" ? "border-b-2 border-[#001a4d] text-[#001a4d] dark:text-blue-300 dark:border-blue-300" : "text-muted-foreground hover:text-foreground"}`}
+            className={`flex-1 py-3 text-sm font-semibold transition-colors ${mode === "login" ? "border-b-2 border-[#001a4d] text-[#001a4d]" : "text-muted-foreground hover:text-foreground"}`}
             onClick={() => setMode("login")}
           >
             Iniciar Sessão
           </button>
           <button
-            className={`flex-1 py-3 text-sm font-semibold transition-colors ${mode === "register" ? "border-b-2 border-[#001a4d] text-[#001a4d] dark:text-blue-300 dark:border-blue-300" : "text-muted-foreground hover:text-foreground"}`}
+            className={`flex-1 py-3 text-sm font-semibold transition-colors ${mode === "register" ? "border-b-2 border-[#001a4d] text-[#001a4d]" : "text-muted-foreground hover:text-foreground"}`}
             onClick={() => setMode("register")}
           >
             Registar-se
@@ -210,6 +210,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   autoComplete="off"
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
+                  className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
                 />
               </div>
               <div className="space-y-2">
@@ -220,10 +221,11 @@ export default function LoginModal({ open, onClose }: Props) {
                   autoComplete="off"
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
+                  className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
                 />
               </div>
               <Button 
-                className="w-full text-white"
+                className="w-full text-white hover:opacity-90"
                 style={{ backgroundColor: "#001a4d" }}
                 onClick={handleLogin}
                 disabled={isLoading}
