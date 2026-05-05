@@ -262,6 +262,7 @@ export default function LoginModal({ open, onClose }: Props) {
                     autoComplete="off"
                     value={regFirstName}
                     onChange={(e) => setRegFirstName(e.target.value)}
+                    className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
                   />
                 </div>
                 <div className="space-y-2">
@@ -271,6 +272,7 @@ export default function LoginModal({ open, onClose }: Props) {
                     autoComplete="off"
                     value={regLastName}
                     onChange={(e) => setRegLastName(e.target.value)}
+                    className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
                   />
                 </div>
               </div>
@@ -282,6 +284,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   autoComplete="off"
                   value={regEmail}
                   onChange={(e) => setRegEmail(e.target.value)}
+                  className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
                 />
               </div>
               <div className="space-y-2">
@@ -292,6 +295,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   autoComplete="off"
                   value={regPhone}
                   onChange={(e) => setRegPhone(e.target.value)}
+                  className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
                 />
               </div>
               {/* Country selector */}
@@ -337,6 +341,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   autoComplete="off"
                   value={regPassword}
                   onChange={(e) => setRegPassword(e.target.value)}
+                  className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
                 />
               </div>
               <div className="space-y-2">
@@ -347,6 +352,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   autoComplete="off"
                   value={regConfirmPassword}
                   onChange={(e) => setRegConfirmPassword(e.target.value)}
+                  className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
                 />
               </div>
               <Button 
