@@ -317,7 +317,7 @@ export default function LoginModal({ open, onClose }: Props) {
                 <div className="relative">
                   <button
                     type="button"
-                    className="w-full flex items-center justify-between px-3 py-2 border border-input rounded-md text-sm bg-background hover:bg-accent transition-colors"
+                    className={`w-full flex items-center justify-between px-3 py-2 border rounded-md text-sm bg-background hover:bg-accent transition-colors ${regErrors.country ? "border-[#660000] focus-visible:border-[#660000]" : "border-[#001a4d]"}`}
                     onClick={() => setCountryOpen(!countryOpen)}
                   >
                     <span className={selectedCountry ? "text-foreground" : "text-muted-foreground"}>
