@@ -119,7 +119,7 @@ export default function Header() {
             {/* Search Bar */}
             <div className="hidden md:flex items-center ml-auto mr-4">
               <div className="relative w-48" ref={searchRef}>
-                <div className="relative flex items-center bg-gray-100 dark:bg-black rounded-full px-4 py-2 border border-gray-200 dark:border-gray-800">
+                <div className="relative flex items-center bg-gray-100 dark:bg-black rounded-full px-4 py-2 border-2 border-[#001a4d]">
                   <Search size={18} className="text-muted-foreground flex-shrink-0" />
                   <input
                     type="text"
