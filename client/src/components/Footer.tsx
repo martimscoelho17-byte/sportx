@@ -37,7 +37,7 @@ export default function Footer() {
 
             {/* Copyright - Right side */}
             <p className="text-sm text-muted-foreground tracking-wider px-12">
-              © 2026 SportX. THE NEXT LEVEL OF SPORTS
+              © SportX THE NEXT LEVEL OF SPORTS
             </p>
           </div>
         </div>
