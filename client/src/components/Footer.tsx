@@ -36,8 +36,8 @@ export default function Footer() {
             </nav>
 
             {/* Copyright - Right side */}
-            <p className="text-sm tracking-wider px-12 text-foreground">
-              © <span className="font-bold">SportX</span>. THE NEXT LEVEL OF SPORTS
+            <p className="text-sm tracking-wider px-12">
+              © <span style={{ color: "#660000" }}>Sport</span><span style={{ color: "#001a4d" }}>X</span>. THE NEXT LEVEL OF SPORTS
             </p>
           </div>
         </div>
