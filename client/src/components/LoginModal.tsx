@@ -63,6 +63,10 @@ export default function LoginModal({ open, onClose }: Props) {
   
   const [isLoading, setIsLoading] = useState(false);
   
+  // Validation errors
+  const [loginErrors, setLoginErrors] = useState<{ email?: boolean; password?: boolean }>({});
+  const [regErrors, setRegErrors] = useState<{ firstName?: boolean; lastName?: boolean; email?: boolean; phone?: boolean; password?: boolean; confirmPassword?: boolean; country?: boolean }>({});
+  
   const registerMutation = trpc.auth.register.useMutation();
   const loginLocalMutation = trpc.auth.loginLocal.useMutation();
 
@@ -82,14 +86,21 @@ export default function LoginModal({ open, onClose }: Props) {
   };
 
   const handleLogin = async () => {
+    const errors: typeof loginErrors = {};
+    
     if (!loginEmail.trim()) {
-      alert("Email é obrigatório");
-      return;
+      errors.email = true;
     }
     if (!loginPassword.trim()) {
-      alert("Palavra-passe é obrigatória");
+      errors.password = true;
+    }
+    
+    if (Object.keys(errors).length > 0) {
+      setLoginErrors(errors);
       return;
     }
+    
+    setLoginErrors({});
 
     setIsLoading(true);
     try {
@@ -112,34 +123,36 @@ export default function LoginModal({ open, onClose }: Props) {
   };
 
   const handleRegister = async () => {
+    const errors: typeof regErrors = {};
+    
     if (!regFirstName.trim()) {
-      alert("Nome é obrigatório");
-      return;
+      errors.firstName = true;
     }
     if (!regLastName.trim()) {
-      alert("Apelido é obrigatório");
-      return;
+      errors.lastName = true;
     }
     if (!regEmail.trim()) {
-      alert("Email é obrigatório");
-      return;
+      errors.email = true;
     }
     if (!regPhone.trim()) {
-      alert("Telefone é obrigatório");
-      return;
+      errors.phone = true;
     }
     if (!selectedCountry) {
-      alert("País é obrigatório");
-      return;
+      errors.country = true;
     }
     if (!regPassword.trim() || regPassword.length < 6) {
-      alert("Palavra-passe deve ter pelo menos 6 caracteres");
-      return;
+      errors.password = true;
     }
     if (regPassword !== regConfirmPassword) {
-      alert("Palavras-passe não coincidem");
+      errors.confirmPassword = true;
+    }
+    
+    if (Object.keys(errors).length > 0) {
+      setRegErrors(errors);
       return;
     }
+    
+    setRegErrors({});
 
     setIsLoading(true);
     try {
@@ -210,7 +223,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   autoComplete="off"
                   value={loginEmail}
                   onChange={(e) => setLoginEmail(e.target.value)}
-                  className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
+                  className={loginErrors.email ? "border-[#660000] focus-visible:border-[#660000] focus-visible:ring-[#660000]/30 focus-visible:shadow-[0_0_0_3px_rgba(102,0,0,0.1)]" : "border-[#001a4d] focus-visible:border-[#000d2e] focus-visible:ring-[#000d2e]/30 focus-visible:shadow-[0_0_0_3px_rgba(0,13,46,0.1)]"}
                 />
               </div>
               <div className="space-y-2">
@@ -221,7 +234,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   autoComplete="off"
                   value={loginPassword}
                   onChange={(e) => setLoginPassword(e.target.value)}
-                  className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
+                  className={loginErrors.password ? "border-[#660000] focus-visible:border-[#660000] focus-visible:ring-[#660000]/30 focus-visible:shadow-[0_0_0_3px_rgba(102,0,0,0.1)]" : "border-[#001a4d] focus-visible:border-[#000d2e] focus-visible:ring-[#000d2e]/30 focus-visible:shadow-[0_0_0_3px_rgba(0,13,46,0.1)]"}
                 />
               </div>
               <Button 
@@ -262,7 +275,7 @@ export default function LoginModal({ open, onClose }: Props) {
                     autoComplete="off"
                     value={regFirstName}
                     onChange={(e) => setRegFirstName(e.target.value)}
-                    className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
+                    className={regErrors.firstName ? "border-[#660000] focus-visible:border-[#660000] focus-visible:ring-[#660000]/30 focus-visible:shadow-[0_0_0_3px_rgba(102,0,0,0.1)]" : "border-[#001a4d] focus-visible:border-[#000d2e] focus-visible:ring-[#000d2e]/30 focus-visible:shadow-[0_0_0_3px_rgba(0,13,46,0.1)]"}
                   />
                 </div>
                 <div className="space-y-2">
@@ -272,7 +285,7 @@ export default function LoginModal({ open, onClose }: Props) {
                     autoComplete="off"
                     value={regLastName}
                     onChange={(e) => setRegLastName(e.target.value)}
-                    className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
+                    className={regErrors.lastName ? "border-[#660000] focus-visible:border-[#660000] focus-visible:ring-[#660000]/30 focus-visible:shadow-[0_0_0_3px_rgba(102,0,0,0.1)]" : "border-[#001a4d] focus-visible:border-[#000d2e] focus-visible:ring-[#000d2e]/30 focus-visible:shadow-[0_0_0_3px_rgba(0,13,46,0.1)]"}
                   />
                 </div>
               </div>
@@ -284,7 +297,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   autoComplete="off"
                   value={regEmail}
                   onChange={(e) => setRegEmail(e.target.value)}
-                  className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
+                  className={regErrors.email ? "border-[#660000] focus-visible:border-[#660000] focus-visible:ring-[#660000]/30 focus-visible:shadow-[0_0_0_3px_rgba(102,0,0,0.1)]" : "border-[#001a4d] focus-visible:border-[#000d2e] focus-visible:ring-[#000d2e]/30 focus-visible:shadow-[0_0_0_3px_rgba(0,13,46,0.1)]"}
                 />
               </div>
               <div className="space-y-2">
@@ -295,7 +308,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   autoComplete="off"
                   value={regPhone}
                   onChange={(e) => setRegPhone(e.target.value)}
-                  className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
+                  className={regErrors.phone ? "border-[#660000] focus-visible:border-[#660000] focus-visible:ring-[#660000]/30 focus-visible:shadow-[0_0_0_3px_rgba(102,0,0,0.1)]" : "border-[#001a4d] focus-visible:border-[#000d2e] focus-visible:ring-[#000d2e]/30 focus-visible:shadow-[0_0_0_3px_rgba(0,13,46,0.1)]"}
                 />
               </div>
               {/* Country selector */}
@@ -341,7 +354,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   autoComplete="off"
                   value={regPassword}
                   onChange={(e) => setRegPassword(e.target.value)}
-                  className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
+                  className={regErrors.password ? "border-[#660000] focus-visible:border-[#660000] focus-visible:ring-[#660000]/30 focus-visible:shadow-[0_0_0_3px_rgba(102,0,0,0.1)]" : "border-[#001a4d] focus-visible:border-[#000d2e] focus-visible:ring-[#000d2e]/30 focus-visible:shadow-[0_0_0_3px_rgba(0,13,46,0.1)]"}
                 />
               </div>
               <div className="space-y-2">
@@ -352,7 +365,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   autoComplete="off"
                   value={regConfirmPassword}
                   onChange={(e) => setRegConfirmPassword(e.target.value)}
-                  className="border-[#001a4d] focus-visible:border-[#001a4d] focus-visible:ring-[#001a4d]/20"
+                  className={regErrors.confirmPassword ? "border-[#660000] focus-visible:border-[#660000] focus-visible:ring-[#660000]/30 focus-visible:shadow-[0_0_0_3px_rgba(102,0,0,0.1)]" : "border-[#001a4d] focus-visible:border-[#000d2e] focus-visible:ring-[#000d2e]/30 focus-visible:shadow-[0_0_0_3px_rgba(0,13,46,0.1)]"}
                 />
               </div>
               <Button 
