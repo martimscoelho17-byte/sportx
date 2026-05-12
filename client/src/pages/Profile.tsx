@@ -51,7 +51,7 @@ export default function Profile() {
     address: user?.address || "",
     city: user?.city || "",
     postalCode: user?.postalCode || "",
-    country: user?.country || "PT",
+    country: user?.country || "",
   });
 
   const updateUserProfile = trpc.users.updateProfile.useMutation();
@@ -66,7 +66,7 @@ export default function Profile() {
         address: user.address || "",
         city: user.city || "",
         postalCode: user.postalCode || "",
-        country: user.country || "PT",
+        country: user.country || "",
       });
     }
   }, [user]);
@@ -116,7 +116,7 @@ export default function Profile() {
         address: user.address || "",
         city: user.city || "",
         postalCode: user.postalCode || "",
-        country: user.country || "PT",
+        country: user.country || "",
       });
     }
   };
@@ -291,6 +291,7 @@ export default function Profile() {
                   onChange={handleChange}
                   className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground"
                 >
+                  <option value="">Selecione um país</option>
                   {EU_COUNTRIES.map((country) => (
                     <option key={country.code} value={country.code}>
                       {country.name}
