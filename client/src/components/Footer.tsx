@@ -134,7 +134,7 @@ export default function Footer() {
                   href="https://wa.me/351963430023"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm font-medium text-[#001a4d] hover:text-[#000d2e] dark:text-blue-300 dark:hover:text-blue-400 transition-colors"
+                  className="text-sm font-medium text-white hover:text-gray-200 transition-colors"
                 >
                   963 430 023
                 </a>
