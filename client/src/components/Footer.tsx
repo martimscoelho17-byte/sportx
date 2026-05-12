@@ -109,7 +109,7 @@ export default function Footer() {
           </DialogHeader>
           <div className="space-y-4">
             <div className="flex items-center gap-3 p-3 rounded-lg bg-accent">
-              <Mail size={20} className="text-[#001a4d] dark:text-blue-300 flex-shrink-0" />
+              <Mail size={20} className="text-[#001a4d] flex-shrink-0" />
               <div>
                 <p className="text-xs text-muted-foreground">Email</p>
                 <a href="mailto:sportxthenextlevelofsports@gmail.com" className="text-sm font-medium text-white hover:text-gray-200 transition-colors">
@@ -118,7 +118,7 @@ export default function Footer() {
               </div>
             </div>
             <div className="flex items-center gap-3 p-3 rounded-lg bg-accent">
-              <Phone size={20} className="text-[#001a4d] dark:text-blue-300 flex-shrink-0" />
+              <Phone size={20} className="text-[#001a4d] flex-shrink-0" />
               <div>
                 <p className="text-xs text-muted-foreground">Telefone</p>
                 <a href="tel:+351963430023" className="text-sm font-medium text-white hover:text-gray-200 transition-colors">
