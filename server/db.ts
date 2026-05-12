@@ -97,6 +97,9 @@ export async function updateUserProfile(
   if (data.lastName !== undefined) updateSet.lastName = data.lastName;
   if (data.email !== undefined) updateSet.email = data.email;
   if (data.phone !== undefined) updateSet.phone = data.phone;
+  if (data.address !== undefined) updateSet.address = data.address;
+  if (data.city !== undefined) updateSet.city = data.city;
+  if (data.postalCode !== undefined) updateSet.postalCode = data.postalCode;
   if (data.country !== undefined) updateSet.country = data.country;
   
   if (Object.keys(updateSet).length === 0) return;

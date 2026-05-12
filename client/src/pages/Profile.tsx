@@ -97,6 +97,8 @@ export default function Profile() {
       });
       toast.success("Perfil atualizado com sucesso!");
       setIsEditing(false);
+      const utils = trpc.useUtils();
+      await utils.auth.me.invalidate();
     } catch (error) {
       toast.error("Erro ao atualizar perfil");
       console.error(error);
