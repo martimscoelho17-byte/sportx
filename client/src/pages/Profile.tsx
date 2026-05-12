@@ -291,9 +291,9 @@ export default function Profile() {
                   name="country"
                   value={form.country}
                   onChange={handleChange}
-                  className="w-full px-3 py-2 border border-input rounded-md bg-background text-foreground"
+                  className="w-full px-3 py-2 border-2 border-[#001a4d] rounded-md bg-background text-foreground"
                 >
-                  <option value="">Selecione um país</option>
+                  <option value="" disabled hidden>Selecione um país</option>
                   {EU_COUNTRIES.map((country) => (
                     <option key={country.code} value={country.code}>
                       {country.name}
