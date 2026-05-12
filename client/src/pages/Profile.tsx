@@ -211,7 +211,7 @@ export default function Profile() {
                     name="firstName"
                     value={form.firstName}
                     onChange={handleChange}
-                    placeholder="Seu nome"
+                    className="border-2 border-[#001a4d]"
                   />
                 </div>
                 <div>
@@ -221,7 +221,7 @@ export default function Profile() {
                     name="lastName"
                     value={form.lastName}
                     onChange={handleChange}
-                    placeholder="Seu apelido"
+                    className="border-2 border-[#001a4d]"
                   />
                 </div>
               </div>
@@ -235,7 +235,7 @@ export default function Profile() {
                   value={form.email}
                   onChange={handleChange}
                   disabled
-                  className="opacity-50 cursor-not-allowed"
+                  className="opacity-50 cursor-not-allowed border-2 border-[#001a4d]"
                 />
               </div>
 
@@ -246,7 +246,7 @@ export default function Profile() {
                   name="phone"
                   value={form.phone}
                   onChange={handleChange}
-                  placeholder="+351 912 345 678"
+                  className="border-2 border-[#001a4d]"
                 />
               </div>
 
@@ -257,7 +257,7 @@ export default function Profile() {
                   name="address"
                   value={form.address}
                   onChange={handleChange}
-                  placeholder="Rua, número, etc."
+                  className="border-2 border-[#001a4d]"
                 />
               </div>
 
@@ -269,7 +269,7 @@ export default function Profile() {
                     name="city"
                     value={form.city}
                     onChange={handleChange}
-                    placeholder="Cidade"
+                    className="border-2 border-[#001a4d]"
                   />
                 </div>
                 <div>
@@ -279,7 +279,7 @@ export default function Profile() {
                     name="postalCode"
                     value={form.postalCode}
                     onChange={handleChange}
-                    placeholder="1000-001"
+                    className="border-2 border-[#001a4d]"
                   />
                 </div>
               </div>
