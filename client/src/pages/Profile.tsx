@@ -150,44 +150,44 @@ export default function Profile() {
             <div className="space-y-6">
               <div>
                 <p className="text-sm font-medium text-muted-foreground mb-2">Nome</p>
-                <p className="text-lg">{form.firstName || "Não informado"}</p>
+                <p className="text-lg">{form.firstName || "Por Preencher"}</p>
               </div>
 
               <div>
                 <p className="text-sm font-medium text-muted-foreground mb-2">Apelido</p>
-                <p className="text-lg">{form.lastName || "Não informado"}</p>
+                <p className="text-lg">{form.lastName || "Por Preencher"}</p>
               </div>
 
               <div>
                 <p className="text-sm font-medium text-muted-foreground mb-2">Email</p>
-                <p className="text-lg">{form.email}</p>
+                <p className="text-lg">{form.email || "Por Preencher"}</p>
               </div>
 
               <div>
                 <p className="text-sm font-medium text-muted-foreground mb-2">Telefone</p>
-                <p className="text-lg">{form.phone || "Não informado"}</p>
+                <p className="text-lg">{form.phone || "Por Preencher"}</p>
               </div>
 
               <div>
                 <p className="text-sm font-medium text-muted-foreground mb-2">Morada</p>
-                <p className="text-lg">{form.address || "Não informado"}</p>
+                <p className="text-lg">{form.address || "Por Preencher"}</p>
               </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm font-medium text-muted-foreground mb-2">Cidade</p>
-                  <p className="text-lg">{form.city || "Não informado"}</p>
+                  <p className="text-lg">{form.city || "Por Preencher"}</p>
                 </div>
                 <div>
                   <p className="text-sm font-medium text-muted-foreground mb-2">Código Postal</p>
-                  <p className="text-lg">{form.postalCode || "Não informado"}</p>
+                  <p className="text-lg">{form.postalCode || "Por Preencher"}</p>
                 </div>
               </div>
 
               <div>
                 <p className="text-sm font-medium text-muted-foreground mb-2">País</p>
                 <p className="text-lg">
-                  {EU_COUNTRIES.find((c) => c.code === form.country)?.name || "Não informado"}
+                  {EU_COUNTRIES.find((c) => c.code === form.country)?.name || "Por Preencher"}
                 </p>
               </div>
 
