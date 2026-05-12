@@ -112,8 +112,8 @@ export default function Footer() {
               <Mail size={20} className="text-[#001a4d] dark:text-blue-300 flex-shrink-0" />
               <div>
                 <p className="text-xs text-muted-foreground">Email</p>
-                <a href="mailto:SportX@gmail.pt" className="text-sm font-medium text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors">
-                  SportX@gmail.pt
+                <a href="mailto:sportxthenextlevelofsports@gmail.com" className="text-sm font-medium text-white hover:text-gray-200 transition-colors">
+                  sportxthenextlevelofsports@gmail.com
                 </a>
               </div>
             </div>
