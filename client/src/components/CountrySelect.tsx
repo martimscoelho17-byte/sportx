@@ -69,6 +69,41 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
     <div ref={dropdownRef} className="relative">
       {label && <Label htmlFor={id}>{label}</Label>}
       
+      <style>{`
+        .country-dropdown::-webkit-scrollbar {
+          width: 8px;
+        }
+        .country-dropdown::-webkit-scrollbar-track {
+          background: #001a4d;
+          border-radius: 4px;
+        }
+        .country-dropdown::-webkit-scrollbar-thumb {
+          background: #8B0000;
+          border-radius: 4px;
+        }
+        .country-dropdown::-webkit-scrollbar-thumb:hover {
+          background: #a00000;
+        }
+        .country-dropdown::-webkit-scrollbar-button {
+          background: #001a4d;
+          color: #001a4d;
+          height: 16px;
+          width: 8px;
+        }
+        .country-dropdown::-webkit-scrollbar-button:vertical:increment {
+          background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16"><path d="M4 12L0 6h8z" fill="%23001a4d"/></svg>') center no-repeat;
+          background-color: #001a4d;
+        }
+        .country-dropdown::-webkit-scrollbar-button:vertical:decrement {
+          background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 16"><path d="M4 4l4 6H0z" fill="%23001a4d"/></svg>') center no-repeat;
+          background-color: #001a4d;
+        }
+        .country-dropdown {
+          scrollbar-color: #8B0000 #001a4d;
+          scrollbar-width: thin;
+        }
+      `}</style>
+      
       {!isOpen ? (
         // Closed state: Show button with lupa and text
         <button
@@ -101,7 +136,7 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
 
       {isOpen && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-background border-2 border-[#001a4d] rounded-lg shadow-lg z-50">
-          <div className="max-h-48 overflow-y-auto">
+          <div className="country-dropdown max-h-48 overflow-y-auto">
             {filteredCountries.length > 0 ? (
               filteredCountries.map((country) => (
                 <button
