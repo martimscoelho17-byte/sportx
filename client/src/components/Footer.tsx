@@ -17,19 +17,19 @@ export default function Footer() {
             <nav className="flex items-center gap-24 px-12">
               <button
                 onClick={() => setModal("sobre")}
-                className="text-base font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
+                className="text-base font-black text-foreground hover:text-[#001a4d] dark:hover:text-[#001a4d] transition-colors"
               >
                 Sobre
               </button>
               <button
                 onClick={() => setModal("contactos")}
-                className="text-base font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
+                className="text-base font-black text-foreground hover:text-[#001a4d] dark:hover:text-[#001a4d] transition-colors"
               >
                 Contactos
               </button>
               <button
                 onClick={() => setModal("privacidade")}
-                className="text-base font-black text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
+                className="text-base font-black text-foreground hover:text-[#001a4d] dark:hover:text-[#001a4d] transition-colors"
               >
                 Política de Privacidade
               </button>

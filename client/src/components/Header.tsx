@@ -80,7 +80,7 @@ export default function Header() {
               {brandMenus.map((brand) => (
                 <div key={brand.slug} className="relative">
                   <button
-                    className="flex items-center gap-1.5 px-0 py-2 text-base font-bold text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors"
+                    className="flex items-center gap-1.5 px-0 py-2 text-base font-bold text-foreground hover:text-[#001a4d] dark:hover:text-[#001a4d] transition-colors"
                     onMouseEnter={() => setActiveDropdown(brand.slug)}
                     onMouseLeave={() => setActiveDropdown(null)}
                     onClick={() => navigate(`/products/${brand.slug}`)}
