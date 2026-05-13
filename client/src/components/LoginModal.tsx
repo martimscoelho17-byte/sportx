@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { getLoginUrl } from "@/const";
 import { trpc } from "@/lib/trpc";
 import { useTheme } from "@/contexts/ThemeContext";
+import CountrySelect from "@/components/CountrySelect";
 
 interface Props {
   open: boolean;
@@ -312,40 +313,11 @@ export default function LoginModal({ open, onClose }: Props) {
                 />
               </div>
               {/* Country selector */}
-              <div className="space-y-2">
-                <Label>País</Label>
-                <div className="relative">
-                  <button
-                    type="button"
-                    className={`w-full flex items-center justify-between px-3 py-2 border rounded-md text-sm bg-background hover:bg-accent transition-colors ${regErrors.country ? "border-[#660000] focus-visible:border-[#660000]" : "border-[#001a4d]"}`}
-                    onClick={() => setCountryOpen(!countryOpen)}
-                  >
-                    <span className={selectedCountry ? "text-foreground" : "text-muted-foreground"}>
-                      {selectedCountry
-                        ? EU_COUNTRIES.find((c) => c.code === selectedCountry)?.name
-                        : "Selecione um país"}
-                    </span>
-                    <ChevronDownIcon open={countryOpen} />
-                  </button>
-                  {countryOpen && (
-                    <div className="absolute z-50 w-full mt-1 bg-popover border border-border rounded-md shadow-lg max-h-48 overflow-y-auto">
-                      {EU_COUNTRIES.map((country) => (
-                        <button
-                          key={country.code}
-                          type="button"
-                          className="w-full text-left px-3 py-2 text-sm hover:bg-accent transition-colors"
-                          onClick={() => {
-                            setSelectedCountry(country.code);
-                            setCountryOpen(false);
-                          }}
-                        >
-                          {country.name}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
+              <CountrySelect
+                value={selectedCountry || ""}
+                onChange={(code) => setSelectedCountry(code)}
+                label="País"
+              />
               <div className="space-y-2">
                 <Label htmlFor="reg-pass">Palavra-passe</Label>
                 <Input 

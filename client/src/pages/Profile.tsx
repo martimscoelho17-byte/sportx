@@ -1,10 +1,11 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import CountrySelect from "@/components/CountrySelect";
 import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 
@@ -43,9 +44,6 @@ export default function Profile() {
   const [, navigate] = useLocation();
   const [isEditing, setIsEditing] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
-  const [countrySearch, setCountrySearch] = useState("");
-  const [countryOpen, setCountryOpen] = useState(false);
-  const countryDropdownRef = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState({
     firstName: user?.firstName || "",
     lastName: user?.lastName || "",
@@ -81,25 +79,9 @@ export default function Profile() {
     }
   }, [user, loading, navigate]);
 
-  useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (countryDropdownRef.current && !countryDropdownRef.current.contains(e.target as Node)) {
-        setCountryOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleCountrySelect = (code: string) => {
-    setForm((prev) => ({ ...prev, country: code }));
-    setCountryOpen(false);
-    setCountrySearch("");
   };
 
   const handleSave = async () => {
@@ -141,10 +123,6 @@ export default function Profile() {
       });
     }
   };
-
-  const filteredCountries = EU_COUNTRIES.filter((country) =>
-    country.name.toLowerCase().includes(countrySearch.toLowerCase())
-  );
 
   if (loading) {
     return <div className="flex items-center justify-center min-h-screen">Carregando...</div>;
@@ -307,52 +285,10 @@ export default function Profile() {
                 </div>
               </div>
 
-              <div ref={countryDropdownRef} className="relative">
-                <Label htmlFor="country">País</Label>
-                <button
-                  type="button"
-                  onClick={() => setCountryOpen(!countryOpen)}
-                  className="w-full px-3 py-2 border-2 border-[#001a4d] rounded-md bg-background text-foreground text-left flex items-center justify-between hover:bg-accent/50 transition-colors"
-                >
-                  <span>
-                    {form.country
-                      ? EU_COUNTRIES.find((c) => c.code === form.country)?.name
-                      : "Selecione um país"}
-                  </span>
-                  <span className="text-xs">▼</span>
-                </button>
-                {countryOpen && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-background border-2 border-[#001a4d] rounded-md shadow-lg z-50">
-                    <div className="p-2 border-b border-[#001a4d]">
-                      <Input
-                        placeholder="Pesquisar país..."
-                        value={countrySearch}
-                        onChange={(e) => setCountrySearch(e.target.value)}
-                        className="border-2 border-[#001a4d]"
-                        autoFocus
-                      />
-                    </div>
-                    <div className="max-h-48 overflow-y-auto">
-                      {filteredCountries.length > 0 ? (
-                        filteredCountries.map((country) => (
-                          <button
-                            key={country.code}
-                            type="button"
-                            onClick={() => handleCountrySelect(country.code)}
-                            className="w-full text-left px-3 py-2 hover:bg-[#001a4d]/10 transition-colors text-foreground"
-                          >
-                            {country.name}
-                          </button>
-                        ))
-                      ) : (
-                        <div className="px-3 py-2 text-muted-foreground text-sm">
-                          Nenhum país encontrado
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
+              <CountrySelect
+                value={form.country}
+                onChange={(code) => setForm((prev) => ({ ...prev, country: code }))}
+              />
 
               <div className="flex gap-4">
                 <Button
