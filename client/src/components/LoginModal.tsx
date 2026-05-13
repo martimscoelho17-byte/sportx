@@ -188,7 +188,7 @@ export default function LoginModal({ open, onClose }: Props) {
         <DialogTitle className="sr-only">SportX - Autenticação</DialogTitle>
         
         {/* Header */}
-        <div className="bg-black px-6 py-8 text-center border-b border-border">
+        <div className="bg-background px-6 py-8 text-center border-b border-border">
           <div className="text-3xl font-black tracking-widest mb-1">
             <span style={{ color: "#660000" }}>Sport</span>
             <span style={{ color: "#001a4d" }}>X</span>
