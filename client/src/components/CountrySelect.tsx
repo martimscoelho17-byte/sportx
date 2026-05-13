@@ -68,32 +68,39 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
   return (
     <div ref={dropdownRef} className="relative">
       {label && <Label htmlFor={id}>{label}</Label>}
-      <button
-        type="button"
-        id={id}
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-3 py-2 border-2 border-[#001a4d] rounded-full bg-gray-100 dark:bg-black text-foreground text-left flex items-center justify-between hover:bg-accent/50 transition-colors"
-      >
-        <span className="flex items-center gap-2">
+      
+      {!isOpen ? (
+        // Closed state: Show button with lupa and text
+        <button
+          type="button"
+          id={id}
+          onClick={() => setIsOpen(true)}
+          className="w-full px-3 py-2 border-2 border-[#001a4d] rounded-full bg-gray-100 dark:bg-black text-foreground text-left flex items-center gap-2 hover:bg-accent/50 transition-colors"
+        >
           <Search size={18} className="text-muted-foreground flex-shrink-0" />
           <span className="text-sm">
             {value
               ? EU_COUNTRIES.find((c) => c.code === value)?.name
-              : "Pesquisar país..."}
+              : "Selecione um País"}
           </span>
-        </span>
-      </button>
+        </button>
+      ) : (
+        // Open state: Show search input with lupa
+        <div className="w-full px-3 py-2 border-2 border-[#001a4d] rounded-full bg-gray-100 dark:bg-black flex items-center gap-2">
+          <Search size={18} className="text-muted-foreground flex-shrink-0" />
+          <input
+            type="text"
+            placeholder=""
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="bg-transparent outline-none text-sm text-foreground placeholder-muted-foreground w-full"
+            autoFocus
+          />
+        </div>
+      )}
+
       {isOpen && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-background border-2 border-[#001a4d] rounded-lg shadow-lg z-50">
-          <div className="p-2 border-b border-[#001a4d]">
-            <Input
-              placeholder="Pesquisar país..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="border-2 border-[#001a4d]"
-              autoFocus
-            />
-          </div>
           <div className="max-h-48 overflow-y-auto">
             {filteredCountries.length > 0 ? (
               filteredCountries.map((country) => (
