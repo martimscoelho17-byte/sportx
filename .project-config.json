@@ -1,0 +1,41 @@
+{
+  "build_command": "pnpm run build",
+  "capabilities": [
+    "db",
+    "server",
+    "user"
+  ],
+  "dev_command": "pnpm run dev",
+  "env_vars": {
+    "DATABASE_URL": "mysql://J8Way2fBP2mENXM.root:0SQ7MQkCmnF7rn9X30vG@gateway04.us-east-1.prod.aws.tidbcloud.com:4000/SRqbrBKqBpwDCXUNRC7znd?ssl={\"rejectUnauthorized\":true}"
+  },
+  "experiments": null,
+  "git_remote": {
+    "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663389044073/SRqbrBKqBpwDCXUNRC7znd",
+    "access_key_id": "ASIAZV3A2ECZEJHUG54Z",
+    "secret_access_key": "76OasUX5coyjfvGZRvdqeg1emsn7XdRa6rClJTPP",
+    "session_token": "IQoJb3JpZ2luX2VjEDwaCXVzLWVhc3QtMSJHMEUCIQCKCw/FulF+RJTPIJ4Fgr/T26KL/LvHjHsw5qP4nEc0WAIgCM+6BaO98dwwexal4JW8Rkvo0yDPOGDXMZcupjKzVEgq9gMIBBAEGgw2NjUzODYwOTg4NjYiDMbElBRsgpoVkMp44CrTAzPAqOSDX3vxs4PIHCj7iv8LW6Am/jGm5xlb47Sta0GJWJYbns8ZlEk4mH7Kvp+eck2hgEneCy7ZhsveI1nI1pv4htDXKkPa8sV5lAjA+5G/uZ1jz5V+kXFmCwf48cqM/fTiD/D5XCC57GG1SpC3iW8xTJc2WwDvgvfgAbfVe5fSqsoZhFA2BNHb9pB1LZ6P3oIM4ZJsKyWrRpSKfIix4LaDxm5KDYCdpwynIvPLi+0uk0hwB3xpKv6ZU7rj0LZqjohII7kpL4XEAYFc6SxnOWYB4UyWCy/W1PrR2wg1i8MroOkw7xu//j1tkUXgWt24pHBFTtyI2ZECsVwbTEgFDJ+uyHQf9/bWWVrl+i9VlFz74mOCREI3f6Y7yCDsuFgnE8+uhiKU/r4diGQjJPDYjXcurF8Bce0CEssqIlHHxb6+Tmg3ZXYeW4WNVCLMF4l9IVZDK2kihkyOKFsf+VoR5iLKTGGP8KCFFbza16sgMt/F+fjkofoHeIRd5K27wXd/UnN2s2CS4WNykmz2dJITSpBng16rpaJlb/EgOGJc6MzeU8bChv7367CpQWf7AR1mFpWIAVGK68uS1vzo5MwH9sPMR+nZf1qNUKyb2Q7S9vIEvaUbMKvOu9AGOp0BjU7+sGHw6feGQcT89XkVtF5WQimy7oJ2HyJhrd5jwvDyIRN82fz4VxL2OgBYku+FdPzVolEVxSZ+wao8GXt4607mPSEseDT9+3MMx84HsOTylZsqe14tyJ84ON5dKGNRxRVzcmCSsck4H26NunViU8b13DysvXpwmee61UfRPhABvCOWllrgaWUflm7HZ29LiQ4I859TgOnAJxMoPg==",
+    "expiration": "2026-05-21T23:06:19.000Z"
+  },
+  "name": "sportx",
+  "path": "/home/ubuntu/sportx",
+  "port": 3000,
+  "secrets": {
+    "BUILT_IN_FORGE_API_KEY": "SZuZJFdnC5h4tNpEQfkJHh",
+    "BUILT_IN_FORGE_API_URL": "https://forge.manus.ai",
+    "JWT_SECRET": "5BZXzEDaXyAeNWaditdghs",
+    "OAUTH_SERVER_URL": "https://api.manus.im",
+    "OWNER_NAME": "martim coelho",
+    "OWNER_OPEN_ID": "eTUTrrEhkfFgwnB57aERGc",
+    "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
+    "VITE_ANALYTICS_WEBSITE_ID": "477b834f-39c8-4f2d-b3f6-898e1f9d3ab6",
+    "VITE_APP_ID": "SRqbrBKqBpwDCXUNRC7znd",
+    "VITE_APP_LOGO": "https://files.manuscdn.com/user_upload_by_module/web_dev_logo/310519663389044073/kLaNcKbyvuhSRZDm.png",
+    "VITE_APP_TITLE": "SportX - The Next Level of Sports",
+    "VITE_FRONTEND_FORGE_API_KEY": "4dD3Jbf7YNKK9FwemJCbSC",
+    "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+  },
+  "template_id": "web-db-user",
+  "test_command": "pnpm test"
+}
