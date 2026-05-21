@@ -78,7 +78,7 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
         }
         .country-dropdown::-webkit-scrollbar-thumb {
           background: #8B0000;
-          border-radius: 6px;
+          border-radius: 12px;
         }
         .country-dropdown::-webkit-scrollbar-thumb:hover {
           background: #a00000;
