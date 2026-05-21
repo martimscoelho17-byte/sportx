@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 import { Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 const EU_COUNTRIES = [
@@ -71,27 +70,21 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
       
       <style>{`
         .country-dropdown::-webkit-scrollbar {
-          width: 12px;
+          width: 8px;
         }
         .country-dropdown::-webkit-scrollbar-track {
-          background: #001a4d;
+          background: transparent;
         }
         .country-dropdown::-webkit-scrollbar-thumb {
           background: #8B0000;
-          border-radius: 12px;
+          border-radius: 4px;
         }
         .country-dropdown::-webkit-scrollbar-thumb:hover {
           background: #a00000;
         }
-        .country-dropdown::-webkit-scrollbar-button {
-          background: #001a4d;
-          color: #001a4d;
-          height: 12px;
-          width: 12px;
-        }
         .country-dropdown {
-          scrollbar-color: #8B0000 #001a4d;
-          scrollbar-width: auto;
+          scrollbar-color: #8B0000 transparent;
+          scrollbar-width: thin;
         }
       `}</style>
       
@@ -113,37 +106,37 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
       ) : null}
 
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-black border-2 border-[#001a4d] rounded-lg shadow-lg z-50 overflow-hidden">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-[#000510] border border-gray-400 rounded shadow-lg z-50 overflow-hidden">
           {/* Search bar at the top */}
-          <div className="p-2 border-b border-[#001a4d]">
-            <div className="flex items-center gap-2 px-3 py-1 border-2 border-[#001a4d] rounded-full bg-black">
-              <Search size={18} className="text-muted-foreground flex-shrink-0" />
+          <div className="border-b border-gray-400 p-2">
+            <div className="flex items-center gap-2 px-3 py-2 bg-[#000510]">
+              <Search size={16} className="text-gray-300 flex-shrink-0" />
               <input
                 type="text"
-                placeholder=""
+                placeholder="Pesquisar país..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="bg-transparent outline-none text-xs text-white placeholder-gray-500 w-full"
+                className="bg-transparent outline-none text-sm text-white placeholder-gray-400 w-full"
                 autoFocus
               />
             </div>
           </div>
 
           {/* Countries list */}
-          <div className="country-dropdown max-h-48 overflow-y-auto">
+          <div className="country-dropdown max-h-56 overflow-y-auto">
             {filteredCountries.length > 0 ? (
               filteredCountries.map((country) => (
                 <button
                   key={country.code}
                   type="button"
                   onClick={() => handleSelect(country.code)}
-                  className="w-full text-left px-3 py-2 hover:bg-[#001a4d]/20 transition-colors text-white text-sm"
+                  className="w-full text-left px-4 py-2 hover:bg-gray-800 transition-colors text-white text-sm"
                 >
                   {country.name}
                 </button>
               ))
             ) : (
-              <div className="px-3 py-2 text-gray-500 text-sm">
+              <div className="px-4 py-2 text-gray-400 text-sm">
                 Nenhum país encontrado
               </div>
             )}
