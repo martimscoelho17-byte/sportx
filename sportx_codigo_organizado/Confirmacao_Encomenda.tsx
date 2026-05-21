@@ -172,8 +172,8 @@ function OrderConfirmationContent() {
 
           <p className="text-xs text-center text-muted-foreground mt-4">
             Para questões sobre a sua encomenda, contacte-nos em{" "}
-            <a href="mailto:SportX@gmail.pt" className="text-[#001a4d] dark:text-blue-300 hover:underline">
-              SportX@gmail.pt
+            <a href="mailto:sportxthenextlevelofsports@gmail.com" className="text-[#001a4d] dark:text-blue-300 hover:underline">
+              sportxthenextlevelofsports@gmail.com
             </a>
           </p>
         </div>
