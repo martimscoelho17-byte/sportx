@@ -78,25 +78,86 @@ export default function Footer() {
             <DialogTitle>Política de Privacidade</DialogTitle>
           </DialogHeader>
           <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-            <p>A SportX compromete-se a proteger a sua privacidade em conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD) da União Europeia.</p>
+            <p><strong className="text-foreground">Última atualização: Maio de 2026</strong></p>
+            
+            <p>A SportX ("nós", "nosso" ou "a empresa") compromete-se a proteger a sua privacidade. Esta Política de Privacidade explica como recolhemos, utilizamos, divulgamos e protegemos os seus dados pessoais em conformidade com o Regulamento Geral sobre a Proteção de Dados (RGPD) da União Europeia e legislação aplicável.</p>
 
-            <h3 className="font-bold text-foreground">1. Dados Recolhidos</h3>
-            <p>Recolhemos dados de identificação (nome, email, telefone), dados de localização (morada, código postal, país), dados de pagamento (processados de forma segura por terceiros certificados) e dados de navegação (cookies, endereço IP).</p>
+            <h3 className="font-bold text-foreground">1. Informações que Recolhemos</h3>
+            <p>Recolhemos as seguintes categorias de dados pessoais:</p>
+            <ul className="list-disc list-inside space-y-1">
+              <li><strong>Dados de Identificação:</strong> Nome completo, endereço de email, número de telefone</li>
+              <li><strong>Dados de Localização:</strong> Morada de entrega, código postal, país</li>
+              <li><strong>Dados de Pagamento:</strong> Informações de cartão de crédito (processadas de forma segura por terceiros certificados, não armazenadas nos nossos servidores)</li>
+              <li><strong>Dados de Navegação:</strong> Cookies, endereço IP, tipo de navegador, páginas visitadas</li>
+              <li><strong>Dados de Perfil:</strong> Preferências de produtos, histórico de compras</li>
+            </ul>
 
-            <h3 className="font-bold text-foreground">2. Finalidade do Tratamento</h3>
-            <p>Os seus dados são utilizados para processamento de encomendas, comunicações relacionadas com compras, melhoria dos nossos serviços e cumprimento de obrigações legais.</p>
+            <h3 className="font-bold text-foreground">2. Como Utilizamos os Seus Dados</h3>
+            <p>Os seus dados pessoais são utilizados para:</p>
+            <ul className="list-disc list-inside space-y-1">
+              <li>Processar e entregar as suas encomendas</li>
+              <li>Enviar confirmações de encomenda e atualizações de entrega</li>
+              <li>Responder às suas questões e pedidos de suporte</li>
+              <li>Melhorar a experiência do utilizador e personalizar conteúdo</li>
+              <li>Cumprir obrigações legais e regulatórias</li>
+              <li>Prevenir fraude e atividades ilícitas</li>
+              <li>Enviar comunicações de marketing (apenas com o seu consentimento)</li>
+            </ul>
 
-            <h3 className="font-bold text-foreground">3. Partilha de Dados</h3>
-            <p>Não partilhamos os seus dados pessoais com terceiros para fins comerciais. Apenas partilhamos informações estritamente necessárias com parceiros de logística e processamento de pagamentos.</p>
+            <h3 className="font-bold text-foreground">3. Base Legal para o Tratamento</h3>
+            <p>Processamos os seus dados com base em:</p>
+            <ul className="list-disc list-inside space-y-1">
+              <li>Execução de contrato (processamento de encomendas)</li>
+              <li>Consentimento (comunicações de marketing)</li>
+              <li>Obrigações legais (cumprimento fiscal e regulatório)</li>
+              <li>Interesses legítimos (prevenção de fraude, segurança)</li>
+            </ul>
 
-            <h3 className="font-bold text-foreground">4. Segurança</h3>
-            <p>Implementamos medidas de segurança de nível empresarial, incluindo encriptação SSL/TLS, firewalls e controlos de acesso rigorosos para proteger os seus dados.</p>
+            <h3 className="font-bold text-foreground">4. Partilha de Dados</h3>
+            <p>Não vendemos os seus dados pessoais a terceiros. Apenas partilhamos informações estritamente necessárias com:</p>
+            <ul className="list-disc list-inside space-y-1">
+              <li><strong>Prestadores de Logística:</strong> Para entrega das suas encomendas</li>
+              <li><strong>Processadores de Pagamento:</strong> Para processar transações de forma segura</li>
+              <li><strong>Autoridades Legais:</strong> Quando obrigado por lei</li>
+            </ul>
 
-            <h3 className="font-bold text-foreground">5. Direitos do Utilizador</h3>
-            <p>Tem o direito de aceder, corrigir ou eliminar os seus dados pessoais. Para exercer estes direitos, contacte-nos através do email <strong className="text-foreground">SportX@gmail.pt</strong></p>
+            <h3 className="font-bold text-foreground">5. Segurança dos Dados</h3>
+            <p>Implementamos medidas de segurança técnicas e organizacionais para proteger os seus dados:</p>
+            <ul className="list-disc list-inside space-y-1">
+              <li>Encriptação SSL/TLS para transmissão de dados</li>
+              <li>Firewalls e sistemas de detecção de intrusões</li>
+              <li>Controlos de acesso rigorosos e autenticação multi-fator</li>
+              <li>Auditorias de segurança regulares</li>
+              <li>Conformidade com padrões de segurança internacionais</li>
+            </ul>
 
-            <h3 className="font-bold text-foreground">6. Contacto</h3>
-            <p>Se tiver questões sobre esta Política de Privacidade, contacte-nos em <strong className="text-foreground">SportX@gmail.pt</strong></p>
+            <h3 className="font-bold text-foreground">6. Retenção de Dados</h3>
+            <p>Retemos os seus dados pessoais durante o tempo necessário para cumprir as finalidades descritas nesta política, ou conforme exigido por lei. Geralmente, mantemos dados de clientes por 7 anos para fins contabilísticos e legais.</p>
+
+            <h3 className="font-bold text-foreground">7. Seus Direitos</h3>
+            <p>Sob o RGPD, tem os seguintes direitos:</p>
+            <ul className="list-disc list-inside space-y-1">
+              <li><strong>Direito de Acesso:</strong> Solicitar cópia dos seus dados pessoais</li>
+              <li><strong>Direito de Retificação:</strong> Corrigir dados imprecisos</li>
+              <li><strong>Direito de Eliminação:</strong> Solicitar a eliminação dos seus dados ("direito ao esquecimento")</li>
+              <li><strong>Direito de Restrição:</strong> Limitar o processamento dos seus dados</li>
+              <li><strong>Direito de Portabilidade:</strong> Receber dados em formato estruturado</li>
+              <li><strong>Direito de Oposição:</strong> Opor-se ao processamento para fins de marketing</li>
+            </ul>
+
+            <h3 className="font-bold text-foreground">8. Cookies e Tecnologias de Rastreamento</h3>
+            <p>Utilizamos cookies para melhorar a sua experiência. Pode controlar as preferências de cookies nas definições do seu navegador. Alguns cookies são essenciais para o funcionamento do site, enquanto outros são opcionais.</p>
+
+            <h3 className="font-bold text-foreground">9. Alterações a Esta Política</h3>
+            <p>Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos de alterações significativas através do email ou de um aviso no nosso site.</p>
+
+            <h3 className="font-bold text-foreground">10. Contacto</h3>
+            <p>Para questões sobre esta Política de Privacidade ou para exercer os seus direitos, contacte-nos:</p>
+            <ul className="list-disc list-inside space-y-1">
+              <li><strong>Email:</strong> <a href="mailto:sportxthenextlevelofsports@gmail.com" className="text-foreground hover:text-[#001a4d] dark:hover:text-blue-300 transition-colors">sportxthenextlevelofsports@gmail.com</a></li>
+              <li><strong>Telefone:</strong> +351 963 430 023</li>
+              <li><strong>WhatsApp:</strong> +351 963 430 023</li>
+            </ul>
           </div>
         </DialogContent>
       </Dialog>
@@ -143,7 +204,7 @@ export default function Footer() {
 
             <div className="p-3 rounded-lg bg-accent">
               <p className="text-xs text-muted-foreground mb-1">Horário de Atendimento</p>
-              <p className="text-sm text-foreground">Segunda-feira a Sexta-feira: 9h00 – 17h00</p>
+              <p className="text-sm text-foreground">Segunda-feira a Sexta-feira: 9h00 – 19h00</p>
               <p className="text-sm text-foreground">Sábado: 9h00 – 13h00</p>
             </div>
           </div>
