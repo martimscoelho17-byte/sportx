@@ -110,23 +110,26 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
               : "Selecione um País"}
           </span>
         </button>
-      ) : (
-        // Open state: Show search input with lupa
-        <div className="w-full px-3 py-2 border-2 border-[#001a4d] rounded-full bg-gray-100 dark:bg-black flex items-center gap-2">
-          <Search size={18} className="text-muted-foreground flex-shrink-0" />
-          <input
-            type="text"
-            placeholder=""
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="bg-transparent outline-none text-sm text-foreground placeholder-muted-foreground w-full"
-            autoFocus
-          />
-        </div>
-      )}
+      ) : null}
 
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-background border-2 border-[#001a4d] rounded-lg shadow-lg z-50">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-black border-2 border-[#001a4d] rounded-lg shadow-lg z-50 overflow-hidden">
+          {/* Search bar at the top */}
+          <div className="p-3 border-b border-[#001a4d]">
+            <div className="flex items-center gap-2 px-3 py-2 border-2 border-[#001a4d] rounded-full bg-black">
+              <Search size={18} className="text-muted-foreground flex-shrink-0" />
+              <input
+                type="text"
+                placeholder=""
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="bg-transparent outline-none text-sm text-white placeholder-gray-500 w-full"
+                autoFocus
+              />
+            </div>
+          </div>
+
+          {/* Countries list */}
           <div className="country-dropdown max-h-48 overflow-y-auto">
             {filteredCountries.length > 0 ? (
               filteredCountries.map((country) => (
@@ -134,13 +137,13 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
                   key={country.code}
                   type="button"
                   onClick={() => handleSelect(country.code)}
-                  className="w-full text-left px-3 py-2 hover:bg-[#001a4d]/10 transition-colors text-foreground text-sm"
+                  className="w-full text-left px-3 py-2 hover:bg-[#001a4d]/20 transition-colors text-white text-sm"
                 >
                   {country.name}
                 </button>
               ))
             ) : (
-              <div className="px-3 py-2 text-muted-foreground text-sm">
+              <div className="px-3 py-2 text-gray-500 text-sm">
                 Nenhum país encontrado
               </div>
             )}
