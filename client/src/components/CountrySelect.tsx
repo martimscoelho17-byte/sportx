@@ -115,15 +115,15 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
       {isOpen && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-black border-2 border-[#001a4d] rounded-lg shadow-lg z-50 overflow-hidden">
           {/* Search bar at the top */}
-          <div className="p-3 border-b border-[#001a4d]">
-            <div className="flex items-center gap-2 px-3 py-2 border-2 border-[#001a4d] rounded-full bg-black">
+          <div className="p-2 border-b border-[#001a4d]">
+            <div className="flex items-center gap-2 px-3 py-1 border-2 border-[#001a4d] rounded-full bg-black">
               <Search size={18} className="text-muted-foreground flex-shrink-0" />
               <input
                 type="text"
                 placeholder=""
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="bg-transparent outline-none text-sm text-white placeholder-gray-500 w-full"
+                className="bg-transparent outline-none text-xs text-white placeholder-gray-500 w-full"
                 autoFocus
               />
             </div>
