@@ -121,18 +121,11 @@ export default function Footer() {
               <li><strong>Autoridades Legais:</strong> Quando obrigado por lei</li>
             </ul>
 
-            <h3 className="font-bold text-foreground">5. Segurança dos Dados</h3>
-            <p>Implementamos medidas de segurança técnicas e organizacionais para proteger os seus dados:</p>
-            <ul className="list-disc list-inside space-y-1">
-              <li>Encriptação SSL/TLS para transmissão de dados</li>
-              <li>Firewalls e sistemas de detecção de intrusões</li>
-              <li>Controlos de acesso rigorosos e autenticação multi-fator</li>
-              <li>Auditorias de segurança regulares</li>
-              <li>Conformidade com padrões de segurança internacionais</li>
-            </ul>
+            <h3 className="font-bold text-foreground">5. Direitos do Utilizador</h3>
+            <p>Tem o direito de aceder, corrigir ou eliminar os seus dados pessoais. Para exercer estes direitos, contacte-nos através do email <strong>sportxthenextlevelofsports@gmail.com</strong></p>
 
-            <h3 className="font-bold text-foreground">6. Retenção de Dados</h3>
-            <p>Retemos os seus dados pessoais durante o tempo necessário para cumprir as finalidades descritas nesta política, ou conforme exigido por lei. Geralmente, mantemos dados de clientes por 7 anos para fins contabilísticos e legais.</p>
+            <h3 className="font-bold text-foreground">6. Contacto</h3>
+            <p>Se tiver questões sobre esta Política de Privacidade, contacte-nos em <strong>sportxthenextlevelofsports@gmail.com</strong></p>
 
             <h3 className="font-bold text-foreground">7. Seus Direitos</h3>
             <p>Sob o RGPD, tem os seguintes direitos:</p>
