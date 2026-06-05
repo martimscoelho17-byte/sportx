@@ -291,11 +291,17 @@ export default function Profile() {
                   id="country"
                   value={form.country}
                   onChange={(e) => setForm((prev) => ({ ...prev, country: e.target.value }))}
-                  className="w-full px-3 py-2 border-2 border-[#001a4d] rounded-md bg-black text-white"
+                  style={{
+                    backgroundColor: '#000000',
+                    color: '#ffffff',
+                    borderColor: '#001a4d',
+                    borderWidth: '2px',
+                  }}
+                  className="w-full px-3 py-2 rounded-md"
                 >
-                  <option value="" className="bg-black text-white">Selecione um país</option>
+                  <option value="" style={{ backgroundColor: '#000000', color: '#ffffff' }}>Selecione um país</option>
                   {EU_COUNTRIES.map((country) => (
-                    <option key={country.code} value={country.code} className="bg-black text-white">
+                    <option key={country.code} value={country.code} style={{ backgroundColor: '#000000', color: '#ffffff' }}>
                       {country.name}
                     </option>
                   ))}
