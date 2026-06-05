@@ -106,10 +106,10 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
       ) : null}
 
       {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-[#000510] border border-gray-400 rounded shadow-lg z-50 overflow-hidden">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-[#000510] border-2 border-[#001a4d] rounded shadow-lg z-50 overflow-hidden">
           {/* Search bar at the top */}
-          <div className="border-b border-gray-400 p-2">
-            <div className="flex items-center gap-2 px-3 py-2 bg-[#000510]">
+          <div className="border-b border-[#001a4d] p-2">
+            <div className="flex items-center gap-2 px-3 py-2 bg-[#000510] border border-[#001a4d] rounded">
               <Search size={16} className="text-gray-300 flex-shrink-0" />
               <input
                 type="text"
