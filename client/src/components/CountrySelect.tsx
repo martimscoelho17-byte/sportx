@@ -70,17 +70,37 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
       
       <style>{`
         .country-dropdown::-webkit-scrollbar {
-          width: 10px;
+          width: 16px;
         }
         .country-dropdown::-webkit-scrollbar-track {
           background: #001a4d;
         }
         .country-dropdown::-webkit-scrollbar-thumb {
           background: #8B0000;
-          border-radius: 5px;
+          border-radius: 8px;
         }
         .country-dropdown::-webkit-scrollbar-thumb:hover {
           background: #a00000;
+        }
+        .country-dropdown::-webkit-scrollbar-button {
+          width: 16px;
+          height: 16px;
+          background: #001a4d;
+          border-radius: 50%;
+        }
+        .country-dropdown::-webkit-scrollbar-button:vertical:increment {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><polygon points="8,11 2,4 14,4" fill="%238B0000"/></svg>');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 10px 10px;
+          border-radius: 50%;
+        }
+        .country-dropdown::-webkit-scrollbar-button:vertical:decrement {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><polygon points="8,5 2,12 14,12" fill="%238B0000"/></svg>');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 10px 10px;
+          border-radius: 50%;
         }
         .country-dropdown {
           scrollbar-color: #8B0000 #001a4d;
