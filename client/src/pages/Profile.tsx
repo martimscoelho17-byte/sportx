@@ -5,7 +5,7 @@ import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import CountrySelect from "@/components/CountrySelect";
+
 import { ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 
@@ -285,10 +285,22 @@ export default function Profile() {
                 </div>
               </div>
 
-              <CountrySelect
-                value={form.country}
-                onChange={(code) => setForm((prev) => ({ ...prev, country: code }))}
-              />
+              <div>
+                <Label htmlFor="country">País</Label>
+                <select
+                  id="country"
+                  value={form.country}
+                  onChange={(e) => setForm((prev) => ({ ...prev, country: e.target.value }))}
+                  className="w-full px-3 py-2 border-2 border-[#001a4d] rounded-md bg-black text-white"
+                >
+                  <option value="" className="bg-black text-white">Selecione um país</option>
+                  {EU_COUNTRIES.map((country) => (
+                    <option key={country.code} value={country.code} className="bg-black text-white">
+                      {country.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
               <div className="flex gap-4">
                 <Button
