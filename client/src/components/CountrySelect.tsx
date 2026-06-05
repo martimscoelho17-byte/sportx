@@ -113,7 +113,7 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
               <Search size={16} className="text-gray-300 flex-shrink-0" />
               <input
                 type="text"
-                placeholder="Pesquisar país..."
+                placeholder=""
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="bg-transparent outline-none text-sm text-white placeholder-gray-400 w-full"
