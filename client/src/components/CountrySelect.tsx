@@ -70,21 +70,27 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
       
       <style>{`
         .country-dropdown::-webkit-scrollbar {
-          width: 8px;
+          width: 16px;
         }
         .country-dropdown::-webkit-scrollbar-track {
           background: transparent;
         }
         .country-dropdown::-webkit-scrollbar-thumb {
           background: #8B0000;
-          border-radius: 4px;
+          border-radius: 8px;
         }
         .country-dropdown::-webkit-scrollbar-thumb:hover {
           background: #a00000;
         }
+        .country-dropdown::-webkit-scrollbar-button {
+          width: 16px;
+          height: 16px;
+          background: #001a4d;
+          color: #8B0000;
+        }
         .country-dropdown {
           scrollbar-color: #8B0000 transparent;
-          scrollbar-width: thin;
+          scrollbar-width: auto;
         }
       `}</style>
       
