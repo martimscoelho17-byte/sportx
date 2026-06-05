@@ -70,34 +70,17 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
       
       <style>{`
         .country-dropdown::-webkit-scrollbar {
-          width: 12px;
+          width: 10px;
         }
         .country-dropdown::-webkit-scrollbar-track {
           background: #001a4d;
         }
         .country-dropdown::-webkit-scrollbar-thumb {
           background: #8B0000;
-          border-radius: 6px;
+          border-radius: 5px;
         }
         .country-dropdown::-webkit-scrollbar-thumb:hover {
           background: #a00000;
-        }
-        .country-dropdown::-webkit-scrollbar-button {
-          width: 12px;
-          height: 12px;
-          background: #001a4d;
-          color: #8B0000;
-          border: none;
-        }
-        .country-dropdown::-webkit-scrollbar-button:vertical:increment {
-          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><polygon points="6,9 2,4 10,4" fill="%238B0000"/></svg>');
-          background-repeat: no-repeat;
-          background-position: center;
-        }
-        .country-dropdown::-webkit-scrollbar-button:vertical:decrement {
-          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 12"><polygon points="6,3 2,8 10,8" fill="%238B0000"/></svg>');
-          background-repeat: no-repeat;
-          background-position: center;
         }
         .country-dropdown {
           scrollbar-color: #8B0000 #001a4d;
