@@ -37,11 +37,12 @@ interface CountrySelectProps {
   onChange: (code: string) => void;
   label?: string;
   id?: string;
+  defaultOpen?: boolean;
 }
 
-export default function CountrySelect({ value, onChange, label = "País", id = "country" }: CountrySelectProps) {
+export default function CountrySelect({ value, onChange, label = "País", id = "country", defaultOpen = false }: CountrySelectProps) {
   const [search, setSearch] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(defaultOpen);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -88,7 +89,7 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
         }
       `}</style>
       
-      {!isOpen ? (
+      {!isOpen && (
         // Closed state: Show button with lupa and text
         <button
           type="button"
@@ -103,7 +104,7 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
               : "Selecione um País"}
           </span>
         </button>
-      ) : null}
+      )}
 
       {isOpen && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-[#000510] border-2 border-[#001a4d] rounded shadow-lg z-50 overflow-hidden">

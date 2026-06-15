@@ -288,6 +288,7 @@ export default function Profile() {
               <CountrySelect
                 value={form.country}
                 onChange={(code) => setForm((prev) => ({ ...prev, country: code }))}
+                defaultOpen={isEditing}
               />
 
               <div className="flex gap-4">
