@@ -284,6 +284,77 @@ export const appRouter = router({
         return { success: true };
       }),
   }),
+
+  stripe: router({
+    createCheckoutSession: publicProcedure
+      .input(
+        z.object({
+          items: z.array(
+            z.object({
+              productId: z.number(),
+              quantity: z.number(),
+              price: z.number(),
+              name: z.string(),
+            })
+          ),
+          total: z.number(),
+          shippingCost: z.number(),
+        })
+      )
+      .mutation(async ({ input, ctx }) => {
+        const stripe = (await import("stripe")).default;
+        const stripeClient = new stripe(process.env.STRIPE_SECRET_KEY!);
+
+        const lineItems = input.items.map((item) => ({
+          price_data: {
+            currency: "eur",
+            product_data: {
+              name: item.name,
+              metadata: {
+                productId: item.productId.toString(),
+              },
+            },
+            unit_amount: Math.round(item.price * 100),
+          },
+          quantity: item.quantity,
+        }));
+
+        // Add shipping as a line item
+        if (input.shippingCost > 0) {
+          lineItems.push({
+            price_data: {
+              currency: "eur",
+              product_data: {
+                name: "Envio",
+                metadata: {
+                  productId: "shipping",
+                },
+              },
+              unit_amount: Math.round(input.shippingCost * 100),
+            },
+            quantity: 1,
+          });
+        }
+
+        const session = await stripeClient.checkout.sessions.create({
+          payment_method_types: ["card"],
+          line_items: lineItems,
+          mode: "payment",
+          customer_email: ctx.user?.email || undefined,
+          client_reference_id: ctx.user?.id.toString() || undefined,
+          metadata: {
+            user_id: ctx.user?.id.toString() || "guest",
+            customer_email: ctx.user?.email || "",
+            customer_name: ctx.user?.firstName || "",
+          },
+          success_url: `${ctx.req.headers.origin}/orders?session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${ctx.req.headers.origin}/checkout`,
+          allow_promotion_codes: true,
+        });
+
+        return { url: session.url };
+      }),
+  }),
 });
 
 export type AppRouter = typeof appRouter;

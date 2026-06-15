@@ -7,15 +7,16 @@
   ],
   "dev_command": "pnpm run dev",
   "env_vars": {
-    "DATABASE_URL": "mysql://J8Way2fBP2mENXM.root:0SQ7MQkCmnF7rn9X30vG@gateway04.us-east-1.prod.aws.tidbcloud.com:4000/SRqbrBKqBpwDCXUNRC7znd?ssl={\"rejectUnauthorized\":true}"
+    "DATABASE_URL": "mysql://J8Way2fBP2mENXM.root:0SQ7MQkCmnF7rn9X30vG@gateway04.us-east-1.prod.aws.tidbcloud.com:4000/SRqbrBKqBpwDCXUNRC7znd?ssl={\"rejectUnauthorized\":true}",
+    "DRIZZLE_DATABASE_URL": "mysql://J8Way2fBP2mENXM.root:0SQ7MQkCmnF7rn9X30vG@gateway04.us-east-1.prod.aws.tidbcloud.com:4000/SRqbrBKqBpwDCXUNRC7znd?ssl={\"rejectUnauthorized\":true}"
   },
   "experiments": null,
   "git_remote": {
     "repo_url": "s3://vida-prod-gitrepo/webdev-git/310519663389044073/SRqbrBKqBpwDCXUNRC7znd",
-    "access_key_id": "ASIAZV3A2ECZEXWFOOCC",
-    "secret_access_key": "+ISs3Eq0ZLiT5Kyzjmtpj1pA3M7eTIMGmSceingo",
-    "session_token": "IQoJb3JpZ2luX2VjEKf//////////wEaCXVzLWVhc3QtMSJHMEUCIHU3a/4zXipt63wm6p4CN4L0lezWXrsI6SPp/xCczgkBAiEAs7KnjMIhTPI3+2lWo4eLNGSxy2F4X5xjt7iGrvjj+2cq9gMIcBAEGgw2NjUzODYwOTg4NjYiDBzB/RFGPiyPvZ2YsSrTA5xzsjcyLPryYva5EbwYKCo2rxDC2d4CcZ/W78oXVIvchUoQ/KcyUbjzPHXEAlH00gl5QYwP8PINMfs8is5gHbCEDssqQQQMJQOpL5AYQZtmaXotAGgW3bw9Vky2n2lMYycX/BV6ZF6tgD8dmbL3Huqb7n9Iss/YVBWQ5mzN1Z/4fWfJOh8qwWvkqG2zh8m53Z4PtSS/i5JBSHskOWOXSYQaqip/dn2JkC52nhyVJZwYpCaHOyaqBSzJZHxKlYTHYOSpv+/bKjAEpD4+WF4kZWDThHfM3GOjt8+mVnuLphO0XV1EmgtAtAHpb6W1EVqwIfhClQBiMkZdYRfjNpL7KC8b0RcSvAatb6xK2M484mGX8PWqphAL8Y8Cf1GraXMKXUlpGTmAOOp062pVBgG/8oh5r00mkEACBeCE+vyCLkhtCOgxDCLsU+lpxon1Kl8jBeVCB+3uXH6RpxFaz5veeZdT66oD7YnSug1W4bQQwl91cKML+EyFEGeZkjZTeCDBrZ2bX91niXuGDcNoKGyYWLt4GDm7WD41+EQkjgPcIqEzuKuexyscbhR9IjIZamdravhLPR1lYJVuEfY3wiXC7UCtFWkY0i2x2IOHCnFjjxWjBN3EMNy9i9EGOp0BidT01B8YYevpLvJ9WiszCll9qzV1tyYu1TO2liAsiE9wR6/utudHEs+8QuVid96lFcE56mfkjALHsj16gmJ4XxF556KETcb9Ct0vFdRGWM6c3qg5D85HoeP/4e5Mej7eSH02ByveT80vcZlycvuU/gvt4bqUQVpxG9ScGI7SY+9nNNKaSSqJEIPtMRWKXP9Wu9XUH0niW/j/RLEIXQ==",
-    "expiration": "2026-06-06T02:36:12.000Z"
+    "access_key_id": "ASIAZV3A2ECZORUSTPYH",
+    "secret_access_key": "88R0Xg0Xw8ZtNV+VcKoEpm6A8Sc1+NfMwQg17LGB",
+    "session_token": "IQoJb3JpZ2luX2VjEJL//////////wEaCXVzLWVhc3QtMSJGMEQCIQCy605YkmXVypnkn4QHw2dEg15eK56DiVTNr+qvChbTagIfDYiMMb+IFxWa4g79H/fFxbQnEITlWiWED4jQpxPHrir2AwhbEAQaDDY2NTM4NjA5ODg2NiIMeqx5ORevH4FmaHNeKtMDKsbOfwp6yr8BWydja7j9G0K7MQqONgcX/kIgWxrdPHwLJWRYygV00fOGeWjWeMP01+FPQ5NLYCdHITra9MTfTokm+nhetMbTezHnbB3+Ecwl7FAK5FYZtMVrWnn1u15G7ryQ6qpWmK5+ETwWFscV7Cy5BozeBiD4uVYBkDYY5C9ROb5GtXpx0Ac++uJiZrfHhxlVY9o1IIR/zPcLIWYbWrmJIDN6JcoxhW83LT3Kxr54SySjbFDTsVgNYilWE+/a81Rq53Z4tEiqi9H49Yl09JEmgpCKTmzUb8zI/QYDPBNY9FyVNolx0bc/S0kKFlin/srqgKhK0DFE7OqPsHEqFUSf+VQSFYcwQV5Opf9g7nTsSyKi6VqYSXjKQsGQW0mVgtLr/RQ7j81CZfWw9i2ePv+pKQrB4Sc67ilTCBXFwnd8nVjGtEb7ubIX3cGeOLauaCtoNBwTFX1TYqROCtOEd7EytMk6d4IJFhZ7B1Fz1Y267BB9UZMjeJUc53z2tE8Rmd0ex/LSzzUTKoE6zy+zREkedFd5TsYLGtDG8FcRXYvXROj6a/6JNjPdTHJ8GmXoZ3EgD9JAdmDBVEg1lYbygP7Zcll3lrqt7NWi2QVKcWKrP4ww4pO/0QY6ngHpFZ0KdssBRKYok438dDtcc2dQRpw0dSR0elp3G8iNsDakffkBCDY/R9gZ1UOqlshCfZ2a9MPWaNpftOZq+2p/vmM6/7W7ggA8uH4NopGD/tqLPsursXwuPSaUKV+TCplYDMa4D2qrJWAnMPeKqta/D7tteGfQzra2Kpkvgyhd1udg99IhB+x3TR97GdiF3UfDGTO9lAfVpp7G2AVO5g==",
+    "expiration": "2026-06-15T21:46:10.000Z"
   },
   "name": "sportx",
   "path": "/home/ubuntu/sportx",
@@ -27,6 +28,8 @@
     "OAUTH_SERVER_URL": "https://api.manus.im",
     "OWNER_NAME": "martim coelho",
     "OWNER_OPEN_ID": "eTUTrrEhkfFgwnB57aERGc",
+    "STRIPE_SECRET_KEY": "sk_test_51ThFwUPBC8aCSrwSRKJydeYDR2LTTG8qtPEBD4mZOaiKzJABLcogEqqmDnsu1mKgj9x6lX3Ic16GL7X2wFJSKXji008W79TnxV",
+    "STRIPE_WEBHOOK_SECRET": "whsec_ak6cw4qtRP71L3nn4cgVYkSKce9Vp4Zr",
     "VITE_ANALYTICS_ENDPOINT": "https://manus-analytics.com",
     "VITE_ANALYTICS_WEBSITE_ID": "477b834f-39c8-4f2d-b3f6-898e1f9d3ab6",
     "VITE_APP_ID": "SRqbrBKqBpwDCXUNRC7znd",
@@ -34,7 +37,8 @@
     "VITE_APP_TITLE": "SportX - The Next Level of Sports",
     "VITE_FRONTEND_FORGE_API_KEY": "4dD3Jbf7YNKK9FwemJCbSC",
     "VITE_FRONTEND_FORGE_API_URL": "https://forge.manus.ai",
-    "VITE_OAUTH_PORTAL_URL": "https://manus.im"
+    "VITE_OAUTH_PORTAL_URL": "https://manus.im",
+    "VITE_STRIPE_PUBLISHABLE_KEY": "pk_test_51ThFwUPBC8aCSrwS1AQ7FYPq5PwjViLZJXUKP6CG3va7cI36NjTP1exHiwbdUTeUwtzCgtpS4YwxpmJWsKqVlPdR008rucFlrg"
   },
   "template_id": "web-db-user",
   "test_command": "pnpm test"

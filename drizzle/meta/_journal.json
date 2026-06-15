@@ -50,6 +50,13 @@
       "when": 1777907746251,
       "tag": "0006_dry_kree",
       "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1781516811404,
+      "tag": "0007_dusty_living_lightning",
+      "breakpoints": true
     }
   ]
 }

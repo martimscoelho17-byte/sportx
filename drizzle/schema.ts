@@ -25,6 +25,8 @@ export const users = mysqlTable("users", {
   password: text("password"),
   loginMethod: varchar("loginMethod", { length: 64 }),
   role: mysqlEnum("role", ["user", "admin"]).default("user").notNull(),
+  // Stripe integration
+  stripeCustomerId: varchar("stripeCustomerId", { length: 255 }),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
   lastSignedIn: timestamp("lastSignedIn").defaultNow().notNull(),
@@ -124,6 +126,9 @@ export const orders = mysqlTable("orders", {
   country: varchar("country", { length: 100 }),
   // Pagamento
   paymentMethod: varchar("paymentMethod", { length: 50 }),
+  // Stripe integration
+  stripePaymentIntentId: varchar("stripePaymentIntentId", { length: 255 }),
+  stripeSessionId: varchar("stripeSessionId", { length: 255 }),
   // Totais
   subtotal: decimal("subtotal", { precision: 10, scale: 2 }),
   shipping: decimal("shipping", { precision: 10, scale: 2 }).default("0.00"),
