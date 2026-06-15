@@ -80,6 +80,7 @@ function CheckoutContent() {
   const selectedPickupStore = PICKUP_STORES.find((s) => s.id === form.pickupStore);
 
   const createOrder = trpc.orders.create.useMutation();
+  const createCheckoutSession = trpc.stripe.createCheckoutSession.useMutation();
 
   const discount = total * 0.1; // 10% discount
   const subtotalAfterDiscount = total - discount;
@@ -140,21 +141,31 @@ function CheckoutContent() {
           size: i.size,
         })),
       });
-      // Store order data for payment page
-      sessionStorage.setItem("pendingOrder", JSON.stringify({
-        orderId: order?.id,
-        orderNumber: order?.orderNumber,
-        subtotal: total.toFixed(2),
-        discount: discount.toFixed(2),
-        shipping: shipping.toFixed(2),
-        total: orderTotal.toFixed(2),
-      }));
-      
-      // Clear errors on success
-      setErrors({});
-      
-      // Redirect to payment page
-      navigate("/payment");
+      // Create Stripe checkout session
+      const checkoutSession = await createCheckoutSession.mutateAsync({
+        items: items.map((i) => ({
+          productId: i.productId,
+          quantity: i.quantity,
+          price: parseFloat(i.product?.price || "0"),
+          name: i.product?.name || "Produto",
+        })),
+        total,
+        shippingCost: shipping,
+      });
+
+      if (checkoutSession?.url) {
+        // Open Stripe checkout in new tab
+        window.open(checkoutSession.url, "_blank");
+        toast.success("Redirecionando para pagamento...");
+        
+        // Clear cart and redirect
+        clearCart();
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      } else {
+        toast.error("Erro ao criar sessão de pagamento");
+      }
     } catch (err) {
       toast.error("Erro ao processar encomenda. Tente novamente.");
     } finally {

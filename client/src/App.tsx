@@ -11,6 +11,7 @@ import ProductDetail from "./pages/ProductDetail";
 import Favorites from "./pages/Favorites";
 import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
+import PaymentSuccess from "./pages/PaymentSuccess";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import Profile from "./pages/Profile";
 
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/profile" component={Profile} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/payment" component={Payment} />
+      <Route path="/payment/success" component={PaymentSuccess} />
       <Route path="/order-confirmation/:orderNumber" component={OrderConfirmation} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
