@@ -141,33 +141,7 @@ function ProductDetailContent() {
               {/* Price */}
               <div className="text-3xl font-bold text-foreground">€{parseFloat(product.price).toFixed(2)}</div>
 
-              {/* Size Selection */}
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <label className="text-sm font-semibold text-foreground">Selecionar tamanho</label>
-                  <a href="#" className="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
-                    📏 Guia de tamanhos
-                  </a>
-                </div>
-                <p className="text-xs text-muted-foreground mb-4">
-                  Ajuste firme. Se preferires um ajuste ligeiramente mais folgado, recomendamos que encomandes meio tamanho acima
-                </p>
-                <div className="grid grid-cols-3 gap-2">
-                  {SIZES.map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => setSelectedSize(size as string)}
-                      className={`py-3 px-2 rounded-lg border-2 text-sm font-medium transition-all ${
-                        selectedSize === size
-                          ? "border-foreground bg-foreground text-background"
-                          : "border-border text-foreground hover:border-foreground"
-                      }`}
-                    >
-                      EU {size}
-                    </button>
-                  ))}
-                </div>
-              </div>
+
 
               {/* Action Buttons */}
               <div className="flex flex-col gap-3">
