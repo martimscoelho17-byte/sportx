@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Mail, Phone, MessageCircle, ChevronRight } from "lucide-react";
+import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
 
 type ModalType = "sobre" | "privacidade" | "contactos" | null;
 
@@ -105,55 +105,47 @@ export default function Footer() {
       <Dialog open={modal === "contactos"} onOpenChange={(v) => !v && setModal(null)}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-center">Contactos</DialogTitle>
+            <DialogTitle>Contactos</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 py-6">
-            {/* Email */}
-            <a
-              href="mailto:sportxthenextlevelofsports@gmail.com"
-              className="flex items-center justify-between p-4 rounded-xl border-2 border-border hover:border-[#001a4d] hover:bg-accent/50 transition-all group"
-            >
-              <div className="flex items-center gap-4">
-                <Mail size={24} className="text-[#001a4d] group-hover:scale-110 transition-transform" />
-                <div>
-                  <p className="text-xs text-muted-foreground mb-1">Email</p>
-                  <p className="text-sm font-medium text-foreground">sportxthenextlevelofsports@gmail.com</p>
-                </div>
+          <div className="space-y-4">
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-accent">
+              <Mail size={20} className="text-[#001a4d] flex-shrink-0" />
+              <div>
+                <p className="text-xs text-muted-foreground">Email</p>
+                <a href="mailto:sportxthenextlevelofsports@gmail.com" className="text-sm font-medium text-white hover:text-gray-200 transition-colors">
+                  sportxthenextlevelofsports@gmail.com
+                </a>
               </div>
-              <ChevronRight size={20} className="text-muted-foreground" />
-            </a>
+            </div>
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-accent">
+              <Phone size={20} className="text-[#001a4d] flex-shrink-0" />
+              <div>
+                <p className="text-xs text-muted-foreground">Telefone</p>
+                <a href="tel:+351963430023" className="text-sm font-medium text-white hover:text-gray-200 transition-colors">
+                  963 430 023
+                </a>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-3 rounded-lg bg-accent">
+              <MessageCircle size={20} className="text-green-600 flex-shrink-0" />
+              <div>
+                <p className="text-xs text-muted-foreground">WhatsApp</p>
+                <a
+                  href="https://wa.me/351963430023"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm font-medium text-white hover:text-gray-200 transition-colors"
+                >
+                  963 430 023
+                </a>
+              </div>
+            </div>
 
-            {/* Telefone */}
-            <a
-              href="tel:+351963430023"
-              className="flex items-center justify-between p-4 rounded-xl border-2 border-border hover:border-[#001a4d] hover:bg-accent/50 transition-all group"
-            >
-              <div className="flex items-center gap-4">
-                <Phone size={24} className="text-[#001a4d] group-hover:scale-110 transition-transform" />
-                <div>
-                  <p className="text-xs text-muted-foreground mb-1">Telefone</p>
-                  <p className="text-sm font-medium text-foreground">963 430 023</p>
-                </div>
-              </div>
-              <ChevronRight size={20} className="text-muted-foreground" />
-            </a>
-
-            {/* WhatsApp */}
-            <a
-              href="https://wa.me/351963430023"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-between p-4 rounded-xl border-2 border-green-600 hover:bg-green-50 dark:hover:bg-green-950/20 transition-all group"
-            >
-              <div className="flex items-center gap-4">
-                <MessageCircle size={24} className="text-green-600 group-hover:scale-110 transition-transform" />
-                <div>
-                  <p className="text-xs text-muted-foreground mb-1">WhatsApp</p>
-                  <p className="text-sm font-medium text-foreground">963 430 023</p>
-                </div>
-              </div>
-              <ChevronRight size={20} className="text-green-600" />
-            </a>
+            <div className="p-3 rounded-lg bg-accent">
+              <p className="text-xs text-muted-foreground mb-1">Horário de Atendimento</p>
+              <p className="text-sm text-white">Segunda-feira a Sexta-feira: 9h00 – 19h00</p>
+              <p className="text-sm text-white">Sábado: 9h00 – 13h00</p>
+            </div>
           </div>
         </DialogContent>
       </Dialog>
