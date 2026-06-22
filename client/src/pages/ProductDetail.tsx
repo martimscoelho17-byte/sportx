@@ -144,9 +144,6 @@ function ProductDetailContent() {
               {/* Size Selection */}
               <div>
                 <label className="text-sm font-semibold text-foreground mb-4 block">Selecionar tamanho</label>
-                <p className="text-xs text-muted-foreground mb-4">
-                  Ajuste firme. Se preferires um ajuste ligeiramente mais folgado, recomendamos que encomandes meio tamanho acima
-                </p>
                 <div className="grid grid-cols-3 gap-2">
                   {SIZES.map((size) => (
                     <button
