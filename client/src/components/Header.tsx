@@ -193,7 +193,7 @@ export default function Header() {
                         className="w-full text-left px-4 py-2 text-sm font-medium text-popover-foreground border-b border-border hover:bg-accent transition-colors cursor-pointer"
                         onClick={() => {
                           setUserMenuOpen(false);
-                          navigate("/profile");
+                          navigate("/account");
                         }}
                       >
                         {user.firstName && user.lastName ? `${user.firstName} ${user.lastName}` : user.name || user.email}

@@ -14,6 +14,8 @@ import Payment from "./pages/Payment";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import Profile from "./pages/Profile";
+import AccountMenu from "./pages/AccountMenu";
+import Orders from "./pages/Orders";
 
 function Router() {
   return (
@@ -26,6 +28,8 @@ function Router() {
       <Route path="/product/:id" component={ProductDetail} />
       <Route path="/favorites" component={Favorites} />
       <Route path="/profile" component={Profile} />
+      <Route path="/account" component={AccountMenu} />
+      <Route path="/account/orders" component={Orders} />
       <Route path="/checkout" component={Checkout} />
       <Route path="/payment" component={Payment} />
       <Route path="/payment/success" component={PaymentSuccess} />

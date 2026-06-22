@@ -206,6 +206,10 @@ export const appRouter = router({
 
   // ─── Orders ──────────────────────────────────────────────────────────────
   orders: router({
+    list: publicProcedure.query(async () => {
+      // Return empty array for now - will be implemented later
+      return [];
+    }),
     create: publicProcedure
       .input(
         z.object({
