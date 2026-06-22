@@ -93,10 +93,10 @@ export default function Footer() {
             <p>Implementamos medidas de segurança de nível empresarial, incluindo encriptação SSL/TLS, firewalls e controlos de acesso rigorosos para proteger os seus dados.</p>
 
             <h3 className="font-bold text-foreground">5. Direitos do Utilizador</h3>
-            <p>Tem o direito de aceder, corrigir ou eliminar os seus dados pessoais. Para exercer estes direitos, contacte-nos através do email <strong className="text-foreground">SportX@gmail.pt</strong></p>
+            <p>Tem o direito de aceder, corrigir ou eliminar os seus dados pessoais. Para exercer estes direitos, contacte-nos através do email <strong className="text-foreground">sportxthenextlevelofsports@gmail.com</strong></p>
 
             <h3 className="font-bold text-foreground">6. Contacto</h3>
-            <p>Se tiver questões sobre esta Política de Privacidade, contacte-nos em <strong className="text-foreground">SportX@gmail.pt</strong></p>
+            <p>Se tiver questões sobre esta Política de Privacidade, contacte-nos em <strong className="text-foreground">sportxthenextlevelofsports@gmail.com</strong></p>
           </div>
         </DialogContent>
       </Dialog>
