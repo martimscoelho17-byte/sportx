@@ -143,12 +143,7 @@ function ProductDetailContent() {
 
               {/* Size Selection */}
               <div>
-                <div className="flex items-center justify-between mb-4">
-                  <label className="text-sm font-semibold text-foreground">Selecionar tamanho</label>
-                  <a href="#" className="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
-                    📏 Guia de tamanhos
-                  </a>
-                </div>
+                <label className="text-sm font-semibold text-foreground mb-4 block">Selecionar tamanho</label>
                 <p className="text-xs text-muted-foreground mb-4">
                   Ajuste firme. Se preferires um ajuste ligeiramente mais folgado, recomendamos que encomandes meio tamanho acima
                 </p>
