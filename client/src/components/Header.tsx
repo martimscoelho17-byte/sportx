@@ -80,12 +80,17 @@ export default function Header() {
               {brandMenus.map((brand) => (
                 <div key={brand.slug} className="relative">
                   <button
-                    className="flex items-center gap-1.5 px-0 py-2 text-base font-bold text-foreground hover:text-[#001a4d] dark:hover:text-[#001a4d] transition-colors"
+                    className="flex items-center gap-1.5 px-2 py-2 hover:opacity-80 dark:hover:opacity-80 transition-opacity"
                     onMouseEnter={() => setActiveDropdown(brand.slug)}
                     onMouseLeave={() => setActiveDropdown(null)}
                     onClick={() => navigate(`/products/${brand.slug}`)}
+                    title={brand.name}
                   >
-                    {brand.name}
+                    <img
+                      src={`/${brand.slug}-logo.svg`}
+                      alt={brand.name}
+                      className="h-6 w-auto object-contain dark:invert"
+                    />
                     <ChevronDown
                       size={14}
                       className={`transition-transform duration-200 ${activeDropdown === brand.slug ? "rotate-180" : ""}`}
