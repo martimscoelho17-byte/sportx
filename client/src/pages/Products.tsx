@@ -156,7 +156,7 @@ function ProductsContent() {
               <img
                 src={`/${brand.slug}-logo.svg`}
                 alt={brand.name}
-                className="h-20 w-20 object-contain dark:invert"
+                className="h-16 w-32 object-contain dark:invert"
               />
               <div className="flex items-center gap-6 text-sm">
                 {brandCategories.map((cat) => (
