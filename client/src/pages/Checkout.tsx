@@ -70,21 +70,14 @@ function CheckoutContent() {
     pickupStore: "",
   });
 
-  const PICKUP_STORES = [
-    { id: "store1", name: "SportX - Lisbon Center", address: "Rua Augusta, 100, Lisboa" },
-    { id: "store2", name: "SportX - Porto North", address: "Av. dos Aliados, 50, Porto" },
-    { id: "store3", name: "SportX - Covilha", address: "Rua da Paixao, 25, Covilha" },
-    { id: "store4", name: "SportX - Braga", address: "Rua do Souto, 10, Braga" },
-  ];
 
-  const selectedPickupStore = PICKUP_STORES.find((s) => s.id === form.pickupStore);
 
   const createOrder = trpc.orders.create.useMutation();
   const createCheckoutSession = trpc.stripe.createCheckoutSession.useMutation();
 
   const discount = total * 0.1; // 10% discount
   const subtotalAfterDiscount = total - discount;
-  const shipping = form.deliveryMethod === "levantamento" ? 0 : (subtotalAfterDiscount >= 100 ? 0 : 5.99);
+  const shipping = subtotalAfterDiscount >= 100 ? 0 : 5.99;
   const tax = subtotalAfterDiscount * 0.23;
   const orderTotal = subtotalAfterDiscount + shipping + tax;
 
