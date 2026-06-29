@@ -325,13 +325,7 @@ function ProductsContent() {
                     </div>
                   </FilterSection>
 
-                  <FilterSection title="Nível">
-                    <div className="space-y-1">
-                      {[["elite", "Elite"], ["pro", "Pro"], ["academy", "Academy"]].map(([v, l]) => (
-                        <CheckboxFilter key={v} label={l} checked={filters.levels.includes(v)} onChange={() => toggleFilter("levels", v)} />
-                      ))}
-                    </div>
-                  </FilterSection>
+
 
                   <FilterSection title="Altura do calçado">
                     <div className="space-y-1">
