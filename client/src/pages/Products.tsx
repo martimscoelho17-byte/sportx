@@ -174,11 +174,26 @@ function ProductsContent() {
             </nav>
           )}
 
-          {/* Category title */}
-          {selectedCategory && (
+          {/* Category title or dropdown */}
+          {selectedCategory ? (
             <h1 className="text-3xl font-black text-foreground tracking-wide mb-6">
               {selectedCategory.name}
             </h1>
+          ) : (
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-foreground mb-3">Selecione uma categoria:</h2>
+              <div className="flex flex-wrap gap-3">
+                {brandCategories.map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => navigate(`/products/${params.brandSlug}/${cat.slug}`)}
+                    className="px-6 py-3 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent/80 transition-colors"
+                  >
+                    {cat.name}
+                  </button>
+                ))}
+              </div>
+            </div>
           )}
 
           {/* Toolbar */}
