@@ -78,18 +78,39 @@ export default function Header() {
             {/* Brand navigation - Center-Left */}
             <nav className="hidden md:flex items-center gap-20 absolute left-2/5 transform -translate-x-1/2" ref={dropdownRef}>
               {brandMenus.map((brand) => (
-                <button
-                  key={brand.slug}
-                  className="flex items-center gap-1.5 px-2 py-2 hover:opacity-80 dark:hover:opacity-80 transition-opacity"
-                  onClick={() => navigate(`/products/${brand.slug}`)}
-                  title={brand.name}
-                >
-                  <img
-                    src={`/${brand.slug}-logo.svg`}
-                    alt={brand.name}
-                    className="h-6 w-auto object-contain dark:invert"
-                  />
-                </button>
+                <div key={brand.slug} className="relative">
+                  <button
+                    className="flex items-center gap-1.5 px-2 py-2 hover:opacity-80 dark:hover:opacity-80 transition-opacity"
+                    onClick={() => setActiveDropdown(activeDropdown === brand.slug ? null : brand.slug)}
+                    title={brand.name}
+                  >
+                    <img
+                      src={`/${brand.slug}-logo.svg`}
+                      alt={brand.name}
+                      className="h-6 w-auto object-contain dark:invert"
+                    />
+                  </button>
+
+                  {activeDropdown === brand.slug && (
+                    <div
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 flex flex-col bg-popover border-2 border-[#001a4d]/20 rounded-lg shadow-lg py-2 z-50 min-w-max"
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
+                      {brand.categories.map((cat) => (
+                        <button
+                          key={cat.slug}
+                          className="w-full text-left px-4 py-2.5 text-sm text-popover-foreground hover:bg-accent hover:text-accent-foreground transition-colors rounded-md mx-1"
+                          onClick={() => {
+                            navigate(`/products/${brand.slug}/${cat.slug}`);
+                            setActiveDropdown(null);
+                          }}
+                        >
+                          {cat.name}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </nav>
 
