@@ -216,13 +216,19 @@
 - [x] Logos das marcas no cabeçalho
 - [x] Seletor de categorias ao clicar na marca
 - [x] Categorias corrigidas no banco de dados
+- [x] Removida seção "Selecione uma categoria"
+- [x] Email atualizado: sportxthenextlevelofsports@gmail.com
+- [x] Página de contactos reformulada
+- [x] Menu de conta implementado
+- [x] Página de encomendas criada
+- [x] LoginModal melhorado visualmente
 
-## Integração Stripe (Em Desenvolvimento)
-- [ ] Adicionar feature Stripe ao projeto
-- [ ] Configurar chaves Stripe (pública e privada)
-- [ ] Implementar botão de checkout no carrinho
-- [ ] Criar página de sucesso de pagamento
-- [ ] Testar fluxo de pagamento com Stripe
+## Integração Stripe (Concluído)
+- [x] Adicionar feature Stripe ao projeto
+- [x] Configurar chaves Stripe (pública e privada)
+- [x] Implementar botão de checkout no carrinho
+- [x] Criar página de sucesso de pagamento
+- [x] Webhook configurado para processar pagamentos
 
 
 ## Adicionar Imagens aos Produtos (Concluído)

@@ -76,7 +76,7 @@ export default function Header() {
             </Link>
 
             {/* Brand navigation - Center-Left */}
-            <nav className="hidden md:flex items-center gap-20 absolute left-2/5 transform -translate-x-1/2" ref={dropdownRef}>
+            <nav className="hidden md:flex items-center gap-24 absolute left-2/5 transform -translate-x-1/2" ref={dropdownRef}>
               {brandMenus.map((brand) => (
                 <button
                   key={brand.slug}
@@ -87,7 +87,7 @@ export default function Header() {
                   <img
                     src={`/${brand.slug}-logo.svg`}
                     alt={brand.name}
-                    className="h-6 w-auto object-contain dark:invert"
+                    className="h-10 w-auto object-contain dark:invert"
                   />
                 </button>
               ))}
