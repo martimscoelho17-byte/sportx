@@ -80,16 +80,17 @@ export default function Header() {
               {brandMenus.map((brand) => (
                 <button
                   key={brand.slug}
-                  className="flex items-center gap-2 px-3 py-2 hover:opacity-70 transition-opacity rounded-lg"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg relative group"
                   onClick={() => navigate(`/products/${brand.slug}`)}
                   title={brand.name}
                 >
+                    <div className="absolute inset-0 bg-[#001a4d] opacity-0 group-hover:opacity-20 rounded-lg transition-opacity"></div>
                     <img
                       src={`/${brand.slug}-logo.svg`}
                       alt={brand.name}
-                      className="h-8 w-auto object-contain dark:invert"
+                      className="h-8 w-auto object-contain dark:invert relative z-10"
                     />
-                    <span className="text-sm font-medium text-foreground hidden sm:inline">{brand.name}</span>
+                    <span className="text-sm font-medium text-foreground hidden sm:inline relative z-10">{brand.name}</span>
                 </button>
               ))}
             </nav>
