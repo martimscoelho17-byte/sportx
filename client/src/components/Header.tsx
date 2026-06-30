@@ -77,21 +77,26 @@ export default function Header() {
 
             {/* Brand navigation - Center-Left */}
             <nav className="hidden md:flex items-center gap-24 absolute left-2/5 transform -translate-x-1/2" ref={dropdownRef}>
-              {brandMenus.map((brand) => (
-                <button
-                  key={brand.slug}
-                  className="flex items-center gap-2 px-3 py-2 hover:opacity-80 dark:hover:opacity-80 transition-opacity rounded-lg hover:bg-gray-100 dark:hover:bg-gray-900"
-                  onClick={() => navigate(`/products/${brand.slug}`)}
-                  title={brand.name}
-                >
-                  <img
-                    src={`/${brand.slug}-logo.svg`}
-                    alt={brand.name}
-                    className="h-8 w-auto object-contain dark:invert"
-                  />
-                  <span className="text-sm font-medium text-foreground hidden sm:inline">{brand.name}</span>
-                </button>
-              ))}
+              {brandMenus.map((brand) => {
+                const hoverClass = ['nike', 'adidas', 'puma'].includes(brand.slug)
+                  ? 'hover:bg-black dark:hover:bg-white'
+                  : 'hover:bg-gray-400 dark:hover:bg-gray-600';
+                return (
+                  <button
+                    key={brand.slug}
+                    className={`flex items-center gap-2 px-3 py-2 transition-colors rounded-lg ${hoverClass}`}
+                    onClick={() => navigate(`/products/${brand.slug}`)}
+                    title={brand.name}
+                  >
+                    <img
+                      src={`/${brand.slug}-logo.svg`}
+                      alt={brand.name}
+                      className="h-8 w-auto object-contain dark:invert"
+                    />
+                    <span className="text-sm font-medium text-foreground hidden sm:inline">{brand.name}</span>
+                  </button>
+                );
+              })}
             </nav>
 
             {/* Search Bar */}
