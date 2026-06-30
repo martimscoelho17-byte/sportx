@@ -213,7 +213,7 @@ export default function LoginModal({ open, onClose }: Props) {
           </button>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-8 space-y-5">
           {mode === "login" ? (
             <>
               <div className="space-y-2">
@@ -268,9 +268,9 @@ export default function LoginModal({ open, onClose }: Props) {
             </>
           ) : (
             <>
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-2">
-                  <Label htmlFor="reg-first">Nome</Label>
+              <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-3">
+                <Label htmlFor="reg-first" className="text-sm font-medium">Nome</Label>
                   <Input 
                     id="reg-first" 
                     autoComplete="off"
@@ -279,8 +279,8 @@ export default function LoginModal({ open, onClose }: Props) {
                     className={regErrors.firstName ? "border-[#660000] focus-visible:border-[#660000] focus-visible:ring-[#660000]/30 focus-visible:shadow-[0_0_0_3px_rgba(102,0,0,0.1)]" : "border-[#001a4d] focus-visible:border-[#000d2e] focus-visible:ring-[#000d2e]/30 focus-visible:shadow-[0_0_0_3px_rgba(0,13,46,0.1)]"}
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="reg-last">Apelido</Label>
+              <div className="space-y-3">
+                <Label htmlFor="reg-last" className="text-sm font-medium">Apelido</Label>
                   <Input 
                     id="reg-last" 
                     autoComplete="off"
@@ -290,8 +290,8 @@ export default function LoginModal({ open, onClose }: Props) {
                   />
                 </div>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="reg-email">Email</Label>
+              <div className="space-y-3">
+                <Label htmlFor="reg-email" className="text-sm font-medium">Email</Label>
                 <Input 
                   id="reg-email" 
                   type="email" 
@@ -301,8 +301,8 @@ export default function LoginModal({ open, onClose }: Props) {
                   className={regErrors.email ? "border-[#660000] focus-visible:border-[#660000] focus-visible:ring-[#660000]/30 focus-visible:shadow-[0_0_0_3px_rgba(102,0,0,0.1)]" : "border-[#001a4d] focus-visible:border-[#000d2e] focus-visible:ring-[#000d2e]/30 focus-visible:shadow-[0_0_0_3px_rgba(0,13,46,0.1)]"}
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="reg-phone">Telefone</Label>
+              <div className="space-y-3">
+                <Label htmlFor="reg-phone" className="text-sm font-medium">Telefone</Label>
                 <Input 
                   id="reg-phone" 
                   type="tel" 
@@ -318,8 +318,8 @@ export default function LoginModal({ open, onClose }: Props) {
                 onChange={(code) => setSelectedCountry(code)}
                 label="País"
               />
-              <div className="space-y-2">
-                <Label htmlFor="reg-pass">Palavra-passe</Label>
+              <div className="space-y-3">
+                <Label htmlFor="reg-pass" className="text-sm font-medium">Palavra-passe</Label>
                 <Input 
                   id="reg-pass" 
                   type="password" 
@@ -329,8 +329,8 @@ export default function LoginModal({ open, onClose }: Props) {
                   className={regErrors.password ? "border-[#660000] focus-visible:border-[#660000] focus-visible:ring-[#660000]/30 focus-visible:shadow-[0_0_0_3px_rgba(102,0,0,0.1)]" : "border-[#001a4d] focus-visible:border-[#000d2e] focus-visible:ring-[#000d2e]/30 focus-visible:shadow-[0_0_0_3px_rgba(0,13,46,0.1)]"}
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="reg-confirm">Confirmar palavra-passe</Label>
+              <div className="space-y-3">
+                <Label htmlFor="reg-confirm" className="text-sm font-medium">Confirmar palavra-passe</Label>
                 <Input 
                   id="reg-confirm" 
                   type="password" 
