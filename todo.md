@@ -211,12 +211,11 @@
 - [x] Exibir estado vazio quando nenhum resultado é encontrado
 
 
-## Melhorar Design do Dropdown de Categorias (Em Desenvolvimento)
-- [ ] Adicionar animações suaves ao dropdown
-- [ ] Melhorar cores e contraste com gradientes
-- [ ] Adicionar sombras e efeitos visuais
-- [ ] Melhorar espaçamento e padding
-- [ ] Adicionar efeito hover nas categorias com transições
+## Melhorar Design do Dropdown de Categorias (Concluído)
+- [x] Scrollbar corrigido: barra vermelha redonda, fundo azul escuro
+- [x] Logos das marcas no cabeçalho
+- [x] Seletor de categorias ao clicar na marca
+- [x] Categorias corrigidas no banco de dados
 
 ## Integração Stripe (Em Desenvolvimento)
 - [ ] Adicionar feature Stripe ao projeto
