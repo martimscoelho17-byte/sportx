@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 
 type ModalType = "sobre" | "privacidade" | "contactos" | null;
 
@@ -117,15 +117,7 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-            <div className="flex items-center gap-3 p-3 rounded-lg bg-accent">
-              <Phone size={20} className="text-[#001a4d] flex-shrink-0" />
-              <div>
-                <p className="text-xs text-muted-foreground">Telefone</p>
-                <a href="tel:+351963430023" className="text-sm font-medium text-white hover:text-gray-200 transition-colors">
-                  963 430 023
-                </a>
-              </div>
-            </div>
+
             <div className="flex items-center gap-3 p-3 rounded-lg bg-accent">
               <MessageCircle size={20} className="text-green-600 flex-shrink-0" />
               <div>
