@@ -191,7 +191,7 @@ function ProductsContent() {
                 onClick={() => setShowFilters(!showFilters)}
               >
                 <SlidersHorizontal size={14} />
-                {showFilters ? "Ocultar" : "Mostrar"}
+                {showFilters ? "Ocultar filtros" : "Mostrar filtros"}
                 {activeFilterCount > 0 && (
                   <span className="bg-[#001a4d] text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
                     {activeFilterCount}
