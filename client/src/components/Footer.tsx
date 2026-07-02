@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Mail, MessageCircle } from "lucide-react";
+
 
 type ModalType = "sobre" | "privacidade" | "contactos" | null;
 
@@ -109,7 +109,7 @@ export default function Footer() {
           </DialogHeader>
           <div className="space-y-4">
             <div className="flex items-center gap-3 p-3 rounded-lg bg-accent">
-              <Mail size={20} className="text-[#001a4d] flex-shrink-0" />
+              <img src="/manus-storage/gmail-logo_fc8c21c8.png" alt="Gmail" className="w-5 h-5 flex-shrink-0" />
               <div>
                 <p className="text-xs text-muted-foreground">Email</p>
                 <a href="mailto:sportxthenextlevelofsports@gmail.com" className="text-sm font-medium text-white hover:text-gray-200 transition-colors">
@@ -119,7 +119,7 @@ export default function Footer() {
             </div>
 
             <div className="flex items-center gap-3 p-3 rounded-lg bg-accent">
-              <MessageCircle size={20} className="text-green-600 flex-shrink-0" />
+              <img src="/manus-storage/whatsapp-logo_6d7dd902.png" alt="WhatsApp" className="w-5 h-5 flex-shrink-0" />
               <div>
                 <p className="text-xs text-muted-foreground">WhatsApp</p>
                 <a
