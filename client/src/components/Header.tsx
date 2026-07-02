@@ -87,11 +87,10 @@ export default function Header() {
                     <img
                       src={`/${brand.slug}-logo.svg`}
                       alt={brand.name}
-                      className="h-8 w-auto object-contain dark:invert"
+                      className="h-8 w-auto object-contain dark:invert group-hover:text-[#00d4ff] transition-colors"
                     />
-                    <span className="text-sm font-medium text-foreground hidden sm:inline relative">
-                      <span className="absolute inset-0 bg-[#001a4d] opacity-0 group-hover:opacity-30 rounded transition-opacity"></span>
-                      <span className="relative z-10">{brand.name}</span>
+                    <span className="text-sm font-medium text-foreground hidden sm:inline relative group-hover:text-[#00d4ff] transition-colors">
+                      {brand.name}
                     </span>
                 </button>
               ))}
