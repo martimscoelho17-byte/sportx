@@ -84,13 +84,15 @@ export default function Header() {
                   onClick={() => navigate(`/products/${brand.slug}`)}
                   title={brand.name}
                 >
-                    <div className="absolute inset-0 bg-[#001a4d] opacity-0 group-hover:opacity-30 rounded-lg transition-opacity"></div>
                     <img
                       src={`/${brand.slug}-logo.svg`}
                       alt={brand.name}
-                      className="h-8 w-auto object-contain dark:invert relative z-10"
+                      className="h-8 w-auto object-contain dark:invert"
                     />
-                    <span className="text-sm font-medium text-foreground hidden sm:inline relative z-10">{brand.name}</span>
+                    <span className="text-sm font-medium text-foreground hidden sm:inline relative">
+                      <span className="absolute inset-0 bg-[#001a4d] opacity-0 group-hover:opacity-30 rounded transition-opacity"></span>
+                      <span className="relative z-10">{brand.name}</span>
+                    </span>
                 </button>
               ))}
             </nav>
