@@ -111,7 +111,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 p-3 rounded-lg bg-accent">
               <img src="/manus-storage/gmail-logo_fc8c21c8.png" alt="Gmail" className="w-5 h-5 flex-shrink-0" />
               <div>
-                <p className="text-xs text-muted-foreground">Email</p>
+                <p className="text-xs text-muted-foreground">Gmail</p>
                 <a href="mailto:sportxthenextlevelofsports@gmail.com" className="text-sm font-medium text-white hover:text-gray-200 transition-colors">
                   sportxthenextlevelofsports@gmail.com
                 </a>
