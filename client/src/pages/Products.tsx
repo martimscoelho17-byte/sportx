@@ -234,7 +234,6 @@ function ProductsContent() {
               <aside className="w-56 flex-shrink-0">
                 <div className="sticky top-20 space-y-0">
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-bold text-sm text-foreground">Filtros</h3>
                     {activeFilterCount > 0 && (
                       <button
                         className="text-xs text-muted-foreground hover:text-foreground flex items-center gap-1"
