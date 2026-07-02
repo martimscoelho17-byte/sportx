@@ -7,48 +7,17 @@ import { Label } from "@/components/ui/label";
 import { getLoginUrl } from "@/const";
 import { trpc } from "@/lib/trpc";
 import { useTheme } from "@/contexts/ThemeContext";
-import CountrySelect from "@/components/CountrySelect";
+
 
 interface Props {
   open: boolean;
   onClose: () => void;
 }
 
-const EU_COUNTRIES = [
-  { code: "DE", name: "Alemanha", flag: "🇩🇪" },
-  { code: "AT", name: "Áustria", flag: "🇦🇹" },
-  { code: "BE", name: "Bélgica", flag: "🇧🇪" },
-  { code: "BG", name: "Bulgária", flag: "🇧🇬" },
-  { code: "CY", name: "Chipre", flag: "🇨🇾" },
-  { code: "CZ", name: "Chéquia", flag: "🇨🇿" },
-  { code: "HR", name: "Croácia", flag: "🇭🇷" },
-  { code: "DK", name: "Dinamarca", flag: "🇩🇰" },
-  { code: "EE", name: "Estónia", flag: "🇪🇪" },
-  { code: "ES", name: "Espanha", flag: "🇪🇸" },
-  { code: "SK", name: "Eslováquia", flag: "🇸🇰" },
-  { code: "SI", name: "Eslovénia", flag: "🇸🇮" },
-  { code: "FI", name: "Finlândia", flag: "🇫🇮" },
-  { code: "FR", name: "França", flag: "🇫🇷" },
-  { code: "GR", name: "Grécia", flag: "🇬🇷" },
-  { code: "HU", name: "Hungria", flag: "🇭🇺" },
-  { code: "IE", name: "Irlanda", flag: "🇮🇪" },
-  { code: "IT", name: "Itália", flag: "🇮🇹" },
-  { code: "LV", name: "Letónia", flag: "🇱🇻" },
-  { code: "LT", name: "Lituânia", flag: "🇱🇹" },
-  { code: "LU", name: "Luxemburgo", flag: "🇱🇺" },
-  { code: "MT", name: "Malta", flag: "🇲🇹" },
-  { code: "NL", name: "Países Baixos", flag: "🇳🇱" },
-  { code: "PL", name: "Polónia", flag: "🇵🇱" },
-  { code: "PT", name: "Portugal", flag: "🇵🇹" },
-  { code: "RO", name: "Roménia", flag: "🇷🇴" },
-  { code: "SE", name: "Suécia", flag: "🇸🇪" },
-];
-
 export default function LoginModal({ open, onClose }: Props) {
   const { theme } = useTheme();
   const [mode, setMode] = useState<"login" | "register">("login");
-  const [countryOpen, setCountryOpen] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState<string | null>(null);
+
   
   // Login fields
   const [loginEmail, setLoginEmail] = useState("");
@@ -66,15 +35,13 @@ export default function LoginModal({ open, onClose }: Props) {
   
   // Validation errors
   const [loginErrors, setLoginErrors] = useState<{ email?: boolean; password?: boolean }>({});
-  const [regErrors, setRegErrors] = useState<{ firstName?: boolean; lastName?: boolean; email?: boolean; phone?: boolean; password?: boolean; confirmPassword?: boolean; country?: boolean }>({});
+  const [regErrors, setRegErrors] = useState<{ firstName?: boolean; lastName?: boolean; email?: boolean; phone?: boolean; password?: boolean; confirmPassword?: boolean }>({});
   
   const registerMutation = trpc.auth.register.useMutation();
   const loginLocalMutation = trpc.auth.loginLocal.useMutation();
 
   const handleClose = () => {
     setMode("login");
-    setSelectedCountry(null);
-    setCountryOpen(false);
     setLoginEmail("");
     setLoginPassword("");
     setRegFirstName("");
@@ -138,9 +105,6 @@ export default function LoginModal({ open, onClose }: Props) {
     if (!regPhone.trim()) {
       errors.phone = true;
     }
-    if (!selectedCountry) {
-      errors.country = true;
-    }
     if (!regPassword.trim() || regPassword.length < 6) {
       errors.password = true;
     }
@@ -162,7 +126,7 @@ export default function LoginModal({ open, onClose }: Props) {
         firstName: regFirstName,
         lastName: regLastName,
         phone: regPhone,
-        country: selectedCountry,
+        country: "PT",
         password: regPassword,
       });
       
@@ -174,7 +138,6 @@ export default function LoginModal({ open, onClose }: Props) {
       setRegPhone("");
       setRegPassword("");
       setRegConfirmPassword("");
-      setSelectedCountry(null);
     } catch (error) {
       const message = error instanceof Error ? error.message : "Erro ao criar conta";
       alert("Erro: " + message);
@@ -312,12 +275,7 @@ export default function LoginModal({ open, onClose }: Props) {
                   className={regErrors.phone ? "border-[#660000] focus-visible:border-[#660000] focus-visible:ring-[#660000]/30 focus-visible:shadow-[0_0_0_3px_rgba(102,0,0,0.1)]" : "border-[#001a4d] focus-visible:border-[#000d2e] focus-visible:ring-[#000d2e]/30 focus-visible:shadow-[0_0_0_3px_rgba(0,13,46,0.1)]"}
                 />
               </div>
-              {/* Country selector */}
-              <CountrySelect
-                value={selectedCountry || ""}
-                onChange={(code) => setSelectedCountry(code)}
-                label="País"
-              />
+
               <div className="space-y-3">
                 <Label htmlFor="reg-pass" className="text-sm font-medium">Palavra-passe</Label>
                 <Input 
