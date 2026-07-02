@@ -99,9 +99,7 @@ export default function CountrySelect({ value, onChange, label = "País", id = "
         >
           <Search size={18} className="text-muted-foreground flex-shrink-0" />
           <span className="text-sm">
-            {value
-              ? EU_COUNTRIES.find((c) => c.code === value)?.name
-              : "Selecione um País"}
+            {EU_COUNTRIES.find((c) => c.code === value)?.name}
           </span>
         </button>
       )}
