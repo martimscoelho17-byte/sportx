@@ -191,7 +191,7 @@ function ProductsContent() {
                 onClick={() => setShowFilters(!showFilters)}
               >
                 <SlidersHorizontal size={14} />
-                {showFilters ? "Ocultar filtros" : "Mostrar filtros"}
+                {showFilters ? "Ocultar" : "Mostrar"}
                 {activeFilterCount > 0 && (
                   <span className="bg-[#001a4d] text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
                     {activeFilterCount}
@@ -366,7 +366,7 @@ function ProductsContent() {
                 </div>
               ) : products.length === 0 ? (
                 <div className="text-center py-12">
-                  <p className="text-muted-foreground">Nenhum produto encontrado com os filtros selecionados.</p>
+                  <p className="text-muted-foreground">Nenhum produto encontrado.</p>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
