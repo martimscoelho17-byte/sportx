@@ -87,9 +87,9 @@ export default function Header() {
                     <img
                       src={`/${brand.slug}-logo.svg`}
                       alt={brand.name}
-                      className="h-8 w-auto object-contain dark:invert group-hover:text-[#00d4ff] transition-colors"
+                      className="h-8 w-auto object-contain dark:invert group-hover:text-[#001a4d] transition-colors"
                     />
-                    <span className="text-sm font-medium text-foreground hidden sm:inline relative group-hover:text-[#00d4ff] transition-colors">
+                    <span className="text-sm font-medium text-foreground hidden sm:inline relative group-hover:text-[#001a4d] transition-colors">
                       {brand.name}
                     </span>
                 </button>
