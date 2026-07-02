@@ -141,11 +141,7 @@ export default function Footer() {
               </div>
             </div>
 
-            <div className="p-3 rounded-lg bg-accent">
-              <p className="text-xs text-muted-foreground mb-1">Horário de Atendimento</p>
-              <p className="text-sm text-white">Segunda-feira a Sexta-feira: 9h00 – 19h00</p>
-              <p className="text-sm text-white">Sábado: 9h00 – 13h00</p>
-            </div>
+
           </div>
         </DialogContent>
       </Dialog>
